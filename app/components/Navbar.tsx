@@ -10,28 +10,24 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center gap-6">
-          <Link
-            href="/emi-calculator"
-            className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-          >
+          <Link href="/emi-calculator"
+            className="text-sm text-gray-500 hover:text-green-600 transition-colors">
             EMI
           </Link>
-          <Link
-            href="/sip-calculator"
-            className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-          >
+          <Link href="/sip-calculator"
+            className="text-sm text-gray-500 hover:text-green-600 transition-colors">
             SIP
           </Link>
-          <Link
-            href="/gst-calculator"
-            className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-          >
+          <Link href="/gst-calculator"
+            className="text-sm text-gray-500 hover:text-green-600 transition-colors">
             GST
           </Link>
-          <Link
-            href="/about"
-            className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-          >
+          <Link href="/salary-calculator"
+            className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+            Salary
+          </Link>
+          <Link href="/about"
+            className="text-sm text-gray-500 hover:text-green-600 transition-colors">
             About
           </Link>
         </div>
