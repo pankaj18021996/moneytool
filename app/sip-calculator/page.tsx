@@ -64,7 +64,9 @@ export default function SIPCalculator() {
           </div>
           <div className="bg-gray-50 rounded-xl p-4">
             <p className="text-xs text-gray-500 mb-1">Est. Returns</p>
-            <p className="text-lg font-medium text-green-600">{fmt(returns)}</p>
+            <p className="text-lg font-medium text-green-600">
+              {fmt(returns)}
+            </p>
           </div>
           <div className="bg-gray-50 rounded-xl p-4">
             <p className="text-xs text-gray-500 mb-1">Total Value</p>
@@ -87,6 +89,27 @@ export default function SIPCalculator() {
           </span>
         </div>
       </div>
+
+      <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mt-2">
+        <p className="text-sm font-medium text-blue-800 mb-1">
+          Ready to start your SIP investment?
+        </p>
+        <p className="text-xs text-blue-700 mb-4">
+          Open a FREE Zerodha demat account and start
+          your SIP journey today
+        </p>
+        <a
+          href="https://zerodha.com/open-account?c=FV4724"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-blue-600 text-white
+            text-xs px-4 py-2 rounded-lg hover:bg-blue-700
+            transition-colors"
+        >
+          Open Zerodha Account →
+        </a>
+      </div>
+
     </main>
   );
 }

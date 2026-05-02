@@ -23,7 +23,6 @@ export default function EMICalculator() {
       </p>
 
       <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
-
         <div className="mb-6">
           <div className="flex justify-between text-sm mb-2">
             <span className="text-gray-500">Loan Amount</span>
@@ -84,6 +83,7 @@ export default function EMICalculator() {
           </span>
         </div>
       </div>
+
     </main>
   );
 }
