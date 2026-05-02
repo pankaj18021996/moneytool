@@ -23,6 +23,12 @@ export default function Navbar() {
             SIP
           </Link>
           <Link
+            href="/gst-calculator"
+            className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+          >
+            GST
+          </Link>
+          <Link
             href="/about"
             className="text-sm text-gray-500 hover:text-green-600 transition-colors"
           >

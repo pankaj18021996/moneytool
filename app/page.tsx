@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "MoneyTool - Free Financial Calculators for India",
-  description: "Free EMI Calculator, SIP Calculator and more financial tools for India. Calculate loan EMI, mutual fund returns instantly.",
+  description: "Free EMI Calculator, SIP Calculator, GST Calculator and more financial tools for India.",
 };
 
 const tools = [
@@ -21,6 +21,14 @@ const tools = [
     link: "/sip-calculator",
     color: "bg-blue-50 border-blue-200",
     iconBg: "bg-blue-100",
+  },
+  {
+    title: "GST Calculator",
+    description: "Calculate GST amount instantly for any product or service in seconds",
+    icon: "🧾",
+    link: "/gst-calculator",
+    color: "bg-orange-50 border-orange-200",
+    iconBg: "bg-orange-100",
   },
 ];
 
