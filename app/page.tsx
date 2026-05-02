@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "MoneyTool - Free Financial Calculators for India",
-  description: "Free EMI Calculator, SIP Calculator, GST Calculator, Salary Calculator for India.",
+  description: "Free EMI, SIP, GST, Salary, FD Calculators for India.",
 };
 
 const tools = [
@@ -37,6 +37,14 @@ const tools = [
     link: "/salary-calculator",
     color: "bg-purple-50 border-purple-200",
     iconBg: "bg-purple-100",
+  },
+  {
+    title: "FD Calculator",
+    description: "Calculate your Fixed Deposit maturity amount with custom interest rates",
+    icon: "🏛️",
+    link: "/fd-calculator",
+    color: "bg-yellow-50 border-yellow-200",
+    iconBg: "bg-yellow-100",
   },
 ];
 
