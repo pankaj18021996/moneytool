@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-
+import Footer from "./components/Footer";
 export const metadata: Metadata = {
   title: "MoneyTool - Free Financial Calculators for India",
   description: "Free EMI Calculator, SIP Calculator and more financial tools for India.",
@@ -24,6 +24,7 @@ export default function RootLayout({
       <body className="bg-gray-50 min-h-screen">
         <Navbar />
         {children}
+         <Footer />
       </body>
     </html>
   );
