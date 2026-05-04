@@ -1,87 +1,78 @@
-"use client";
-import { useState } from "react";
+import type { Metadata } from "next";
+import EMICalculatorClient from "./EMICalculatorClient";
 
-export default function EMICalculator() {
-  const [amount, setAmount] = useState(500000);
-  const [rate, setRate] = useState(8.5);
-  const [tenure, setTenure] = useState(24);
+export const metadata: Metadata = {
+  title: "EMI Calculator India 2026 — Free Loan EMI Calculator",
+  description: "Calculate your home loan, car loan & personal loan EMI instantly. Free EMI calculator with interest breakdown. Trusted by thousands of Indians.",
+  alternates: {
+    canonical: "https://www.moneytool.in/emi-calculator",
+  },
+  openGraph: {
+    title: "Free EMI Calculator India — Calculate Loan EMI Instantly",
+    description: "Calculate your loan EMI instantly. Free and accurate EMI calculator for all loan types.",
+    url: "https://www.moneytool.in/emi-calculator",
+    siteName: "MoneyTool",
+    locale: "en_IN",
+    type: "website",
+  },
+};
 
-  const r = rate / (12 * 100);
-  const emi = amount * r * Math.pow(1+r,tenure) / (Math.pow(1+r,tenure) - 1);
-  const totalPay = emi * tenure;
-  const totalInt = totalPay - amount;
-  const pPct = (amount / totalPay * 100).toFixed(1);
-
-  const fmt = (n: number) =>
-    "₹" + Math.round(n).toLocaleString("en-IN");
-
+export default function EMICalculatorPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-medium mb-1">EMI Calculator</h1>
+
+      <h1 className="text-2xl font-medium mb-1">
+        EMI Calculator
+      </h1>
       <p className="text-gray-500 text-sm mb-8">
         Calculate your monthly loan installment instantly
       </p>
 
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
-        <div className="mb-6">
-          <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-500">Loan Amount</span>
-            <span className="font-medium">{fmt(amount)}</span>
-          </div>
-          <input type="range" min="50000" max="10000000" step="10000"
-            value={amount} onChange={e => setAmount(Number(e.target.value))}
-            className="w-full accent-green-600" />
-        </div>
+      <EMICalculatorClient />
 
-        <div className="mb-6">
-          <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-500">Interest Rate (per annum)</span>
-            <span className="font-medium">{rate.toFixed(1)}%</span>
-          </div>
-          <input type="range" min="1" max="30" step="0.1"
-            value={rate} onChange={e => setRate(Number(e.target.value))}
-            className="w-full accent-green-600" />
-        </div>
+      <div className="mt-6 bg-white border border-gray-200 rounded-2xl p-6">
+        <h2 className="text-lg font-medium mb-3">
+          What is EMI?
+        </h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          EMI (Equated Monthly Installment) is a fixed payment
+          amount made by a borrower to a lender each month. EMIs
+          are used to pay off both interest and principal so that
+          over a specified number of years, the loan is fully paid off.
+        </p>
 
-        <div className="mb-8">
-          <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-500">Loan Tenure</span>
-            <span className="font-medium">{tenure} months</span>
-          </div>
-          <input type="range" min="1" max="360" step="1"
-            value={tenure} onChange={e => setTenure(Number(e.target.value))}
-            className="w-full accent-green-600" />
-        </div>
+        <h2 className="text-lg font-medium mb-3">
+          How is EMI Calculated?
+        </h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          EMI is calculated using the formula:
+          EMI = P × r × (1+r)^n / ((1+r)^n - 1)
+          where P is principal, r is monthly interest rate
+          and n is number of months.
+        </p>
 
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          <div className="bg-gray-50 rounded-xl p-4">
-            <p className="text-xs text-gray-500 mb-1">Monthly EMI</p>
-            <p className="text-lg font-medium">{fmt(emi)}</p>
-          </div>
-          <div className="bg-gray-50 rounded-xl p-4">
-            <p className="text-xs text-gray-500 mb-1">Total Interest</p>
-            <p className="text-lg font-medium">{fmt(totalInt)}</p>
-          </div>
-          <div className="bg-gray-50 rounded-xl p-4">
-            <p className="text-xs text-gray-500 mb-1">Total Payment</p>
-            <p className="text-lg font-medium">{fmt(totalPay)}</p>
-          </div>
-        </div>
+        <h2 className="text-lg font-medium mb-3">
+          How to Use This EMI Calculator?
+        </h2>
+        <ul className="text-gray-600 text-sm leading-relaxed
+          list-disc pl-5 space-y-2 mb-4">
+          <li>Enter your loan amount using the slider</li>
+          <li>Set the interest rate offered by your bank</li>
+          <li>Choose your loan tenure in months</li>
+          <li>Instantly see your monthly EMI amount</li>
+        </ul>
 
-        <div className="flex rounded-full overflow-hidden h-2 mb-3">
-          <div className="bg-green-500" style={{width: pPct + "%"}}></div>
-          <div className="bg-orange-400" style={{width: (100 - Number(pPct)) + "%"}}></div>
-        </div>
-        <div className="flex gap-4 text-xs text-gray-500">
-          <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
-            Principal
-          </span>
-          <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-orange-400 inline-block"></span>
-            Interest
-          </span>
-        </div>
+        <h2 className="text-lg font-medium mb-3">
+          Types of Loans You Can Calculate
+        </h2>
+        <ul className="text-gray-600 text-sm leading-relaxed
+          list-disc pl-5 space-y-2">
+          <li>Home Loan EMI Calculator</li>
+          <li>Car Loan EMI Calculator</li>
+          <li>Personal Loan EMI Calculator</li>
+          <li>Education Loan EMI Calculator</li>
+          <li>Business Loan EMI Calculator</li>
+        </ul>
       </div>
 
     </main>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
@@ -16,31 +17,19 @@ export const metadata: Metadata = {
     "gst calculator",
     "salary calculator",
     "fd calculator",
-    "free calculator india",
   ],
-  authors: [{ name: "MoneyTool" }],
-  creator: "MoneyTool",
   metadataBase: new URL("https://www.moneytool.in"),
   openGraph: {
     type: "website",
     locale: "en_IN",
-        siteName: "MoneyTool",
-    title: "MoneyTool — Free Financial Calculators for India",
-    description: "Free financial calculators for India. EMI, SIP, GST, Salary, FD calculators and more.",
-    url: "https://www.moneytool.in",
-  },
-  twitter: {
-    card: "summary_large_image",
+    siteName: "MoneyTool",
     title: "MoneyTool — Free Financial Calculators for India",
     description: "Free financial calculators for India.",
+    url: "https://www.moneytool.in",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
   },
 };
 
@@ -51,31 +40,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3150789625391215"
-          crossOrigin="anonymous"
-        />
-      </head>
-      <script
-  async
-  src={`https://www.googletagmanager.com/gtag/js?id=G-DBWGRGDQ52`}
-/>
-<script
-  dangerouslySetInnerHTML={{
-    __html: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DBWGRGDQ52');
-    `,
-  }}
-/>
       <body className="bg-gray-50 min-h-screen">
         <Navbar />
         {children}
         <Footer />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3150789625391215"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-DBWGRGDQ52"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-DBWGRGDQ52');
+          `}
+        </Script>
       </body>
     </html>
   );
