@@ -5,63 +5,48 @@
   --foreground: #0f172a;
   --primary: #1D9E75;
   --primary-hover: #0F6E56;
-  --primary-light: #E1F5EE;
   --border: #e2e8f0;
-  --muted: #64748b;
   --card: #ffffff;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  max-width: 100%;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    "Segoe UI", Roboto, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
-/* ===== MAIN CONTENT WRAPPER ===== */
+/* ===== MAIN LAYOUT ===== */
 main {
   width: 100%;
-  max-width: 860px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem 1.25rem;
-  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  animation: fadeUp 0.3s ease;
 }
 
 @media (min-width: 640px) {
-  main {
-    padding: 2.5rem 2rem;
-  }
+  main { padding: 3rem 2rem; }
 }
 
 @media (min-width: 768px) {
-  main {
-    padding: 3rem 3rem;
-  }
+  main { padding: 3.5rem 3rem; }
 }
 
 @media (min-width: 1024px) {
-  main {
-    padding: 3.5rem 4rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  main {
-    padding: 4rem 5rem;
-  }
+  main { padding: 4rem 5rem; }
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -69,11 +54,13 @@ h1, h2, h3, h4 {
   font-weight: 500;
   line-height: 1.3;
   color: #0f172a;
+  word-break: break-word;
 }
 
 p {
   color: #64748b;
   line-height: 1.7;
+  word-break: break-word;
 }
 
 a {
@@ -82,41 +69,35 @@ a {
   transition: color 0.2s ease;
 }
 
-a:hover {
-  color: var(--primary-hover);
-}
+a:hover { color: var(--primary-hover); }
 
-/* ===== RANGE SLIDERS ===== */
+/* ===== SLIDERS ===== */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
+  width: 100%;
   height: 5px;
   border-radius: 999px;
   background: #e2e8f0;
   outline: none;
   cursor: pointer;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
   display: block;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
   width: 22px;
   height: 22px;
   border-radius: 50%;
   background: var(--primary);
-  cursor: pointer;
   border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(29, 158, 117, 0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 8px rgba(29,158,117,0.4);
+  cursor: pointer;
+  transition: transform 0.15s ease;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.15);
-  box-shadow: 0 4px 16px rgba(29, 158, 117, 0.45);
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -124,115 +105,64 @@ input[type="range"]::-moz-range-thumb {
   height: 22px;
   border-radius: 50%;
   background: var(--primary);
-  cursor: pointer;
   border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(29, 158, 117, 0.35);
+  cursor: pointer;
 }
 
 /* ===== NUMBER INPUT ===== */
 input[type="number"] {
   -moz-appearance: textfield;
-  min-width: 0;
-  max-width: 100%;
 }
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
 }
 
-/* ===== TEXT INPUT ===== */
-input[type="text"] {
-  min-width: 0;
+/* ===== OVERFLOW FIXES ===== */
+img, svg, video {
   max-width: 100%;
+  height: auto;
 }
 
-/* ===== BUTTONS ===== */
-button {
-  cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: inherit;
-  min-width: 0;
-}
-
-button:active {
-  transform: scale(0.96);
-}
-
-/* ===== GRID FIX ===== */
-.grid {
-  min-width: 0;
-}
-
-.grid > * {
-  min-width: 0;
-  overflow: hidden;
-}
-
-/* ===== FLEX FIX ===== */
-.flex > * {
-  min-width: 0;
-}
-
-/* ===== TABLE FIX ===== */
 table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
+  word-break: break-word;
 }
 
 td, th {
   overflow: hidden;
   text-overflow: ellipsis;
-  word-break: break-word;
+  max-width: 0;
 }
 
-/* ===== CARD FIX ===== */
-.rounded-2xl,
-.rounded-xl,
-.rounded-lg {
-  overflow: hidden;
+/* ===== BUTTONS ===== */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
 }
 
-/* ===== PAGE ANIMATION ===== */
+button:active { transform: scale(0.97); }
+
+/* ===== ANIMATION ===== */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-main {
-  animation: fadeUp 0.3s ease;
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ===== SCROLLBAR ===== */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
 /* ===== SELECTION ===== */
 ::selection {
-  background: rgba(29, 158, 117, 0.15);
+  background: rgba(29,158,117,0.15);
   color: #0f172a;
 }
 
@@ -241,16 +171,4 @@ main {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
   border-radius: 6px;
-}
-
-/* ===== OVERFLOW SAFETY ===== */
-img, video, iframe, svg {
-  max-width: 100%;
-  height: auto;
-}
-
-pre, code {
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-break: break-word;
 }
