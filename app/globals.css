@@ -95,6 +95,7 @@ input[type="range"]::-moz-range-thumb {
 
 /* ===== NUMBER INPUT ===== */
 input[type="number"] {
+  appearance: textfield;
   -moz-appearance: textfield;
 }
 
