@@ -6,30 +6,60 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
-    default: "MoneyTool — Free Financial Calculators for India",
+    default: "MoneyTool — Free Financial Calculators & Tools for India",
     template: "%s | MoneyTool",
   },
-  description: "Free financial calculators for India. EMI Calculator, SIP Calculator, GST Calculator, Salary Calculator, FD Calculator and more.",
+  description:
+    "15+ free financial tools — EMI, SIP, FD, PPF, GST, Income Tax, Salary & Invoice Builder. No login required. Instant results. Made for India.",
   keywords: [
-    "financial calculator india",
-    "emi calculator",
+    "emi calculator india",
     "sip calculator",
-    "gst calculator",
-    "salary calculator",
     "fd calculator",
+    "gst calculator",
+    "salary calculator india",
+    "income tax calculator india",
+    "ppf calculator",
+    "free financial tools india",
+    "loan emi calculator",
+    "financial calculator india",
   ],
+  authors: [{ name: "MoneyTool" }],
+  creator: "MoneyTool",
+  publisher: "MoneyTool",
   metadataBase: new URL("https://www.moneytool.in"),
+  alternates: {
+    canonical: "https://www.moneytool.in",
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
     siteName: "MoneyTool",
-    title: "MoneyTool — Free Financial Calculators for India",
-    description: "Free financial calculators for India.",
+    title: "MoneyTool — Free Financial Calculators & Tools for India",
+    description:
+      "15+ free financial tools — EMI, SIP, FD, PPF, GST, Income Tax & more. No login. Instant results.",
     url: "https://www.moneytool.in",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MoneyTool — Free Financial Calculators for India",
+    description:
+      "15+ free tools. No login required. Instant results.",
+    site: "@moneytool",
+    creator: "@moneytool",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
   },
 };
 
@@ -40,15 +70,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className="bg-gray-50 min-h-screen">
+      <body className="bg-gray-50 min-h-screen flex flex-col">
         <Navbar />
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
         <Footer />
-        <Script
+        <script
+          async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3150789625391215"
           crossOrigin="anonymous"
-          strategy="lazyOnload"
-        />
+         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-DBWGRGDQ52"
           strategy="lazyOnload"

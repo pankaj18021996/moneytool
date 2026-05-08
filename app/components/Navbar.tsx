@@ -6,31 +6,34 @@ export default function Navbar() {
       <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
 
         <Link href="/"
-          className="flex items-center gap-2 font-medium
-          text-emerald-600 text-base">
-          💰 MoneyTool
+          className="font-medium text-gray-900 text-base flex
+            items-center gap-2">
+          <span className="w-7 h-7 bg-emerald-600 rounded-lg
+            flex items-center justify-center text-white text-sm">
+            M
+          </span>
+          MoneyTool
         </Link>
 
-        <div className="flex items-center gap-1">
-          {[
-            { href: "/emi-calculator", label: "EMI" },
-            { href: "/sip-calculator", label: "SIP" },
-            { href: "/gst-calculator", label: "GST" },
-            { href: "/salary-calculator", label: "Salary" },
-            { href: "/fd-calculator", label: "FD" },
-            { href: "/about", label: "About" },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-xs text-gray-500 hover:text-emerald-600
-                hover:bg-emerald-50 px-3 py-1.5 rounded-lg
-                transition-all duration-150"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="hidden sm:flex items-center gap-6">
+          <Link href="/emi-calculator"
+            className="text-sm text-gray-500 hover:text-gray-900
+              transition-colors">
+            Calculators
+          </Link>
+          <Link href="/about"
+            className="text-sm text-gray-500 hover:text-gray-900
+              transition-colors">
+            About
+          </Link>
         </div>
+
+        <Link href="/emi-calculator"
+          className="bg-emerald-600 text-white text-xs px-4 py-2
+            rounded-lg hover:bg-emerald-700 transition-colors
+            font-medium">
+          Start Calculating →
+        </Link>
 
       </div>
     </nav>
