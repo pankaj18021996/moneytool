@@ -20,47 +20,22 @@ export const metadata: Metadata = {
     "income tax calculator india",
     "ppf calculator",
     "free financial tools india",
-    "loan emi calculator",
-    "financial calculator india",
   ],
-  authors: [{ name: "MoneyTool" }],
-  creator: "MoneyTool",
-  publisher: "MoneyTool",
   metadataBase: new URL("https://www.moneytool.in"),
-  alternates: {
-    canonical: "https://www.moneytool.in",
-  },
   openGraph: {
     type: "website",
     locale: "en_IN",
     siteName: "MoneyTool",
     title: "MoneyTool — Free Financial Calculators & Tools for India",
-    description:
-      "15+ free financial tools — EMI, SIP, FD, PPF, GST, Income Tax & more. No login. Instant results.",
+    description: "15+ free financial tools. No login. Instant results.",
     url: "https://www.moneytool.in",
   },
   twitter: {
     card: "summary_large_image",
     title: "MoneyTool — Free Financial Calculators for India",
-    description:
-      "15+ free tools. No login required. Instant results.",
-    site: "@moneytool",
-    creator: "@moneytool",
+    description: "15+ free tools. No login required. Instant results.",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -69,18 +44,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
-      <body className="bg-gray-50 min-h-screen flex flex-col">
-        <Navbar />
-        <div className="flex-1">
-          {children}
-        </div>
-        <Footer />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3150789625391215"
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
-         />
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body
+        style={{
+          background: "#0a0a0a",
+          color: "#f4f4f5",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif",
+        }}
+      >
+        <Navbar />
+        <div style={{ flex: 1 }}>{children}</div>
+        <Footer />
+         <script
+           async
+           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3150789625391215"
+           crossOrigin="anonymous"
+/>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-DBWGRGDQ52"
           strategy="lazyOnload"

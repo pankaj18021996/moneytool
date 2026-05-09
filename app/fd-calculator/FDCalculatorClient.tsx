@@ -25,7 +25,7 @@ export default function FDCalculatorClient() {
   ];
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
+    <div className="bg-gray-900 border border-gray-700 rounded-2xl p-6 mb-4">
 
       <div className="mb-6">
         <div className="flex justify-between text-sm mb-2">
