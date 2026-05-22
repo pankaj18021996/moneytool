@@ -30,7 +30,7 @@ export default function About() {
             Our mission is to make financial planning simple and
             accessible for every Indian. Whether you are planning
             a home loan, calculating SIP returns, or managing your
-            taxes ƒ?" MoneyTool has you covered.
+            taxes ï¿½?" MoneyTool has you covered.
           </p>
         </section>
 
@@ -54,7 +54,7 @@ export default function About() {
           <h2 className="text-lg font-medium mb-3">Why MoneyTool?</h2>
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-gray-50 rounded-xl p-4">
-              <div className="text-2xl mb-2">ƒs­</div>
+              <div className="text-2xl mb-2">ï¿½sï¿½</div>
               <p className="font-medium text-sm mb-1">Fast</p>
               <p className="text-gray-500 text-xs">Instant results</p>
             </div>
@@ -69,7 +69,7 @@ export default function About() {
               <p className="text-gray-500 text-xs">No data stored</p>
             </div>
             <div className="bg-gray-50 rounded-xl p-4">
-              <div className="text-2xl mb-2">dY"ñ</div>
+              <div className="text-2xl mb-2">dY"ï¿½</div>
               <p className="font-medium text-sm mb-1">Mobile</p>
               <p className="text-gray-500 text-xs">Works on all devices</p>
             </div>
@@ -81,7 +81,7 @@ export default function About() {
           <p className="text-gray-600 text-sm leading-relaxed">
             Have suggestions or feedback? Reach us at:
             <span className="text-green-600 ml-1">
-              contact@moneytool.in
+              pankajbalecha50@gmail.com
             </span>
           </p>
         </section>
@@ -102,7 +102,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-8 mb-8 sm:grid-cols-4">
           <div className="col-span-2 sm:col-span-1">
             <p className="font-medium text-gray-900 mb-2">
-              dY'ø MoneyTool
+              dY'ï¿½ MoneyTool
             </p>
             <p className="text-xs text-gray-500 leading-relaxed">
               Free financial calculators built for every Indian.
@@ -166,7 +166,7 @@ export default function Footer() {
             Ac 2026 MoneyTool. All rights reserved.
           </p>
           <p className="text-xs text-gray-400">
-            Made with ƒ?‹,? for India
+            Made with ï¿½?ï¿½,? for India
           </p>
         </div>
 
@@ -186,7 +186,7 @@ export default function Navbar() {
         <Link href="/"
           className="flex items-center gap-2 font-medium
           text-emerald-600 text-base">
-          dY'ø MoneyTool
+          dY'ï¿½ MoneyTool
         </Link>
 
         <div className="flex items-center gap-1">
@@ -219,21 +219,21 @@ export default function Navbar() {
 "use client";
 import { useState, useMemo } from "react";
 
-/* ƒ"?ƒ"? Loan presets ƒ"?ƒ"? */
+/* ï¿½"?ï¿½"? Loan presets ï¿½"?ï¿½"? */
 const PRESETS = {
-  home:      { label: "Home Loan",     icon: "dY?ÿ", min: 100000, max: 100000000, def: 3000000,  rMin: 6, rMax: 15, rDef: 8.5,  tMin: 12, tMax: 360, tDef: 240 },
+  home:      { label: "Home Loan",     icon: "dY?ï¿½", min: 100000, max: 100000000, def: 3000000,  rMin: 6, rMax: 15, rDef: 8.5,  tMin: 12, tMax: 360, tDef: 240 },
   car:       { label: "Car Loan",      icon: "dYs-", min: 100000, max: 5000000,   def: 800000,   rMin: 7, rMax: 18, rDef: 9.5,  tMin: 12, tMax: 84,  tDef: 60  },
   personal:  { label: "Personal",      icon: "dY`", min: 10000,  max: 5000000,   def: 500000,   rMin: 9, rMax: 36, rDef: 12,   tMin: 3,  tMax: 72,  tDef: 36  },
   education: { label: "Education",     icon: "dYZ"", min: 100000, max: 10000000,  def: 1000000,  rMin: 6, rMax: 14, rDef: 8,    tMin: 12, tMax: 180, tDef: 84  },
-  business:  { label: "Business",      icon: "dY?›", min: 50000,  max: 50000000,  def: 2000000,  rMin: 8, rMax: 22, rDef: 11,   tMin: 12, tMax: 180, tDef: 60  },
+  business:  { label: "Business",      icon: "dY?ï¿½", min: 50000,  max: 50000000,  def: 2000000,  rMin: 8, rMax: 22, rDef: 11,   tMin: 12, tMax: 180, tDef: 60  },
 };
 type LoanType = keyof typeof PRESETS;
 
-/* ƒ"?ƒ"? Helpers ƒ"?ƒ"? */
-const fmt = (n: number) => "ƒ,1" + Math.round(n).toLocaleString("en-IN");
+/* ï¿½"?ï¿½"? Helpers ï¿½"?ï¿½"? */
+const fmt = (n: number) => "ï¿½,1" + Math.round(n).toLocaleString("en-IN");
 const fmtShort = (n: number) => {
-  if (n >= 10000000) return "ƒ,1" + (n / 10000000).toFixed(2) + " Cr";
-  if (n >= 100000)   return "ƒ,1" + (n / 100000).toFixed(2) + " L";
+  if (n >= 10000000) return "ï¿½,1" + (n / 10000000).toFixed(2) + " Cr";
+  if (n >= 100000)   return "ï¿½,1" + (n / 100000).toFixed(2) + " L";
   return fmt(n);
 };
 
@@ -243,7 +243,7 @@ const calcEMI = (P: number, annualRate: number, months: number) => {
   return (P * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
 };
 
-/* ƒ"?ƒ"? SVG Donut ƒ"?ƒ"? */
+/* ï¿½"?ï¿½"? SVG Donut ï¿½"?ï¿½"? */
 function Donut({ principal, interest }: { principal: number; interest: number }) {
   const total = principal + interest;
   if (total === 0) return null;
@@ -267,7 +267,7 @@ function Donut({ principal, interest }: { principal: number; interest: number })
   );
 }
 
-/* ƒ"?ƒ"? Yearly Bar Chart ƒ"?ƒ"? */
+/* ï¿½"?ï¿½"? Yearly Bar Chart ï¿½"?ï¿½"? */
 function YearlyChart({ schedule }: { schedule: MonthRow[] }) {
   const years: Record<number, { p: number; i: number }> = {};
   schedule.forEach(m => {
@@ -304,7 +304,7 @@ function YearlyChart({ schedule }: { schedule: MonthRow[] }) {
   );
 }
 
-/* ƒ"?ƒ"? Types ƒ"?ƒ"? */
+/* ï¿½"?ï¿½"? Types ï¿½"?ï¿½"? */
 type MonthRow = {
   month: number;
   emi: number;
@@ -313,43 +313,43 @@ type MonthRow = {
   balance: number;
 };
 
-/* ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ? MAIN COMPONENT ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ?ƒ? */
+/* ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½? MAIN COMPONENT ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½? */
 export default function EMICalculatorClient() {
-  /* ƒ?" Core state ƒ?" */
+  /* ï¿½?" Core state ï¿½?" */
   const [loanType, setLoanType] = useState<LoanType>("home");
   const [amount, setAmount]     = useState(3000000);
   const [rate, setRate]         = useState(8.5);
   const [tenure, setTenure]     = useState(240);
   const [tenureYears, setTenureYears] = useState(true);
 
-  /* ƒ?" Feature toggles ƒ?" */
+  /* ï¿½?" Feature toggles ï¿½?" */
   const [showPrepay, setShowPrepay]       = useState(false);
   const [showCompare, setShowCompare]     = useState(false);
   const [showAfford, setShowAfford]       = useState(false);
   const [showSchedule, setShowSchedule]   = useState(false);
   const [activeViz, setActiveViz]         = useState<"donut" | "yearly">("donut");
 
-  /* ƒ?" Prepayment ƒ?" */
+  /* ï¿½?" Prepayment ï¿½?" */
   const [extraMonthly, setExtraMonthly] = useState(0);
   const [lumpSum, setLumpSum]           = useState(0);
   const [lumpMonth, setLumpMonth]       = useState(12);
 
-  /* ƒ?" Comparison ƒ?" */
+  /* ï¿½?" Comparison ï¿½?" */
   const [cAmount, setCAmount]   = useState(3000000);
   const [cRate, setCRate]       = useState(9.5);
   const [cTenure, setCTenure]   = useState(240);
 
-  /* ƒ?" Affordability ƒ?" */
+  /* ï¿½?" Affordability ï¿½?" */
   const [salary, setSalary]       = useState(100000);
   const [existingEMI, setExistingEMI] = useState(0);
 
-  /* ƒ?" Schedule pagination ƒ?" */
+  /* ï¿½?" Schedule pagination ï¿½?" */
   const [schedPage, setSchedPage] = useState(0);
   const PER_PAGE = 12;
 
   const p = PRESETS[loanType];
 
-  /* ƒ"?ƒ"? Switch loan type ƒ"?ƒ"? */
+  /* ï¿½"?ï¿½"? Switch loan type ï¿½"?ï¿½"? */
   const switchType = (t: LoanType) => {
     const pr = PRESETS[t];
     setLoanType(t);
@@ -362,7 +362,7 @@ export default function EMICalculatorClient() {
     setSchedPage(0);
   };
 
-  /* ƒ"?ƒ"? Tenure display ƒ"?ƒ"? */
+  /* ï¿½"?ï¿½"? Tenure display ï¿½"?ï¿½"? */
   const tenureMonths = tenure;
   const tenureDisplay = tenureYears
     ? `${Math.floor(tenure / 12)} yr${tenure % 12 ? ` ${tenure % 12} mo` : ""}`
@@ -372,13 +372,13 @@ export default function EMICalculatorClient() {
     setTenureYears(!tenureYears);
   };
 
-  /* ƒ"?ƒ"? Core calculation ƒ"?ƒ"? */
+  /* ï¿½"?ï¿½"? Core calculation ï¿½"?ï¿½"? */
   const emi = calcEMI(amount, rate, tenureMonths);
   const totalPay = emi * tenureMonths;
   const totalInt = totalPay - amount;
   const pPct = totalPay > 0 ? (amount / totalPay * 100) : 50;
 
-  /* ƒ"?ƒ"? Amortization schedule (with prepayment) ƒ"?ƒ"? */
+  /* ï¿½"?ï¿½"? Amortization schedule (with prepayment) ï¿½"?ï¿½"? */
   const schedule = useMemo(() => {
     const rows: MonthRow[] = [];
     let bal = amount;
@@ -395,33 +395,33 @@ export default function EMICalculatorClient() {
     return rows;
   }, [amount, rate, tenureMonths, emi, extraMonthly, lumpSum, lumpMonth]);
 
-  /* ƒ"?ƒ"? Prepayment savings ƒ"?ƒ"? */
+  /* ï¿½"?ï¿½"? Prepayment savings ï¿½"?ï¿½"? */
   const actualMonths = schedule.length;
   const actualInterest = schedule.reduce((s, r) => s + r.intPaid, 0);
   const savedInterest = totalInt - actualInterest;
   const savedMonths = tenureMonths - actualMonths;
   const hasPrepay = extraMonthly > 0 || lumpSum > 0;
 
-  /* ƒ"?ƒ"? Comparison ƒ"?ƒ"? */
+  /* ï¿½"?ï¿½"? Comparison ï¿½"?ï¿½"? */
   const compEmi = calcEMI(cAmount, cRate, cTenure);
   const compTotal = compEmi * cTenure;
   const compInt = compTotal - cAmount;
 
-  /* ƒ"?ƒ"? Affordability ƒ"?ƒ"? */
+  /* ï¿½"?ï¿½"? Affordability ï¿½"?ï¿½"? */
   const maxEMI = Math.max(0, (salary - existingEMI) * 0.5);
   const rMonth = rate / (12 * 100);
   const maxLoan = maxEMI > 0 && rMonth > 0
     ? maxEMI * (Math.pow(1 + rMonth, tenureMonths) - 1) / (rMonth * Math.pow(1 + rMonth, tenureMonths))
     : 0;
 
-  /* ƒ"?ƒ"? Schedule pagination ƒ"?ƒ"? */
+  /* ï¿½"?ï¿½"? Schedule pagination ï¿½"?ï¿½"? */
   const totalPages = Math.ceil(schedule.length / PER_PAGE);
   const pageRows = schedule.slice(schedPage * PER_PAGE, (schedPage + 1) * PER_PAGE);
 
   return (
     <div className="space-y-4">
 
-      {/* ƒ"?ƒ"?ƒ"? Loan Type Pills ƒ"?ƒ"?ƒ"? */}
+      {/* ï¿½"?ï¿½"?ï¿½"? Loan Type Pills ï¿½"?ï¿½"?ï¿½"? */}
       <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 scrollbar-hide">
         {(Object.entries(PRESETS) as [LoanType, typeof PRESETS.home][]).map(([key, pr]) => (
           <button key={key} onClick={() => switchType(key)}
@@ -435,7 +435,7 @@ export default function EMICalculatorClient() {
         ))}
       </div>
 
-      {/* ƒ"?ƒ"?ƒ"? Main Calculator Card ƒ"?ƒ"?ƒ"? */}
+      {/* ï¿½"?ï¿½"?ï¿½"? Main Calculator Card ï¿½"?ï¿½"?ï¿½"? */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6">
 
         {/* Loan Amount */}
@@ -490,7 +490,7 @@ export default function EMICalculatorClient() {
           </div>
         </div>
 
-        {/* ƒ"?ƒ"? Result Stats ƒ"?ƒ"? */}
+        {/* ï¿½"?ï¿½"? Result Stats ï¿½"?ï¿½"? */}
         <div className="grid grid-cols-3 gap-3 mb-6">
           {[
             { label: "Monthly EMI",    value: fmt(emi),      accent: "text-green-700" },
@@ -504,7 +504,7 @@ export default function EMICalculatorClient() {
           ))}
         </div>
 
-        {/* ƒ"?ƒ"? Principal vs Interest bar ƒ"?ƒ"? */}
+        {/* ï¿½"?ï¿½"? Principal vs Interest bar ï¿½"?ï¿½"? */}
         <div className="flex rounded-full overflow-hidden h-2.5 mb-3">
           <div className="bg-green-500 transition-all duration-500" style={{ width: pPct + "%" }} />
           <div className="bg-orange-400 transition-all duration-500" style={{ width: (100 - pPct) + "%" }} />
@@ -519,7 +519,7 @@ export default function EMICalculatorClient() {
         </div>
       </div>
 
-      {/* ƒ"?ƒ"?ƒ"? Chart Toggle ƒ"?ƒ"?ƒ"? */}
+      {/* ï¿½"?ï¿½"?ï¿½"? Chart Toggle ï¿½"?ï¿½"?ï¿½"? */}
       <div className="bg-white border border-gray-200 rounded-2xl p-5">
         <div className="flex bg-gray-100 rounded-lg p-0.5 mb-4">
           {([["donut", "Breakdown"], ["yearly", "Year-wise"]] as const).map(([key, label]) => (
@@ -535,12 +535,12 @@ export default function EMICalculatorClient() {
           : <YearlyChart schedule={schedule} />}
       </div>
 
-      {/* ƒ"?ƒ"?ƒ"? Prepayment Simulator ƒ"?ƒ"?ƒ"? */}
+      {/* ï¿½"?ï¿½"?ï¿½"? Prepayment Simulator ï¿½"?ï¿½"?ï¿½"? */}
       <div className="border border-gray-200 rounded-2xl overflow-hidden">
         <button onClick={() => setShowPrepay(!showPrepay)}
           className="w-full flex items-center justify-between px-5 py-3.5 bg-white hover:bg-gray-50 transition text-sm font-medium text-gray-700">
-          <span>dY'ø Prepayment Simulator</span>
-          <span className={`text-gray-400 transition-transform ${showPrepay ? "rotate-180" : ""}`}>ƒ-_</span>
+          <span>dY'ï¿½ Prepayment Simulator</span>
+          <span className={`text-gray-400 transition-transform ${showPrepay ? "rotate-180" : ""}`}>ï¿½-_</span>
         </button>
         {showPrepay && (
           <div className="bg-white border-t border-gray-100 px-5 py-4 space-y-4">
@@ -591,19 +591,19 @@ export default function EMICalculatorClient() {
         )}
       </div>
 
-      {/* ƒ"?ƒ"?ƒ"? Loan Comparison ƒ"?ƒ"?ƒ"? */}
+      {/* ï¿½"?ï¿½"?ï¿½"? Loan Comparison ï¿½"?ï¿½"?ï¿½"? */}
       <div className="border border-gray-200 rounded-2xl overflow-hidden">
         <button onClick={() => setShowCompare(!showCompare)}
           className="w-full flex items-center justify-between px-5 py-3.5 bg-white hover:bg-gray-50 transition text-sm font-medium text-gray-700">
-          <span>ƒØ, Compare Two Loans</span>
-          <span className={`text-gray-400 transition-transform ${showCompare ? "rotate-180" : ""}`}>ƒ-_</span>
+          <span>ï¿½ï¿½, Compare Two Loans</span>
+          <span className={`text-gray-400 transition-transform ${showCompare ? "rotate-180" : ""}`}>ï¿½-_</span>
         </button>
         {showCompare && (
           <div className="bg-white border-t border-gray-100 px-5 py-4 space-y-4">
             <p className="text-xs text-gray-400">Enter details of the second loan to compare</p>
             <div className="grid grid-cols-3 gap-2">
               {[
-                { label: "Amount (ƒ,1)", val: cAmount, set: setCAmount, step: 50000 },
+                { label: "Amount (ï¿½,1)", val: cAmount, set: setCAmount, step: 50000 },
                 { label: "Rate (%)", val: cRate, set: setCRate, step: 0.1 },
                 { label: "Months", val: cTenure, set: setCTenure, step: 1 },
               ].map((f, i) => (
@@ -629,7 +629,7 @@ export default function EMICalculatorClient() {
             </div>
             <div className={`rounded-lg p-2.5 text-center text-xs font-medium ${totalInt <= compInt ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700"}`}>
               {totalInt < compInt
-                ? `ƒo. Loan A saves you ${fmt(compInt - totalInt)} in interest`
+                ? `ï¿½o. Loan A saves you ${fmt(compInt - totalInt)} in interest`
                 : totalInt > compInt
                   ? `dY", Loan B saves you ${fmt(totalInt - compInt)} in interest`
                   : "Both loans have the same cost"}
@@ -638,23 +638,23 @@ export default function EMICalculatorClient() {
         )}
       </div>
 
-      {/* ƒ"?ƒ"?ƒ"? Affordability Calculator ƒ"?ƒ"?ƒ"? */}
+      {/* ï¿½"?ï¿½"?ï¿½"? Affordability Calculator ï¿½"?ï¿½"?ï¿½"? */}
       <div className="border border-gray-200 rounded-2xl overflow-hidden">
         <button onClick={() => setShowAfford(!showAfford)}
           className="w-full flex items-center justify-between px-5 py-3.5 bg-white hover:bg-gray-50 transition text-sm font-medium text-gray-700">
           <span>dYr How Much Loan Can I Afford?</span>
-          <span className={`text-gray-400 transition-transform ${showAfford ? "rotate-180" : ""}`}>ƒ-_</span>
+          <span className={`text-gray-400 transition-transform ${showAfford ? "rotate-180" : ""}`}>ï¿½-_</span>
         </button>
         {showAfford && (
           <div className="bg-white border-t border-gray-100 px-5 py-4 space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs text-gray-500 block mb-1">Monthly Income (ƒ,1)</label>
+                <label className="text-xs text-gray-500 block mb-1">Monthly Income (ï¿½,1)</label>
                 <input type="number" value={salary} onChange={e => setSalary(Number(e.target.value))}
                   className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-green-400" />
               </div>
               <div>
-                <label className="text-xs text-gray-500 block mb-1">Existing EMIs (ƒ,1)</label>
+                <label className="text-xs text-gray-500 block mb-1">Existing EMIs (ï¿½,1)</label>
                 <input type="number" value={existingEMI} onChange={e => setExistingEMI(Number(e.target.value))}
                   className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-green-400" />
               </div>
@@ -676,12 +676,12 @@ export default function EMICalculatorClient() {
         )}
       </div>
 
-      {/* ƒ"?ƒ"?ƒ"? Amortization Schedule ƒ"?ƒ"?ƒ"? */}
+      {/* ï¿½"?ï¿½"?ï¿½"? Amortization Schedule ï¿½"?ï¿½"?ï¿½"? */}
       <div className="border border-gray-200 rounded-2xl overflow-hidden">
         <button onClick={() => { setShowSchedule(!showSchedule); setSchedPage(0); }}
           className="w-full flex items-center justify-between px-5 py-3.5 bg-white hover:bg-gray-50 transition text-sm font-medium text-gray-700">
           <span>dY"< Amortization Schedule</span>
-          <span className={`text-gray-400 transition-transform ${showSchedule ? "rotate-180" : ""}`}>ƒ-_</span>
+          <span className={`text-gray-400 transition-transform ${showSchedule ? "rotate-180" : ""}`}>ï¿½-_</span>
         </button>
         {showSchedule && (
           <div className="bg-white border-t border-gray-100 px-3 sm:px-5 py-4">
@@ -711,40 +711,40 @@ export default function EMICalculatorClient() {
             <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
               <button disabled={schedPage === 0} onClick={() => setSchedPage(p => p - 1)}
                 className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-30 transition">
-                ƒ+? Prev
+                ï¿½+? Prev
               </button>
               <span className="text-[10px] text-gray-400">{schedPage + 1} / {totalPages}</span>
               <button disabled={schedPage >= totalPages - 1} onClick={() => setSchedPage(p => p + 1)}
                 className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-30 transition">
-                Next ƒ+'
+                Next ï¿½+'
               </button>
             </div>
           </div>
         )}
       </div>
 
-      {/* ƒ"?ƒ"?ƒ"? Tax Benefits (India ƒ?" Home & Education only) ƒ"?ƒ"?ƒ"? */}
+      {/* ï¿½"?ï¿½"?ï¿½"? Tax Benefits (India ï¿½?" Home & Education only) ï¿½"?ï¿½"?ï¿½"? */}
       {(loanType === "home" || loanType === "education") && (
         <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5">
           <h3 className="text-sm font-medium text-blue-800 mb-3 flex items-center gap-2">
-            dYØrdYØ3 Tax Benefits Available
+            dYï¿½rdYï¿½3 Tax Benefits Available
           </h3>
           {loanType === "home" ? (
             <div className="space-y-2">
               <div className="grid grid-cols-2 gap-2">
                 <div className="bg-white rounded-xl p-3 text-center border border-blue-100">
                   <p className="text-[10px] text-blue-500">Section 80C</p>
-                  <p className="text-sm font-semibold text-blue-700">Up to ƒ,11.5L/yr</p>
+                  <p className="text-sm font-semibold text-blue-700">Up to ï¿½,11.5L/yr</p>
                   <p className="text-[9px] text-gray-400 mt-0.5">On principal repaid</p>
                 </div>
                 <div className="bg-white rounded-xl p-3 text-center border border-blue-100">
                   <p className="text-[10px] text-blue-500">Section 24(b)</p>
-                  <p className="text-sm font-semibold text-blue-700">Up to ƒ,12L/yr</p>
+                  <p className="text-sm font-semibold text-blue-700">Up to ï¿½,12L/yr</p>
                   <p className="text-[9px] text-gray-400 mt-0.5">On interest paid</p>
                 </div>
               </div>
               <p className="text-[10px] text-blue-400 text-center mt-2">
-                Max annual saving up to ƒ,11.05L at 30% slab (old regime). First-time buyers may claim additional ƒ,150K under 80EEA.
+                Max annual saving up to ï¿½,11.05L at 30% slab (old regime). First-time buyers may claim additional ï¿½,150K under 80EEA.
               </p>
             </div>
           ) : (
@@ -768,7 +768,7 @@ import type { Metadata } from "next";
 import EMICalculatorClient from "./EMICalculatorClient";
 
 export const metadata: Metadata = {
-  title: "EMI Calculator India 2026 ƒ?" Free Loan EMI Calculator | MoneyTool",
+  title: "EMI Calculator India 2026 ï¿½?" Free Loan EMI Calculator | MoneyTool",
   description:
     "Calculate EMI for home loan, car loan, personal loan & education loan instantly. Free EMI calculator with prepayment simulator, loan comparison, amortization schedule & tax benefits. No signup required.",
   keywords:
@@ -777,7 +777,7 @@ export const metadata: Metadata = {
     canonical: "https://www.moneytool.in/emi-calculator",
   },
   openGraph: {
-    title: "Free EMI Calculator India 2026 ƒ?" Home, Car & Personal Loan EMI",
+    title: "Free EMI Calculator India 2026 ï¿½?" Home, Car & Personal Loan EMI",
     description:
       "Calculate your loan EMI instantly with prepayment simulator, loan comparison, affordability checker & tax benefit estimator. 100% free, no signup.",
     url: "https://www.moneytool.in/emi-calculator",
@@ -787,17 +787,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Free EMI Calculator India ƒ?" MoneyTool",
+    title: "Free EMI Calculator India ï¿½?" MoneyTool",
     description:
       "Calculate EMI for any loan type with prepayment savings, loan comparison & full amortization schedule.",
   },
 };
 
-/* ƒ"?ƒ"? JSON-LD Structured Data ƒ"?ƒ"? */
+/* ï¿½"?ï¿½"? JSON-LD Structured Data ï¿½"?ï¿½"? */
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "EMI Calculator ƒ?" MoneyTool",
+  name: "EMI Calculator ï¿½?" MoneyTool",
   url: "https://www.moneytool.in/emi-calculator",
   applicationCategory: "FinanceApplication",
   operatingSystem: "All",
@@ -823,7 +823,7 @@ const faqJsonLd = {
       name: "How is EMI calculated?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "EMI is calculated using the formula: EMI = P A- r A- (1+r)^n / ((1+r)^n ƒ^' 1), where P is the principal loan amount, r is the monthly interest rate (annual rate Aú 12 Aú 100), and n is the tenure in months.",
+        text: "EMI is calculated using the formula: EMI = P A- r A- (1+r)^n / ((1+r)^n ï¿½^' 1), where P is the principal loan amount, r is the monthly interest rate (annual rate Aï¿½ 12 Aï¿½ 100), and n is the tenure in months.",
       },
     },
     {
@@ -839,7 +839,7 @@ const faqJsonLd = {
       name: "What tax benefits are available on loans in India?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "For home loans under the old tax regime: principal repayment is deductible up to ƒ,11.5 lakh/year under Section 80C, and interest paid is deductible up to ƒ,12 lakh/year under Section 24(b). For education loans, the entire interest paid is deductible under Section 80E for up to 8 years.",
+        text: "For home loans under the old tax regime: principal repayment is deductible up to ï¿½,11.5 lakh/year under Section 80C, and interest paid is deductible up to ï¿½,12 lakh/year under Section 24(b). For education loans, the entire interest paid is deductible under Section 80E for up to 8 years.",
       },
     },
     {
@@ -874,14 +874,14 @@ export default function EMICalculatorPage() {
 
       <EMICalculatorClient />
 
-      {/* ƒ"?ƒ"?ƒ"? SEO Content Section ƒ"?ƒ"?ƒ"? */}
+      {/* ï¿½"?ï¿½"?ï¿½"? SEO Content Section ï¿½"?ï¿½"?ï¿½"? */}
       <div className="mt-8 space-y-6">
 
         {/* What is EMI */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6">
           <h2 className="text-lg font-medium mb-3">What is EMI?</h2>
           <p className="text-gray-600 text-sm leading-relaxed mb-3">
-            EMI stands for Equated Monthly Installment ƒ?" a fixed amount you pay
+            EMI stands for Equated Monthly Installment ï¿½?" a fixed amount you pay
             to your bank or lender every month until the loan is fully repaid.
             Each EMI includes two components: a portion that goes toward
             repaying the principal (the amount you borrowed) and a portion that
@@ -898,11 +898,11 @@ export default function EMICalculatorPage() {
         {/* EMI Formula */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6">
           <h2 className="text-lg font-medium mb-3">
-            How is EMI Calculated? ƒ?" The Formula
+            How is EMI Calculated? ï¿½?" The Formula
           </h2>
           <div className="bg-gray-50 rounded-xl p-4 mb-4 text-center">
             <p className="text-sm text-gray-700 font-mono">
-              EMI = P A- r A- (1 + r)<sup>n</sup> Aú [(1 + r)<sup>n</sup> ƒ^' 1]
+              EMI = P A- r A- (1 + r)<sup>n</sup> Aï¿½ [(1 + r)<sup>n</sup> ï¿½^' 1]
             </p>
           </div>
           <div className="text-gray-600 text-sm leading-relaxed space-y-1.5">
@@ -912,7 +912,7 @@ export default function EMICalculatorPage() {
             </p>
             <p>
               <strong className="text-gray-700">r</strong> = Monthly interest
-              rate = Annual rate Aú 12 Aú 100
+              rate = Annual rate Aï¿½ 12 Aï¿½ 100
             </p>
             <p>
               <strong className="text-gray-700">n</strong> = Loan tenure in
@@ -924,10 +924,10 @@ export default function EMICalculatorPage() {
               Example
             </p>
             <p className="text-sm text-green-800 leading-relaxed">
-              For a ƒ,130 lakh home loan at 8.5% p.a. for 20 years:
-              P = 30,00,000 Aú r = 0.007083 Aú n = 240 ƒ+'{" "}
-              <strong>EMI = ƒ,126,035/month</strong>. Total interest paid over 20
-              years = ƒ,132.48 lakh ƒ?" more than the loan itself.
+              For a ï¿½,130 lakh home loan at 8.5% p.a. for 20 years:
+              P = 30,00,000 Aï¿½ r = 0.007083 Aï¿½ n = 240 ï¿½+'{" "}
+              <strong>EMI = ï¿½,126,035/month</strong>. Total interest paid over 20
+              years = ï¿½,132.48 lakh ï¿½?" more than the loan itself.
             </p>
           </div>
         </div>
@@ -940,7 +940,7 @@ export default function EMICalculatorPage() {
           <div className="text-gray-600 text-sm leading-relaxed space-y-2.5">
             <p>
               <strong className="text-gray-700">1.</strong> Select your loan
-              type ƒ?" Home, Car, Personal, Education or Business. The sliders
+              type ï¿½?" Home, Car, Personal, Education or Business. The sliders
               automatically adjust to realistic ranges for each type.
             </p>
             <p>
@@ -981,7 +981,7 @@ export default function EMICalculatorPage() {
             Current Home Loan Interest Rates in India (2026)
           </h2>
           <p className="text-gray-500 text-xs mb-3">
-            Indicative rates ƒ?" confirm with the bank before applying
+            Indicative rates ï¿½?" confirm with the bank before applying
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
@@ -992,20 +992,20 @@ export default function EMICalculatorPage() {
                     Rate (p.a.)
                   </th>
                   <th className="py-2 pl-2 font-medium text-right">
-                    EMI per ƒ,11L for 20 yr
+                    EMI per ï¿½,11L for 20 yr
                   </th>
                 </tr>
               </thead>
               <tbody className="text-gray-700">
                 {[
-                  ["SBI", "8.50%", "ƒ,1868"],
-                  ["HDFC Bank", "8.75%", "ƒ,1885"],
-                  ["ICICI Bank", "8.75%", "ƒ,1885"],
-                  ["Bank of Baroda", "8.40%", "ƒ,1861"],
-                  ["PNB", "8.45%", "ƒ,1864"],
-                  ["Kotak Mahindra", "8.75%", "ƒ,1885"],
-                  ["Axis Bank", "8.75%", "ƒ,1885"],
-                  ["LIC HFL", "8.50%", "ƒ,1868"],
+                  ["SBI", "8.50%", "ï¿½,1868"],
+                  ["HDFC Bank", "8.75%", "ï¿½,1885"],
+                  ["ICICI Bank", "8.75%", "ï¿½,1885"],
+                  ["Bank of Baroda", "8.40%", "ï¿½,1861"],
+                  ["PNB", "8.45%", "ï¿½,1864"],
+                  ["Kotak Mahindra", "8.75%", "ï¿½,1885"],
+                  ["Axis Bank", "8.75%", "ï¿½,1885"],
+                  ["LIC HFL", "8.50%", "ï¿½,1868"],
                 ].map(([bank, rate, emi], i) => (
                   <tr
                     key={i}
@@ -1051,7 +1051,7 @@ export default function EMICalculatorPage() {
               <strong className="text-gray-700">
                 3. Round up your EMI.
               </strong>{" "}
-              If your EMI is ƒ,126,035, pay ƒ,127,000 instead. The small extra
+              If your EMI is ï¿½,126,035, pay ï¿½,127,000 instead. The small extra
               adds up over years.
             </p>
             <p>
@@ -1083,8 +1083,8 @@ export default function EMICalculatorPage() {
                 Home Loan Tax Benefits (Old Regime)
               </h3>
               <p>
-                Section 80C allows deduction up to ƒ,11.5 lakh per year on
-                principal repaid. Section 24(b) allows deduction up to ƒ,12 lakh
+                Section 80C allows deduction up to ï¿½,11.5 lakh per year on
+                principal repaid. Section 24(b) allows deduction up to ï¿½,12 lakh
                 per year on interest paid for self-occupied property.
                 First-time home buyers could also claim additional deduction
                 under Section 80EEA (now closed for new claims after March
@@ -1175,11 +1175,11 @@ export default function EMICalculatorPage() {
             </p>
             <p>
               <strong className="text-gray-700">Prepayment Simulator</strong>{" "}
-              ƒ?" See exactly how much interest you save and how many months you
+              ï¿½?" See exactly how much interest you save and how many months you
               cut by making extra payments. Most competitors don&apos;t offer this.
             </p>
             <p>
-              <strong className="text-gray-700">Loan Comparison</strong> ƒ?"
+              <strong className="text-gray-700">Loan Comparison</strong> ï¿½?"
               Comparing offers from two banks? Enter both side by side and
               instantly see which one costs less.
             </p>
@@ -1187,11 +1187,11 @@ export default function EMICalculatorPage() {
               <strong className="text-gray-700">
                 Affordability Calculator
               </strong>{" "}
-              ƒ?" Before you apply, know the maximum loan you qualify for based
+              ï¿½?" Before you apply, know the maximum loan you qualify for based
               on your income. No other free calculator does this inline.
             </p>
             <p>
-              <strong className="text-gray-700">Tax Benefits</strong> ƒ?"
+              <strong className="text-gray-700">Tax Benefits</strong> ï¿½?"
               Indian-specific Section 80C, 24(b) and 80E information shown
               right alongside your calculation. No need to Google separately.
             </p>
@@ -1199,7 +1199,7 @@ export default function EMICalculatorPage() {
               <strong className="text-gray-700">
                 Full Amortization Schedule
               </strong>{" "}
-              ƒ?" Month-by-month breakdown of every payment showing how
+              ï¿½?" Month-by-month breakdown of every payment showing how
               principal and interest shift over time.
             </p>
             <p>
@@ -1231,7 +1231,7 @@ export default function FDCalculatorClient() {
   const interest = maturity - principal;
 
   const fmt = (n: number) =>
-    "ƒ,1" + Math.round(n).toLocaleString("en-IN");
+    "ï¿½,1" + Math.round(n).toLocaleString("en-IN");
 
   const frequencies = [
     { label: "Monthly", value: 12 },
@@ -1387,7 +1387,7 @@ export default function FDCalculatorClient() {
 
 ===== C:\Users\Admin\Desktop\moneytool\app\fd-calculator\metadata.ts =====
 export const metadata = {
-  title: "FD Calculator India ƒ?" Fixed Deposit Calculator",
+  title: "FD Calculator India ï¿½?" Fixed Deposit Calculator",
   description: "Calculate your Fixed Deposit maturity amount instantly. Free FD calculator with custom interest rates and compounding frequency for all banks.",
   keywords: [
     "fd calculator",
@@ -1398,7 +1398,7 @@ export const metadata = {
     "fd interest calculator",
   ],
   openGraph: {
-    title: "Free FD Calculator India ƒ?" Fixed Deposit Calculator",
+    title: "Free FD Calculator India ï¿½?" Fixed Deposit Calculator",
     description: "Calculate FD maturity amount with custom interest rates.",
     url: "https://www.moneytool.in/fd-calculator",
     siteName: "MoneyTool",
@@ -1456,7 +1456,7 @@ export default function GSTCalculatorClient() {
       : amount;
 
   const fmt = (n: number) =>
-    "ƒ,1" + Math.round(n).toLocaleString("en-IN");
+    "ï¿½,1" + Math.round(n).toLocaleString("en-IN");
 
   const gstRates = [3, 5, 12, 18, 28];
 
@@ -1488,7 +1488,7 @@ export default function GSTCalculatorClient() {
       </div>
 
       <div className="mb-6">
-        <p className="text-sm text-gray-500 mb-3">Enter Amount (ƒ,1)</p>
+        <p className="text-sm text-gray-500 mb-3">Enter Amount (ï¿½,1)</p>
         <input
           type="number"
           value={amount}
@@ -1554,7 +1554,7 @@ export default function GSTCalculatorClient() {
 
 ===== C:\Users\Admin\Desktop\moneytool\app\gst-calculator\metadata.ts =====
 export const metadata = {
-  title: "GST Calculator India ƒ?" Free Online GST Calculator",
+  title: "GST Calculator India ï¿½?" Free Online GST Calculator",
   description: "Calculate GST amount instantly for any product or service. Add or remove GST with our free online GST calculator. Supports all GST slabs.",
   keywords: [
     "gst calculator",
@@ -1565,7 +1565,7 @@ export const metadata = {
     "18 percent gst calculator",
   ],
   openGraph: {
-    title: "Free GST Calculator India ƒ?" Calculate GST Instantly",
+    title: "Free GST Calculator India ï¿½?" Calculate GST Instantly",
     description: "Calculate GST amount for any product or service instantly.",
     url: "https://www.moneytool.in/gst-calculator",
     siteName: "MoneyTool",
@@ -1714,7 +1714,7 @@ export default function PrivacyPolicy() {
 
 ===== C:\Users\Admin\Desktop\moneytool\app\salary-calculator\metadata.ts =====
 export const metadata = {
-  title: "Salary Calculator India ƒ?" CTC to In-Hand Salary Calculator",
+  title: "Salary Calculator India ï¿½?" CTC to In-Hand Salary Calculator",
   description: "Calculate your in-hand salary from CTC instantly. Free salary calculator with PF, HRA, income tax deductions. Know your exact take home salary.",
   keywords: [
     "salary calculator",
@@ -1725,7 +1725,7 @@ export const metadata = {
     "net salary calculator",
   ],
   openGraph: {
-    title: "Free Salary Calculator India ƒ?" CTC to In-Hand Calculator",
+    title: "Free Salary Calculator India ï¿½?" CTC to In-Hand Calculator",
     description: "Calculate your exact in-hand salary from CTC instantly.",
     url: "https://www.moneytool.in/salary-calculator",
     siteName: "MoneyTool",
@@ -1749,7 +1749,7 @@ export default function SalaryCalculatorPage() {
     <main className="max-w-2xl mx-auto px-4 py-10">
       <h1 className="text-2xl font-medium mb-1">Salary Calculator</h1>
       <p className="text-gray-500 text-sm mb-8">
-        Calculate your in-hand salary from CTC ƒ?" fully customizable
+        Calculate your in-hand salary from CTC ï¿½?" fully customizable
       </p>
 
       <SalaryCalculatorClient />
@@ -1781,12 +1781,12 @@ export default function SalaryCalculatorClient() {
   const netMonthly = netAnnual / 12;
 
   const fmt = (n: number) =>
-    "ƒ,1" + Math.round(n).toLocaleString("en-IN");
+    "ï¿½,1" + Math.round(n).toLocaleString("en-IN");
 
   return (
     <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
 
-      <p className="text-sm font-medium mb-4">dY'¬ CTC Details</p>
+      <p className="text-sm font-medium mb-4">dY'ï¿½ CTC Details</p>
 
       <div className="mb-6">
         <div className="flex justify-between text-sm mb-2">
@@ -1814,7 +1814,7 @@ export default function SalaryCalculatorClient() {
 
       <div className="border-t border-gray-100 pt-6 mb-6">
         <p className="text-sm font-medium mb-4">
-          ƒsT‹,? Customize Salary Structure
+          ï¿½sTï¿½,? Customize Salary Structure
         </p>
 
         <div className="mb-4">
@@ -1952,7 +1952,7 @@ export default function SalaryCalculatorClient() {
 
 ===== C:\Users\Admin\Desktop\moneytool\app\sip-calculator\metadata.ts =====
 export const metadata = {
-  title: "SIP Calculator India ƒ?" Free Mutual Fund SIP Calculator",
+  title: "SIP Calculator India ï¿½?" Free Mutual Fund SIP Calculator",
   description: "Calculate your SIP returns instantly. Plan your mutual fund investments with our free SIP calculator. See how your money grows over time.",
   keywords: [
     "sip calculator",
@@ -1963,7 +1963,7 @@ export const metadata = {
     "monthly sip calculator",
   ],
   openGraph: {
-    title: "Free SIP Calculator India ƒ?" Calculate Mutual Fund Returns",
+    title: "Free SIP Calculator India ï¿½?" Calculate Mutual Fund Returns",
     description: "Plan your SIP investments and calculate returns instantly.",
     url: "https://www.moneytool.in/sip-calculator",
     siteName: "MoneyTool",
@@ -2008,7 +2008,7 @@ export default function SIPCalculatorPage() {
             text-xs px-4 py-2 rounded-lg hover:bg-blue-700
             transition-colors"
         >
-          Open Zerodha Account ƒ+'
+          Open Zerodha Account ï¿½+'
         </a>
       </div>
 
@@ -2032,7 +2032,7 @@ export default function SIPCalculatorClient() {
   const returns = maturity - invested;
 
   const fmt = (n: number) =>
-    "ƒ,1" + Math.round(n).toLocaleString("en-IN");
+    "ï¿½,1" + Math.round(n).toLocaleString("en-IN");
 
   const iPct = ((invested / maturity) * 100).toFixed(1);
   const rPct = (100 - Number(iPct)).toFixed(1);
@@ -2290,7 +2290,7 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
-    default: "MoneyTool ƒ?" Free Financial Calculators for India",
+    default: "MoneyTool ï¿½?" Free Financial Calculators for India",
     template: "%s | MoneyTool",
   },
   description: "Free financial calculators for India. EMI Calculator, SIP Calculator, GST Calculator, Salary Calculator, FD Calculator and more.",
@@ -2307,7 +2307,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: "MoneyTool",
-    title: "MoneyTool ƒ?" Free Financial Calculators for India",
+    title: "MoneyTool ï¿½?" Free Financial Calculators for India",
     description: "Free financial calculators for India.",
     url: "https://www.moneytool.in",
   },
@@ -2354,7 +2354,7 @@ export default function RootLayout({
 import Link from "next/link";
 
 export const metadata = {
-  title: "MoneyTool ƒ?" Free Financial Calculators for India",
+  title: "MoneyTool ï¿½?" Free Financial Calculators for India",
   description: "Free EMI, SIP, GST, Salary & FD Calculators for India.",
 };
 
@@ -2362,7 +2362,7 @@ const tools = [
   {
     title: "EMI Calculator",
     description: "Calculate loan EMI for home, car & personal loans instantly",
-    icon: "dY?Ý",
+    icon: "dY?ï¿½",
     link: "/emi-calculator",
     bg: "bg-emerald-50",
     border: "border-emerald-100",
@@ -2389,7 +2389,7 @@ const tools = [
   {
     title: "Salary Calculator",
     description: "Calculate in-hand salary from CTC with custom deductions",
-    icon: "dY'¬",
+    icon: "dY'ï¿½",
     link: "/salary-calculator",
     bg: "bg-purple-50",
     border: "border-purple-100",
@@ -2398,7 +2398,7 @@ const tools = [
   {
     title: "FD Calculator",
     description: "Calculate Fixed Deposit maturity with custom interest rates",
-    icon: "dY?>‹,?",
+    icon: "dY?>ï¿½,?",
     link: "/fd-calculator",
     bg: "bg-orange-50",
     border: "border-orange-100",
@@ -2415,17 +2415,17 @@ export default function Home() {
           text-emerald-700 text-xs px-4 py-2 rounded-full mb-5 font-medium">
           <span className="w-2 h-2 rounded-full bg-emerald-500
             inline-block animate-pulse"></span>
-          100% Free ƒ?" No signup required
+          100% Free ï¿½?" No signup required
         </div>
         <h1 className="text-4xl font-medium text-gray-900 mb-4
           leading-tight">
           Free Financial Tools<br />
-          <span className="text-emerald-600">for India dYØrdYØ3</span>
+          <span className="text-emerald-600">for India dYï¿½rdYï¿½3</span>
         </h1>
         <p className="text-gray-500 text-base max-w-lg mx-auto
           leading-relaxed">
           Simple, fast and accurate calculators to help you make
-          smarter financial decisions ƒ?" completely free
+          smarter financial decisions ï¿½?" completely free
         </p>
       </div>
 
@@ -2466,7 +2466,7 @@ export default function Home() {
               {tool.description}
             </p>
             <span className="text-sm font-medium text-emerald-600">
-              Calculate now ƒ+'
+              Calculate now ï¿½+'
             </span>
           </Link>
         ))}
@@ -2478,8 +2478,8 @@ export default function Home() {
           More tools coming soon!
         </p>
         <p className="text-emerald-600 text-sm">
-          PPF Calculator ƒ?› Income Tax Calculator ƒ?›
-          Age Calculator ƒ?› and more...
+          PPF Calculator ï¿½?ï¿½ Income Tax Calculator ï¿½?ï¿½
+          Age Calculator ï¿½?ï¿½ and more...
         </p>
       </div>
 
