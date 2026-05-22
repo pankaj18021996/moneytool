@@ -5,6 +5,12 @@ import SIPCalculatorClient from "./SIPCalculatorClient";
 
 export const metadata: Metadata = seoMetadata as Metadata;
 
+const investmentTypes = [
+  { label: "Equity SIP", icon: "📈", rate: "8-12% p.a." },
+  { label: "Hybrid SIP", icon: "⚖️", rate: "6-9% p.a." },
+  { label: "Debt SIP", icon: "💳", rate: "4-6% p.a." },
+];
+
 const faqs = [
   {
     q: "What is SIP in mutual funds?",
@@ -67,9 +73,103 @@ export default function SIPCalculatorPage() {
           </p>
         </div>
 
-        {/* Calculator Section */}
-        <div style={{ marginBottom: 48 }}>
+        {/* Investment Type Pills */}
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
+          <div style={{
+            padding: "8px 16px", borderRadius: 999, fontSize: 13,
+            background: "rgba(16,185,129,0.1)", border: "1px solid #10b981",
+            color: "#10b981", fontWeight: 600,
+          }}>
+            📊 All SIPs
+          </div>
+          {investmentTypes.map((it) => (
+            <div key={it.label} style={{
+              padding: "8px 16px", borderRadius: 999, fontSize: 13,
+              background: "#111113", border: "1px solid #27272a",
+              color: "#a1a1aa", display: "flex", alignItems: "center", gap: 6,
+            }}>
+              {it.icon} {it.label}
+            </div>
+          ))}
+        </div>
+
+        {/* Two Column Layout */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 320px",
+          gap: 24,
+          alignItems: "start",
+          marginBottom: 48,
+        }}>
+
+          {/* Left — Calculator */}
           <SIPCalculatorClient />
+
+          {/* Right — Sidebar */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+
+            {/* Investment Type Links */}
+            <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 14 }}>
+                SIP Types
+              </h3>
+              {investmentTypes.map((it) => (
+                <div key={it.label} style={{
+                  display: "flex", alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "11px 14px", borderRadius: 10, marginBottom: 8,
+                  background: "#18181b", border: "1px solid #27272a",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{ fontSize: 18 }}>{it.icon}</span>
+                    <div>
+                      <p style={{ fontSize: 13, fontWeight: 600, color: "#f4f4f5", marginBottom: 1 }}>{it.label}</p>
+                      <p style={{ fontSize: 11, color: "#71717a" }}>{it.rate}</p>
+                    </div>
+                  </div>
+                  <span style={{ fontSize: 14, color: "#10b981" }}>→</span>
+                </div>
+              ))}
+            </div>
+
+            {/* SIP Formula */}
+            <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 12 }}>
+                SIP Formula
+              </h3>
+              <div style={{ background: "#18181b", borderRadius: 10, padding: 14, textAlign: "center", marginBottom: 12 }}>
+                <p style={{ fontSize: 13, color: "#a1a1aa", fontFamily: "monospace", lineHeight: 1.8 }}>
+                  FV = PMT × [((1+r)ⁿ - 1) / r]
+                </p>
+              </div>
+              <div style={{ fontSize: 12, color: "#71717a", lineHeight: 2 }}>
+                <p><span style={{ color: "#10b981" }}>FV</span> = Future Value</p>
+                <p><span style={{ color: "#10b981" }}>PMT</span> = Monthly payment</p>
+                <p><span style={{ color: "#10b981" }}>r</span> = Monthly rate</p>
+                <p><span style={{ color: "#10b981" }}>n</span> = # of months</p>
+              </div>
+            </div>
+
+            {/* Tips */}
+            <div style={{ background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#10b981", marginBottom: 12 }}>
+                💡 Quick Tips
+              </h3>
+              {[
+                "Start early for max returns",
+                "Invest regularly, don't time market",
+                "Diversify across fund types",
+                "Review & rebalance yearly",
+                "Stay invested long-term",
+              ].map((tip, i) => (
+                <p key={i} style={{ display: "flex", gap: 8, fontSize: 12, color: "#a1a1aa", lineHeight: 1.7, marginBottom: 6 }}>
+                  <span style={{ color: "#10b981", flexShrink: 0 }}>✓</span>
+                  {tip}
+                </p>
+              ))}
+            </div>
+
+          </div>
         </div>
 
         {/* Affiliate Disclosure */}
