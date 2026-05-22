@@ -2,14 +2,13 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service | MoneyTool",
-  description:
-    "Read MoneyTool's terms of service. Understand our usage policies, user rights, limitations, and disclaimers for our financial calculator tools.",
+  description: "Read MoneyTool's terms of service and conditions for using our financial calculator tools.",
   alternates: {
     canonical: "https://www.moneytool.in/terms-of-service",
   },
   openGraph: {
     title: "Terms of Service | MoneyTool",
-    description: "MoneyTool terms of service and usage policies",
+    description: "MoneyTool terms of service and conditions of use",
     type: "website",
     url: "https://www.moneytool.in/terms-of-service",
   },
@@ -17,161 +16,86 @@ export const metadata: Metadata = {
 
 export default function TermsOfService() {
   return (
-    <main
-      style={{
-        maxWidth: "900px",
-        margin: "0 auto",
-        padding: "60px 24px",
-        color: "#f4f4f5",
-        lineHeight: "1.7",
-      }}
-    >
-      <h1
-        style={{
-          fontSize: "32px",
-          fontWeight: "800",
-          marginBottom: "24px",
-          color: "#f4f4f5",
-        }}
-      >
-        Terms of Service
-      </h1>
-      <p style={{ color: "#a1a1aa", marginBottom: "32px", fontSize: "14px" }}>
-        Last Updated: May 2026
-      </p>
+    <main className="max-w-2xl mx-auto px-4 py-10">
+      <h1 className="text-2xl font-medium mb-2">Terms of Service</h1>
+      <p className="text-gray-500 text-sm mb-8">Last updated: May 2026</p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+      <div className="space-y-8">
         <section>
-          <h2
-            style={{
-              fontSize: "20px",
-              fontWeight: "700",
-              marginBottom: "12px",
-              color: "#10b981",
-            }}
-          >
-            1. Acceptance of Terms
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: "14px" }}>
-            By accessing and using MoneyTool ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to any part of these terms, you may not use the Service.
+          <h2 className="text-lg font-medium mb-3">1. Acceptance of Terms</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            By accessing and using the MoneyTool website (moneytool.in), you accept and agree to be bound by the terms and provision of this agreement.
           </p>
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: "20px",
-              fontWeight: "700",
-              marginBottom: "12px",
-              color: "#10b981",
-            }}
-          >
-            2. Description of Service
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: "14px" }}>
-            MoneyTool provides free financial calculators and tools including EMI calculators, SIP calculators, tax calculators, salary calculators, and other financial planning tools. The Service is intended for educational and informational purposes only.
+          <h2 className="text-lg font-medium mb-3">2. Use License</h2>
+          <p className="text-gray-600 text-sm leading-relaxed mb-3">
+            Permission is granted to temporarily download one copy of the materials (information or software) on MoneyTool's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+          </p>
+          <ul className="text-gray-600 text-sm leading-relaxed list-disc pl-5 space-y-2">
+            <li>Modifying or copying the materials</li>
+            <li>Using the materials for any commercial purpose or for any public display (commercial or non-commercial)</li>
+            <li>Attempting to decompile or reverse engineer any software contained on the website</li>
+            <li>Removing any copyright or other proprietary notations from the materials</li>
+            <li>Transferring the materials to another person or "mirroring" the materials on any other server</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-medium mb-3">3. Disclaimer</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            The materials on MoneyTool's website are provided on an 'as is' basis. MoneyTool makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
           </p>
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: "20px",
-              fontWeight: "700",
-              marginBottom: "12px",
-              color: "#10b981",
-            }}
-          >
-            3. No Financial Advice
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: "14px" }}>
-            The information and calculations provided by MoneyTool are for educational purposes only and should not be considered as financial, investment, or legal advice. Please consult with a qualified financial advisor before making any financial decisions.
+          <h2 className="text-lg font-medium mb-3">4. Limitations</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            In no event shall MoneyTool or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on MoneyTool's website.
           </p>
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: "20px",
-              fontWeight: "700",
-              marginBottom: "12px",
-              color: "#10b981",
-            }}
-          >
-            4. Limitation of Liability
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: "14px" }}>
-            MoneyTool and its creators are not responsible for any financial losses, errors in calculations, or decisions made based on the information provided. Use the tools at your own risk. Always verify calculations with official sources or financial professionals.
+          <h2 className="text-lg font-medium mb-3">5. Accuracy of Materials</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            The materials appearing on MoneyTool's website could include technical, typographical, or photographic errors. MoneyTool does not warrant that any of the materials on its website are accurate, complete, or current. MoneyTool may make changes to the materials contained on its website at any time without notice.
           </p>
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: "20px",
-              fontWeight: "700",
-              marginBottom: "12px",
-              color: "#10b981",
-            }}
-          >
-            5. User Conduct
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: "14px" }}>
-            You agree not to:
-            <ul style={{ marginTop: "12px", paddingLeft: "24px", color: "#a1a1aa" }}>
-              <li>Use the Service for any illegal purposes</li>
-              <li>Attempt to hack, modify, or disrupt the Service</li>
-              <li>Engage in any form of unauthorized access</li>
-              <li>Spam or abuse the Service</li>
-            </ul>
+          <h2 className="text-lg font-medium mb-3">6. Links</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            MoneyTool has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by MoneyTool of the site. Use of any such linked website is at the user's own risk.
           </p>
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: "20px",
-              fontWeight: "700",
-              marginBottom: "12px",
-              color: "#10b981",
-            }}
-          >
-            6. Accuracy of Information
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: "14px" }}>
-            While we strive to maintain accuracy, MoneyTool makes no warranties about the accuracy, completeness, or timeliness of the calculations. Interest rates, tax rules, and financial regulations change frequently and may not be reflected in real-time.
+          <h2 className="text-lg font-medium mb-3">7. Modifications</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            MoneyTool may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.
           </p>
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: "20px",
-              fontWeight: "700",
-              marginBottom: "12px",
-              color: "#10b981",
-            }}
-          >
-            7. Changes to Terms
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: "14px" }}>
-            MoneyTool reserves the right to modify these Terms of Service at any time. Continued use of the Service constitutes your acceptance of any changes.
+          <h2 className="text-lg font-medium mb-3">8. Governing Law</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            These terms and conditions are governed by and construed in accordance with the laws of India, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.
           </p>
         </section>
 
         <section>
-          <h2
-            style={{
-              fontSize: "20px",
-              fontWeight: "700",
-              marginBottom: "12px",
-              color: "#10b981",
-            }}
-          >
-            8. Contact Us
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: "14px" }}>
-            For questions about these Terms of Service, please contact us at contact@moneytool.in
+          <h2 className="text-lg font-medium mb-3">9. Financial Disclaimer</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            The calculators and information provided on MoneyTool are for educational and informational purposes only. They are not financial advice. Before making any financial decisions, please consult with a qualified financial advisor. Actual results may vary based on individual circumstances, market conditions, and bank policies.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-medium mb-3">10. Contact Us</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            If you have any questions about these Terms of Service, please contact us at:
+            <span className="text-green-600 ml-1">contact@moneytool.in</span>
           </p>
         </section>
       </div>

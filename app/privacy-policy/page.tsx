@@ -59,19 +59,15 @@ export default function PrivacyPolicy() {
             list-disc pl-5 space-y-2">
             <li>To improve our website and tools</li>
             <li>To analyze website traffic and usage patterns</li>
-            <li>To show relevant advertisements via Google AdSense</li>
             <li>To provide better user experience</li>
+            <li>To show relevant advertisements if enabled</li>
           </ul>
         </section>
 
         <section>
-          <h2 className="text-lg font-medium mb-3">4. Google AdSense</h2>
+          <h2 className="text-lg font-medium mb-3">4. Advertising</h2>
           <p className="text-gray-600 text-sm leading-relaxed">
-            We use Google AdSense to display advertisements on our
-            website. Google AdSense uses cookies to serve ads based
-            on your visits to this and other websites. You may opt
-            out of personalized advertising by visiting
-            Google Ads Settings.
+            We may display advertisements on our website through third-party advertising partners. These partners may use cookies and similar technologies to deliver personalized ads based on your visits to our website and other sites. You can opt out of personalized advertising through your browser settings or by visiting third-party opt-out options.
           </p>
         </section>
 
