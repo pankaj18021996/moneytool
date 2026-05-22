@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-
+ 
 const faqs = [
   {
     q: "What is HRA exemption?",
@@ -28,14 +28,14 @@ const faqs = [
     a: "Yes, you can file a revised ITR if your HRA changes due to relocation. The new HRA exemption applies from the month of relocation.",
   },
 ];
-
+ 
 const blogs = [
   { title: "HRA Exemption: Complete Guide for Salaried Employees",        date: "May 2026", read: "5 min", slug: "hra-exemption-guide"    },
   { title: "How to Claim Maximum HRA Without Tax Penalty",                 date: "Apr 2026", read: "4 min", slug: "claim-hra-safely"   },
   { title: "Metro vs Non-Metro: How it Affects Your HRA Exemption",        date: "Apr 2026", read: "6 min", slug: "metro-nonmetro-hra"       },
   { title: "What Documents Are Required for HRA Filing?",                  date: "Mar 2026", read: "5 min", slug: "hra-documents-required" },
 ];
-
+ 
 const stateRates = [
   { state: "Delhi", rent: "50%", metro: true },
   { state: "Mumbai", rent: "50%", metro: true },
@@ -46,39 +46,39 @@ const stateRates = [
   { state: "Pune", rent: "40%", metro: false },
   { state: "Ahmedabad", rent: "40%", metro: false },
 ];
-
+ 
 export default function HRACalculatorPage() {
   const [basic, setBasic] = useState(50000);
   const [da, setDa] = useState(10000);
   const [hra, setHra] = useState(25000);
   const [rentPaid, setRentPaid] = useState(30000);
   const [isMetro, setIsMetro] = useState(true);
-
+ 
   const percentage = isMetro ? 0.5 : 0.4;
   const salaryComponent = basic + da;
-
+ 
   const exemption1 = hra;
   const exemption2 = salaryComponent * percentage;
   const exemption3 = Math.max(0, rentPaid - (salaryComponent * 0.1));
-
+ 
   const exemption = Math.min(exemption1, exemption2, exemption3);
   const taxableHra = hra - exemption;
   const taxSaved = exemption * 0.3;
-
+ 
   const fmt = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
-
+ 
   return (
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
-
+ 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
-
+ 
         {/* Breadcrumb */}
         <div style={{ display: "flex", gap: 8, fontSize: 13, color: "#71717a", marginBottom: 24, alignItems: "center" }}>
           <Link href="/" style={{ color: "#71717a", textDecoration: "none" }}>Home</Link>
           <span>›</span>
           <span style={{ color: "#a1a1aa" }}>HRA Calculator</span>
         </div>
-
+ 
         {/* Header */}
         <div style={{ marginBottom: 32 }}>
           <h1 style={{ fontSize: 32, fontWeight: 800, color: "#f4f4f5", marginBottom: 10, lineHeight: 1.2 }}>
@@ -89,7 +89,7 @@ export default function HRACalculatorPage() {
             tax savings and state-wise rent percentages. Free, accurate & no signup required.
           </p>
         </div>
-
+ 
         {/* Two Column Layout */}
         <div style={{
           display: "grid",
@@ -98,10 +98,10 @@ export default function HRACalculatorPage() {
           alignItems: "start",
           marginBottom: 48,
         }}>
-
+ 
           {/* Left — Calculator */}
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
-
+ 
             <div style={{ marginBottom: 24 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
                 <label style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5" }}>Basic Salary (Monthly)</label>
@@ -111,7 +111,7 @@ export default function HRACalculatorPage() {
                 value={basic} onChange={e => setBasic(Number(e.target.value))}
                 style={{ width: "100%", accentColor: "#10b981" }} />
             </div>
-
+ 
             <div style={{ marginBottom: 24 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
                 <label style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5" }}>Dearness Allowance (DA)</label>
@@ -121,7 +121,7 @@ export default function HRACalculatorPage() {
                 value={da} onChange={e => setDa(Number(e.target.value))}
                 style={{ width: "100%", accentColor: "#10b981" }} />
             </div>
-
+ 
             <div style={{ marginBottom: 24 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
                 <label style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5" }}>HRA Received (Monthly)</label>
@@ -131,7 +131,7 @@ export default function HRACalculatorPage() {
                 value={hra} onChange={e => setHra(Number(e.target.value))}
                 style={{ width: "100%", accentColor: "#10b981" }} />
             </div>
-
+ 
             <div style={{ marginBottom: 24 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
                 <label style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5" }}>Rent Paid (Monthly)</label>
@@ -141,14 +141,14 @@ export default function HRACalculatorPage() {
                 value={rentPaid} onChange={e => setRentPaid(Number(e.target.value))}
                 style={{ width: "100%", accentColor: "#10b981" }} />
             </div>
-
+ 
             <div style={{ marginBottom: 28 }}>
               <label style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
                 <input type="checkbox" checked={isMetro} onChange={e => setIsMetro(e.target.checked)} style={{ width: 18, height: 18, accentColor: "#10b981" }} />
                 <span style={{ fontSize: 14, color: "#f4f4f5" }}>Metro City (50% rate)</span>
               </label>
             </div>
-
+ 
             {/* Results */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 28 }}>
               <div style={{ background: "#18181b", borderRadius: 12, padding: 16, border: "1px solid #27272a" }}>
@@ -164,7 +164,7 @@ export default function HRACalculatorPage() {
                 <p style={{ fontSize: 20, fontWeight: 700, color: "#10b981" }}>{fmt(taxSaved)}</p>
               </div>
             </div>
-
+ 
             {/* Breakdown */}
             <div style={{ marginTop: 28, padding: 16, background: "#18181b", borderRadius: 12, border: "1px solid #27272a" }}>
               <p style={{ fontSize: 12, fontWeight: 600, color: "#f4f4f5", marginBottom: 12 }}>Calculation Breakdown</p>
@@ -175,12 +175,12 @@ export default function HRACalculatorPage() {
                 <p style={{ color: "#10b981", fontWeight: 600, marginTop: 8 }}>HRA Exemption = Min: {fmt(exemption)}</p>
               </div>
             </div>
-
+ 
           </div>
-
+ 
           {/* Right — Sidebar */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-
+ 
             {/* Formula */}
             <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 20 }}>
               <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 12 }}>
@@ -199,7 +199,7 @@ export default function HRACalculatorPage() {
                 <p>Non-metro: 40% rate</p>
               </div>
             </div>
-
+ 
             {/* Tips */}
             <div style={{ background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 16, padding: 20 }}>
               <h3 style={{ fontSize: 14, fontWeight: 600, color: "#10b981", marginBottom: 12 }}>
@@ -218,10 +218,10 @@ export default function HRACalculatorPage() {
                 </p>
               ))}
             </div>
-
+ 
           </div>
         </div>
-
+ 
         {/* State Wise Rates Table */}
         <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 48 }}>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 8 }}>
@@ -240,10 +240,11 @@ export default function HRACalculatorPage() {
                 </tr>
               </thead>
               <tbody>
-                {stateRates.map(([state, rate, metro], i) => (
+                {/* ✅ FIXED: changed ([state, rent, metro]) → ({ state, rent, metro }) */}
+                {stateRates.map(({ state, rent, metro }, i) => (
                   <tr key={state} style={{ borderBottom: "1px solid #1f1f22", background: i % 2 ? "#18181b" : "transparent" }}>
                     <td style={{ padding: "10px 12px", color: "#f4f4f5", fontWeight: 500 }}>{state}</td>
-                    <td style={{ padding: "10px 12px", color: "#10b981", fontWeight: 600 }}>{rate}</td>
+                    <td style={{ padding: "10px 12px", color: "#10b981", fontWeight: 600 }}>{rent}</td>
                     <td style={{ padding: "10px 12px", color: "#a1a1aa" }}>{metro ? "Metro" : "Non-Metro"}</td>
                   </tr>
                 ))}
@@ -251,10 +252,10 @@ export default function HRACalculatorPage() {
             </table>
           </div>
         </div>
-
+ 
         {/* SEO Content */}
         <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: 48 }}>
-
+ 
           {/* What is HRA */}
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 14 }}>
@@ -267,7 +268,7 @@ export default function HRACalculatorPage() {
               The HRA exemption is calculated as the minimum of: (1) Actual HRA received, (2) 50% of basic + DA (in metro) or 40% (non-metro), and (3) Rent paid minus 10% of basic + DA.
             </p>
           </div>
-
+ 
           {/* How to Use */}
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 14 }}>
@@ -294,7 +295,7 @@ export default function HRACalculatorPage() {
               </div>
             ))}
           </div>
-
+ 
           {/* Eligibility */}
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>
@@ -321,7 +322,7 @@ export default function HRACalculatorPage() {
               </div>
             ))}
           </div>
-
+ 
           {/* Benefits */}
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>
@@ -348,7 +349,7 @@ export default function HRACalculatorPage() {
               </div>
             ))}
           </div>
-
+ 
           {/* FAQ */}
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>
@@ -361,7 +362,7 @@ export default function HRACalculatorPage() {
               </div>
             ))}
           </div>
-
+ 
           {/* Why MoneyTool */}
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 16 }}>
@@ -382,9 +383,9 @@ export default function HRACalculatorPage() {
               ))}
             </div>
           </div>
-
+ 
         </div>
-
+ 
         {/* Blog Section */}
         <div style={{ marginBottom: 48 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
@@ -418,8 +419,9 @@ export default function HRACalculatorPage() {
             ))}
           </div>
         </div>
-
+ 
       </div>
     </div>
   );
 }
+ 
