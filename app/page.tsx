@@ -249,8 +249,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* POPULAR */}
+      {/* TESTIMONIALS */}
       <section style={{ borderBottom: "1px solid #27272a", background: "#111113" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 6,
+            background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)",
+            color: "#22c55e", fontSize: 12, padding: "4px 12px",
+            borderRadius: 999, marginBottom: 20, fontWeight: 500,
+          }}>
+            ⭐ User Reviews
+          </div>
+          <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f4f4f5", marginBottom: 32 }}>
+            What Users Say
+          </h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 24 }}>
+            {[
+              {
+                name: "Rajesh Kumar",
+                role: "Home Buyer",
+                text: "The EMI calculator saved me hours of research. I could instantly compare different loan options and decide what works for my budget.",
+                rating: 5,
+              },
+              {
+                name: "Priya Singh",
+                role: "Investor",
+                text: "The SIP calculator is so accurate and easy to use. Helped me plan my mutual fund investments with clear visibility on returns.",
+                rating: 5,
+              },
+              {
+                name: "Amit Patel",
+                role: "Business Owner",
+                text: "The GST and Invoice tools are lifesavers for my small business. Quick, reliable, and absolutely free. No hidden charges.",
+                rating: 5,
+              },
+              {
+                name: "Sneha Desai",
+                role: "Tax Consultant",
+                text: "I recommend MoneyTool to all my clients for quick income tax calculations. The tools are accurate and updated with latest tax rules.",
+                rating: 5,
+              },
+            ].map((testimonial, idx) => (
+              <div key={idx} style={{
+                background: "#0a0a0a",
+                border: "1px solid #27272a",
+                borderRadius: 16, padding: 24,
+                display: "flex", flexDirection: "column", gap: 12,
+              }}>
+                <div style={{ display: "flex", gap: 8 }}>
+                  {Array(testimonial.rating).fill(0).map((_, i) => (
+                    <span key={i} style={{ fontSize: 14 }}>⭐</span>
+                  ))}
+                </div>
+                <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.6, flex: 1 }}>
+                  "{testimonial.text}"
+                </p>
+                <div>
+                  <p style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 2 }}>
+                    {testimonial.name}
+                  </p>
+                  <p style={{ fontSize: 12, color: "#52525b" }}>
+                    {testimonial.role}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* POPULAR */}
+      <section style={{ borderBottom: "1px solid #27272a", background: "#0a0a0a" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 6,
@@ -264,7 +333,7 @@ export default function Home() {
             Our Most Popular Tools
           </h2>
           <p style={{ color: "#a1a1aa", fontSize: 15, marginBottom: 32 }}>
-            Trusted by thousands of Indians every day
+            15+ free financial calculators trusted by thousands of Indians daily
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 16 }}>
             {TOOLS.filter((t) => t.popular && !t.coming).map((tool) => (

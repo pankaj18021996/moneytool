@@ -16,6 +16,20 @@ export const metadata = {
     siteName: "MoneyTool",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "https://www.moneytool.in/og-images/sip-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "SIP Calculator for India",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free SIP Calculator India — Calculate Mutual Fund Returns",
+    description: "Plan your SIP investments and calculate returns instantly.",
+    image: "https://www.moneytool.in/og-images/sip-calculator.png",
   },
   alternates: {
     canonical: "https://www.moneytool.in/sip-calculator",

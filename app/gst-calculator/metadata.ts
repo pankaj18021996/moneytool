@@ -16,6 +16,20 @@ export const metadata = {
     siteName: "MoneyTool",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "https://www.moneytool.in/og-images/gst-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "GST Calculator for India",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free GST Calculator India — Calculate GST Instantly",
+    description: "Calculate GST amount for any product or service instantly.",
+    image: "https://www.moneytool.in/og-images/gst-calculator.png",
   },
   alternates: {
     canonical: "https://www.moneytool.in/gst-calculator",

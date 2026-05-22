@@ -22,18 +22,30 @@ export const metadata: Metadata = {
     "free financial tools india",
   ],
   metadataBase: new URL("https://www.moneytool.in"),
+  verification: {
+    google: "your-google-verification-code",
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
     siteName: "MoneyTool",
     title: "MoneyTool — Free Financial Calculators & Tools for India",
-    description: "15+ free financial tools. No login. Instant results.",
+    description: "15+ free financial tools — EMI, SIP, FD, PPF, GST, Income Tax, Salary & Invoice Builder. No login required. Instant results.",
     url: "https://www.moneytool.in",
+    images: [
+      {
+        url: "https://www.moneytool.in/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "MoneyTool - Free Financial Calculators for India",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "MoneyTool — Free Financial Calculators for India",
-    description: "15+ free tools. No login required. Instant results.",
+    description: "15+ free financial tools. Calculate EMI, SIP returns, taxes, salary, GST & more. No login required. Instant results.",
+    image: "https://www.moneytool.in/og-image.png",
   },
   robots: { index: true, follow: true },
 };

@@ -117,7 +117,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: "https://www.moneytool.in/blog",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.75,
+    },
+    {
       url: "https://www.moneytool.in/privacy-policy",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: "https://www.moneytool.in/terms-of-service",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: "https://www.moneytool.in/disclaimer",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,

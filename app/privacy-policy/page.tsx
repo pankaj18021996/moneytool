@@ -1,6 +1,18 @@
-export const metadata = {
-  title: "Privacy Policy - MoneyTool",
-  description: "Privacy Policy for MoneyTool - Free Financial Calculators",
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | MoneyTool",
+  description:
+    "Read MoneyTool's privacy policy. Learn how we protect your data and maintain your privacy while using our financial calculator tools.",
+  alternates: {
+    canonical: "https://www.moneytool.in/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy Policy | MoneyTool",
+    description: "MoneyTool privacy policy and data protection practices",
+    type: "website",
+    url: "https://www.moneytool.in/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicy() {

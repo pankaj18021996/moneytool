@@ -1,6 +1,10 @@
 "use client";
+import type { Metadata } from "next";
 import Link from "next/link";
 import LoanCalculator from "../components/LoanCalculator";
+import { metadata as seoMetadata } from "./metadata";
+
+export const metadata: Metadata = seoMetadata as Metadata;
 
 const loanTypes = [
   { label: "Home Loan",      icon: "🏠", href: "/home-loan-calculator",      rate: "8.40% – 9.50%", tenure: "Up to 30 yr", max: "₹10 Cr" },

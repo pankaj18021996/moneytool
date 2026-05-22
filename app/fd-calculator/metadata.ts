@@ -16,6 +16,20 @@ export const metadata = {
     siteName: "MoneyTool",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "https://www.moneytool.in/og-images/fd-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "FD Calculator for India",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free FD Calculator India — Fixed Deposit Calculator",
+    description: "Calculate FD maturity amount with custom interest rates.",
+    image: "https://www.moneytool.in/og-images/fd-calculator.png",
   },
   alternates: {
     canonical: "https://www.moneytool.in/fd-calculator",

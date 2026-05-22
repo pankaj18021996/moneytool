@@ -26,13 +26,13 @@ export default function Navbar() {
           alignItems: "center",
           gap: 10,
           textDecoration: "none",
-        }}>
+        }} aria-label="MoneyTool Home">
           <div style={{
             width: 32, height: 32, borderRadius: 8,
             background: "#10b981", display: "flex",
             alignItems: "center", justifyContent: "center",
             fontWeight: 800, fontSize: 16, color: "#fff",
-          }}>M</div>
+          }} aria-hidden="true">M</div>
           <span style={{ fontWeight: 700, fontSize: 18, color: "#f4f4f5" }}>
             MoneyTool
           </span>

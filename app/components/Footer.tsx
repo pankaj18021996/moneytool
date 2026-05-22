@@ -66,9 +66,10 @@ export default function Footer() {
             </h4>
             {[
               { href: "/about", label: "About Us" },
+              { href: "/blog", label: "Blog" },
               { href: "/privacy-policy", label: "Privacy Policy" },
-              { href: "/privacy-policy", label: "Terms of Service" },
-              { href: "/privacy-policy", label: "Disclaimer" },
+              { href: "/terms-of-service", label: "Terms of Service" },
+              { href: "/disclaimer", label: "Disclaimer" },
             ].map((l) => (
               <Link key={l.label} href={l.href} style={{
                 display: "block", fontSize: 13,
