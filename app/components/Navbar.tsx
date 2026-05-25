@@ -55,7 +55,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <div style={{ display: "none", "@media (min-width: 768px)": { display: "flex" }, alignItems: "center", gap: 28 }} className="hidden md:flex">
+        <div className="hidden md:flex items-center gap-7">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} style={{
               color: isActive(item.href) ? "#10b981" : "#a1a1aa",
@@ -73,12 +73,11 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button — removed invalid media query from style prop */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden"
           style={{
-            display: "none",
-            "@media (max-width: 767px)": { display: "block" },
             background: "none",
             border: "none",
             color: "#f4f4f5",
@@ -86,7 +85,6 @@ export default function Navbar() {
             cursor: "pointer",
             padding: 8,
           }}
-          className="md:hidden"
           aria-label="Toggle menu"
         >
           ☰
