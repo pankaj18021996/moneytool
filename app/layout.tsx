@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MoneyTool — Free Financial Calculators for India",
     description: "15+ free financial tools. Calculate EMI, SIP returns, taxes, salary, GST & more. No login required. Instant results.",
-    image: "https://www.moneytool.in/og-image.png",
+    images: "https://www.moneytool.in/og-image.png",
   },
   robots: { index: true, follow: true },
 };

@@ -1,28 +1,6 @@
+"use client";
 import { Metadata } from "next";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Financial Blog - Learn Money Management | MoneyTool",
-  description:
-    "Read expert articles on financial planning, investments, loans, taxes, and personal finance for Indians. Learn EMI calculation, SIP returns, home loans, income tax, and more.",
-  keywords: [
-    "financial blog",
-    "money management",
-    "investment tips",
-    "home loan guide",
-    "tax savings",
-    "sip guide",
-  ],
-  openGraph: {
-    title: "Financial Blog - Learn Money Management | MoneyTool",
-    description: "Expert financial planning articles for Indians",
-    type: "website",
-    url: "https://www.moneytool.in/blog",
-  },
-  alternates: {
-    canonical: "https://www.moneytool.in/blog",
-  },
-};
 
 const BLOG_POSTS = [
   {
