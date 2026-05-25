@@ -59,21 +59,19 @@ export default function Navbar() {
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} style={{
               color: isActive(item.href) ? "#10b981" : "#a1a1aa",
-              fontSize: 14, fontWeight: isActive(item.href) ? 600 : 500,
+              fontSize: 14,
+              fontWeight: isActive(item.href) ? 600 : 500,
               textDecoration: "none",
               transition: "color 0.2s",
               borderBottom: isActive(item.href) ? "2px solid #10b981" : "none",
               paddingBottom: isActive(item.href) ? 2 : 0,
-            }}
-              onMouseEnter={e => !isActive(item.href) && (e.currentTarget.style.color = "#f4f4f5")}
-              onMouseLeave={e => !isActive(item.href) && (e.currentTarget.style.color = "#a1a1aa")}
-            >
+            }}>
               {item.label}
             </Link>
           ))}
         </div>
 
-        {/* Mobile Menu Button — removed invalid media query from style prop */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden"
@@ -94,7 +92,6 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div style={{
-          display: "block",
           borderTop: "1px solid #27272a",
           backgroundColor: "#111113",
           padding: "16px 24px",
@@ -103,7 +100,8 @@ export default function Navbar() {
             <Link key={item.href} href={item.href} style={{
               display: "block",
               color: isActive(item.href) ? "#10b981" : "#a1a1aa",
-              fontSize: 14, fontWeight: isActive(item.href) ? 600 : 500,
+              fontSize: 14,
+              fontWeight: isActive(item.href) ? 600 : 500,
               textDecoration: "none",
               padding: "12px 0",
               borderLeft: isActive(item.href) ? "3px solid #10b981" : "none",
