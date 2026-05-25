@@ -1,13 +1,28 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { href: "/calculators", label: "Calculators" },
+    { href: "/business-tools", label: "Business Tools" },
+    { href: "/blog", label: "Blog" },
+  ];
+
+  const isActive = (href: string) => {
+    return pathname === href || pathname.startsWith(href + "/");
+  };
+
   return (
     <nav style={{
       position: "sticky",
       top: 0,
       zIndex: 100,
-      background: "rgba(10,10,10,0.85)",
+      background: "rgba(10,10,10,0.95)",
       backdropFilter: "blur(16px)",
       WebkitBackdropFilter: "blur(16px)",
       borderBottom: "1px solid #27272a",
@@ -21,6 +36,7 @@ export default function Navbar() {
         justifyContent: "space-between",
         height: 64,
       }}>
+        {/* Logo */}
         <Link href="/" style={{
           display: "flex",
           alignItems: "center",
@@ -38,34 +54,70 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-          {[
-            { href: "/emi-calculator", label: "Calculators" },
-            { href: "/about", label: "About" },
-          ].map((item) => (
+        {/* Desktop Nav */}
+        <div style={{ display: "none", "@media (min-width: 768px)": { display: "flex" }, alignItems: "center", gap: 28 }} className="hidden md:flex">
+          {navItems.map((item) => (
             <Link key={item.href} href={item.href} style={{
-              color: "#a1a1aa", fontSize: 14, fontWeight: 500,
-              textDecoration: "none", transition: "color 0.2s",
+              color: isActive(item.href) ? "#10b981" : "#a1a1aa",
+              fontSize: 14, fontWeight: isActive(item.href) ? 600 : 500,
+              textDecoration: "none",
+              transition: "color 0.2s",
+              borderBottom: isActive(item.href) ? "2px solid #10b981" : "none",
+              paddingBottom: isActive(item.href) ? 2 : 0,
             }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#f4f4f5")}
-              onMouseLeave={e => (e.currentTarget.style.color = "#a1a1aa")}
+              onMouseEnter={e => !isActive(item.href) && (e.currentTarget.style.color = "#f4f4f5")}
+              onMouseLeave={e => !isActive(item.href) && (e.currentTarget.style.color = "#a1a1aa")}
             >
               {item.label}
             </Link>
           ))}
-          <Link href="/emi-calculator" style={{
-            background: "#10b981", color: "#fff",
-            fontSize: 13, fontWeight: 600,
-            padding: "8px 18px", borderRadius: 8,
-            textDecoration: "none",
-          }}
-            onMouseEnter={e => (e.currentTarget.style.background = "#059669")}
-            onMouseLeave={e => (e.currentTarget.style.background = "#10b981")}
-          >
-            Start Calculating →
-          </Link>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{
+            display: "none",
+            "@media (max-width: 767px)": { display: "block" },
+            background: "none",
+            border: "none",
+            color: "#f4f4f5",
+            fontSize: 24,
+            cursor: "pointer",
+            padding: 8,
+          }}
+          className="md:hidden"
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div style={{
+          display: "block",
+          borderTop: "1px solid #27272a",
+          backgroundColor: "#111113",
+          padding: "16px 24px",
+        }}>
+          {navItems.map((item) => (
+            <Link key={item.href} href={item.href} style={{
+              display: "block",
+              color: isActive(item.href) ? "#10b981" : "#a1a1aa",
+              fontSize: 14, fontWeight: isActive(item.href) ? 600 : 500,
+              textDecoration: "none",
+              padding: "12px 0",
+              borderLeft: isActive(item.href) ? "3px solid #10b981" : "none",
+              paddingLeft: isActive(item.href) ? 12 : 0,
+            }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
