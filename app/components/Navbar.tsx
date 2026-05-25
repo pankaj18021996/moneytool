@@ -36,25 +36,23 @@ export default function Navbar() {
         justifyContent: "space-between",
         height: 64,
       }}>
-        {/* Logo */}
         <Link href="/" style={{
           display: "flex",
           alignItems: "center",
           gap: 10,
           textDecoration: "none",
-        }} aria-label="MoneyTool Home">
+        }}>
           <div style={{
             width: 32, height: 32, borderRadius: 8,
             background: "#10b981", display: "flex",
             alignItems: "center", justifyContent: "center",
             fontWeight: 800, fontSize: 16, color: "#fff",
-          }} aria-hidden="true">M</div>
+          }}>M</div>
           <span style={{ fontWeight: 700, fontSize: 18, color: "#f4f4f5" }}>
             MoneyTool
           </span>
         </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-7">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} style={{
@@ -62,7 +60,6 @@ export default function Navbar() {
               fontSize: 14,
               fontWeight: isActive(item.href) ? 600 : 500,
               textDecoration: "none",
-              transition: "color 0.2s",
               borderBottom: isActive(item.href) ? "2px solid #10b981" : "none",
               paddingBottom: isActive(item.href) ? 2 : 0,
             }}>
@@ -71,7 +68,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden"
@@ -83,13 +79,11 @@ export default function Navbar() {
             cursor: "pointer",
             padding: 8,
           }}
-          aria-label="Toggle menu"
         >
           ☰
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div style={{
           borderTop: "1px solid #27272a",
