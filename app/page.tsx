@@ -1,25 +1,14 @@
 "use client";
+
 import Link from "next/link";
 
 function ToolCard({ tool }: { tool: any }) {
   return (
-    <div
-      style={{
-        background: "#111113", border: "1px solid #27272a",
-        borderRadius: 16, padding: 20, position: "relative",
-        transition: "border-color 0.2s, transform 0.2s",
-      }}
-      onMouseEnter={e => {
-        if (!tool.coming) {
-          (e.currentTarget as any).style.borderColor = "#10b981";
-          (e.currentTarget as any).style.transform = "translateY(-2px)";
-        }
-      }}
-      onMouseLeave={e => {
-        (e.currentTarget as any).style.borderColor = "#27272a";
-        (e.currentTarget as any).style.transform = "translateY(0)";
-      }}
-    >
+    <div className={`tool-card${tool.coming ? " tool-card-coming" : ""}`} style={{
+      background: "#111113", border: "1px solid #27272a",
+      borderRadius: 16, padding: 20, position: "relative",
+      transition: "border-color 0.2s, transform 0.2s",
+    }}>
       {tool.popular && !tool.coming && (
         <span style={{
           position: "absolute", top: 16, right: 16, fontSize: 11,
@@ -89,11 +78,22 @@ const FEATURES = [
 export default function Home() {
   return (
     <div style={{
-      background: "#0a0a0a",
-      color: "#f4f4f5",
+      background: "#0a0a0a", color: "#f4f4f5",
       minHeight: "100vh",
       fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif",
     }}>
+      <style>{`
+        .tool-card:not(.tool-card-coming):hover {
+          border-color: #10b981 !important;
+          transform: translateY(-2px);
+        }
+        .popular-card:hover {
+          border-color: #10b981 !important;
+          transform: translateY(-2px);
+        }
+        .hero-btn-primary:hover { background: #059669 !important; }
+        .hero-btn-secondary:hover { border-color: #10b981 !important; }
+      `}</style>
 
       {/* HERO */}
       <section style={{ borderBottom: "1px solid #27272a" }}>
@@ -116,26 +116,21 @@ export default function Home() {
             fast and free. Make smarter financial decisions with ease.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/emi-calculator" style={{
+            <Link href="/emi-calculator" className="hero-btn-primary" style={{
               background: "#10b981", color: "#fff",
               padding: "12px 28px", borderRadius: 10,
               fontSize: 15, fontWeight: 600, textDecoration: "none",
-              display: "inline-block",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.background = "#059669")}
-              onMouseLeave={e => (e.currentTarget.style.background = "#10b981")}
-            >
+              display: "inline-block", transition: "background 0.2s",
+            }}>
               Start Calculating →
             </Link>
-            <Link href="/about" style={{
+            <Link href="/about" className="hero-btn-secondary" style={{
               background: "transparent", color: "#f4f4f5",
               padding: "12px 28px", borderRadius: 10,
               fontSize: 15, fontWeight: 600, textDecoration: "none",
               border: "1px solid #27272a", display: "inline-block",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = "#10b981")}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = "#27272a")}
-            >
+              transition: "border-color 0.2s",
+            }}>
               Learn More
             </Link>
           </div>
@@ -166,7 +161,6 @@ export default function Home() {
       <section style={{ borderBottom: "1px solid #27272a" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
 
-          {/* Investment Tools */}
           <div style={{ marginBottom: 60 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <span style={{ fontSize: 28 }}>📈</span>
@@ -175,18 +169,11 @@ export default function Home() {
                 <p style={{ color: "#a1a1aa", fontSize: 14 }}>Plan your investments with SIP, PPF, FD, RD & more</p>
               </div>
             </div>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: 16,
-            }}>
-              {INVESTMENT_TOOLS.map((tool) => (
-                <ToolCard key={tool.id} tool={tool} />
-              ))}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
+              {INVESTMENT_TOOLS.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
             </div>
           </div>
 
-          {/* Loan Tools */}
           <div style={{ marginBottom: 60 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <span style={{ fontSize: 28 }}>💳</span>
@@ -195,18 +182,11 @@ export default function Home() {
                 <p style={{ color: "#a1a1aa", fontSize: 14 }}>Calculate EMI for home, car & personal loans</p>
               </div>
             </div>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: 16,
-            }}>
-              {LOAN_TOOLS.map((tool) => (
-                <ToolCard key={tool.id} tool={tool} />
-              ))}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
+              {LOAN_TOOLS.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
             </div>
           </div>
 
-          {/* Tax Tools */}
           <div style={{ marginBottom: 60 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <span style={{ fontSize: 28 }}>🏛️</span>
@@ -215,18 +195,11 @@ export default function Home() {
                 <p style={{ color: "#a1a1aa", fontSize: 14 }}>Calculate income tax, salary, GST, HRA & TDS</p>
               </div>
             </div>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: 16,
-            }}>
-              {TAX_TOOLS.map((tool) => (
-                <ToolCard key={tool.id} tool={tool} />
-              ))}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
+              {TAX_TOOLS.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
             </div>
           </div>
 
-          {/* Business Tools */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <span style={{ fontSize: 28 }}>📄</span>
@@ -235,14 +208,8 @@ export default function Home() {
                 <p style={{ color: "#a1a1aa", fontSize: 14 }}>Create invoices and payslips with PDF export</p>
               </div>
             </div>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: 16,
-            }}>
-              {BUSINESS_TOOLS.map((tool) => (
-                <ToolCard key={tool.id} tool={tool} />
-              ))}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
+              {BUSINESS_TOOLS.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
             </div>
           </div>
 
@@ -265,34 +232,13 @@ export default function Home() {
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 24 }}>
             {[
-              {
-                name: "Rajesh Kumar",
-                role: "Home Buyer",
-                text: "The EMI calculator saved me hours of research. I could instantly compare different loan options and decide what works for my budget.",
-                rating: 5,
-              },
-              {
-                name: "Priya Singh",
-                role: "Investor",
-                text: "The SIP calculator is so accurate and easy to use. Helped me plan my mutual fund investments with clear visibility on returns.",
-                rating: 5,
-              },
-              {
-                name: "Amit Patel",
-                role: "Business Owner",
-                text: "The GST and Invoice tools are lifesavers for my small business. Quick, reliable, and absolutely free. No hidden charges.",
-                rating: 5,
-              },
-              {
-                name: "Sneha Desai",
-                role: "Tax Consultant",
-                text: "I recommend MoneyTool to all my clients for quick income tax calculations. The tools are accurate and updated with latest tax rules.",
-                rating: 5,
-              },
+              { name: "Rajesh Kumar", role: "Home Buyer", text: "The EMI calculator saved me hours of research. I could instantly compare different loan options and decide what works for my budget.", rating: 5 },
+              { name: "Priya Singh", role: "Investor", text: "The SIP calculator is so accurate and easy to use. Helped me plan my mutual fund investments with clear visibility on returns.", rating: 5 },
+              { name: "Amit Patel", role: "Business Owner", text: "The GST and Invoice tools are lifesavers for my small business. Quick, reliable, and absolutely free. No hidden charges.", rating: 5 },
+              { name: "Sneha Desai", role: "Tax Consultant", text: "I recommend MoneyTool to all my clients for quick income tax calculations. The tools are accurate and updated with latest tax rules.", rating: 5 },
             ].map((testimonial, idx) => (
               <div key={idx} style={{
-                background: "#0a0a0a",
-                border: "1px solid #27272a",
+                background: "#0a0a0a", border: "1px solid #27272a",
                 borderRadius: 16, padding: 24,
                 display: "flex", flexDirection: "column", gap: 12,
               }}>
@@ -305,12 +251,8 @@ export default function Home() {
                   "{testimonial.text}"
                 </p>
                 <div>
-                  <p style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 2 }}>
-                    {testimonial.name}
-                  </p>
-                  <p style={{ fontSize: 12, color: "#52525b" }}>
-                    {testimonial.role}
-                  </p>
+                  <p style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 2 }}>{testimonial.name}</p>
+                  <p style={{ fontSize: 12, color: "#52525b" }}>{testimonial.role}</p>
                 </div>
               </div>
             ))}
@@ -337,30 +279,15 @@ export default function Home() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 16 }}>
             {TOOLS.filter((t) => t.popular && !t.coming).map((tool) => (
-              <Link key={tool.id} href={tool.link} style={{
+              <Link key={tool.id} href={tool.link} className="popular-card" style={{
                 background: "#18181b", border: "1px solid #27272a",
                 borderRadius: 16, padding: 24, textDecoration: "none",
                 display: "block", transition: "border-color 0.2s, transform 0.2s",
-              }}
-                onMouseEnter={e => {
-                  (e.currentTarget as any).style.borderColor = "#10b981";
-                  (e.currentTarget as any).style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as any).style.borderColor = "#27272a";
-                  (e.currentTarget as any).style.transform = "translateY(0)";
-                }}
-              >
+              }}>
                 <div style={{ fontSize: 32, marginBottom: 16 }}>{tool.icon}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: "#f4f4f5", marginBottom: 8 }}>
-                  {tool.title}
-                </h3>
-                <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.6, marginBottom: 20 }}>
-                  {tool.desc}
-                </p>
-                <span style={{ fontSize: 14, fontWeight: 600, color: "#10b981" }}>
-                  Try {tool.title} →
-                </span>
+                <h3 style={{ fontSize: 18, fontWeight: 700, color: "#f4f4f5", marginBottom: 8 }}>{tool.title}</h3>
+                <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.6, marginBottom: 20 }}>{tool.desc}</p>
+                <span style={{ fontSize: 14, fontWeight: 600, color: "#10b981" }}>Try {tool.title} →</span>
               </Link>
             ))}
           </div>

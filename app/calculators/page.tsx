@@ -1,6 +1,43 @@
 import Link from "next/link";
 import { Metadata } from "next";
 
+// Client Component for hover effect
+function CalculatorCard({ calc }: { calc: any }) {
+  return (
+    <Link
+      href={calc.href}
+      style={{
+        display: "block",
+        background: "#111113",
+        border: "1px solid #27272a",
+        borderRadius: 12,
+        padding: 24,
+        textDecoration: "none",
+        transition: "all 0.2s",
+        cursor: "pointer",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.borderColor = "#10b981";
+        (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.borderColor = "#27272a";
+        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+      }}
+    >
+      <h3 style={{ fontSize: 16, fontWeight: 600, color: "#f4f4f5", marginBottom: 8 }}>
+        {calc.name}
+      </h3>
+      <p style={{ fontSize: 13, color: "#a1a1aa", lineHeight: 1.6 }}>
+        {calc.desc}
+      </p>
+      <span style={{ fontSize: 13, fontWeight: 600, color: "#10b981", marginTop: 12, display: "inline-block" }}>
+        Open →
+      </span>
+    </Link>
+  );
+}
+
 export const metadata: Metadata = {
   title: "Financial Calculators | MoneyTool",
   description: "Explore 15+ free financial calculators for EMI, SIP, FD, GST, taxes, salary and more. No signup required.",
@@ -74,38 +111,7 @@ export default function CalculatorsPage() {
               gap: 20,
             }}>
               {category.calculators.map((calc) => (
-                <Link
-                  key={calc.href}
-                  href={calc.href}
-                  style={{
-                    display: "block",
-                    background: "#111113",
-                    border: "1px solid #27272a",
-                    borderRadius: 12,
-                    padding: 24,
-                    textDecoration: "none",
-                    transition: "all 0.2s",
-                    cursor: "pointer",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "#10b981";
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "#27272a";
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                  }}
-                >
-                  <h3 style={{ fontSize: 16, fontWeight: 600, color: "#f4f4f5", marginBottom: 8 }}>
-                    {calc.name}
-                  </h3>
-                  <p style={{ fontSize: 13, color: "#a1a1aa", lineHeight: 1.6 }}>
-                    {calc.desc}
-                  </p>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: "#10b981", marginTop: 12, display: "inline-block" }}>
-                    Open →
-                  </span>
-                </Link>
+                <CalculatorCard key={calc.href} calc={calc} />
               ))}
             </div>
           </div>

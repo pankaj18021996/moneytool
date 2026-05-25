@@ -1,6 +1,44 @@
 import Link from "next/link";
 import { Metadata } from "next";
 
+// Client Component for hover effect
+function BusinessToolCard({ tool }: { tool: any }) {
+  return (
+    <Link
+      href={tool.href}
+      style={{
+        display: "block",
+        background: "#111113",
+        border: "1px solid #27272a",
+        borderRadius: 12,
+        padding: 32,
+        textDecoration: "none",
+        transition: "all 0.2s",
+        textAlign: "center",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.borderColor = "#10b981";
+        (e.currentTarget as HTMLElement).style.transform = "translateY(-8px)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.borderColor = "#27272a";
+        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+      }}
+    >
+      <div style={{ fontSize: 48, marginBottom: 16 }}>{tool.icon}</div>
+      <h3 style={{ fontSize: 18, fontWeight: 700, color: "#f4f4f5", marginBottom: 12 }}>
+        {tool.name}
+      </h3>
+      <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.6, marginBottom: 20 }}>
+        {tool.desc}
+      </p>
+      <span style={{ fontSize: 14, fontWeight: 600, color: "#10b981" }}>
+        Open Tool →
+      </span>
+    </Link>
+  );
+}
+
 export const metadata: Metadata = {
   title: "Business Tools | MoneyTool",
   description: "Free business tools for invoicing, payslips, GST calculations and more. Perfect for freelancers and small business owners.",
@@ -46,39 +84,7 @@ export default function BusinessToolsPage() {
           marginBottom: 60,
         }}>
           {businessTools.map((tool) => (
-            <Link
-              key={tool.href}
-              href={tool.href}
-              style={{
-                display: "block",
-                background: "#111113",
-                border: "1px solid #27272a",
-                borderRadius: 12,
-                padding: 32,
-                textDecoration: "none",
-                transition: "all 0.2s",
-                textAlign: "center",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "#10b981";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-8px)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "#27272a";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-              }}
-            >
-              <div style={{ fontSize: 48, marginBottom: 16 }}>{tool.icon}</div>
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: "#f4f4f5", marginBottom: 12 }}>
-                {tool.name}
-              </h3>
-              <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.6, marginBottom: 20 }}>
-                {tool.desc}
-              </p>
-              <span style={{ fontSize: 14, fontWeight: 600, color: "#10b981" }}>
-                Open Tool →
-              </span>
-            </Link>
+            <BusinessToolCard key={tool.href} tool={tool} />
           ))}
         </div>
 
