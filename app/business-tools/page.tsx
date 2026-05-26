@@ -1,11 +1,12 @@
+"use client";
 import Link from "next/link";
 import { Metadata } from "next";
 
-// Client Component for hover effect
 function BusinessToolCard({ tool }: { tool: any }) {
   return (
     <Link
       href={tool.href}
+      className="biz-tool-card"
       style={{
         display: "block",
         background: "#111113",
@@ -15,14 +16,6 @@ function BusinessToolCard({ tool }: { tool: any }) {
         textDecoration: "none",
         transition: "all 0.2s",
         textAlign: "center",
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = "#10b981";
-        (e.currentTarget as HTMLElement).style.transform = "translateY(-8px)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = "#27272a";
-        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
       }}
     >
       <div style={{ fontSize: 48, marginBottom: 16 }}>{tool.icon}</div>
@@ -39,13 +32,9 @@ function BusinessToolCard({ tool }: { tool: any }) {
   );
 }
 
-export const metadata: Metadata = {
-  title: "Business Tools | MoneyTool",
-  description: "Free business tools for invoicing, payslips, GST calculations and more. Perfect for freelancers and small business owners.",
-  alternates: {
-    canonical: "https://www.moneytool.in/business-tools",
-  },
-};
+// ⚠️ metadata cannot be exported from a "use client" file.
+// Move it to a separate layout.tsx or remove it.
+// export const metadata: Metadata = { ... }  ← DELETE THIS
 
 const businessTools = [
   {
@@ -65,8 +54,13 @@ const businessTools = [
 export default function BusinessToolsPage() {
   return (
     <main style={{ background: "#0a0a0a", minHeight: "100vh", color: "#f4f4f5" }}>
+      <style>{`
+        .biz-tool-card:hover {
+          border-color: #10b981 !important;
+          transform: translateY(-8px);
+        }
+      `}</style>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
-        {/* Header */}
         <div style={{ marginBottom: 60, textAlign: "center" }}>
           <h1 style={{ fontSize: 40, fontWeight: 800, marginBottom: 16, color: "#f4f4f5" }}>
             Business & Freelance Tools
@@ -76,7 +70,6 @@ export default function BusinessToolsPage() {
           </p>
         </div>
 
-        {/* Tools Grid */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
@@ -88,7 +81,6 @@ export default function BusinessToolsPage() {
           ))}
         </div>
 
-        {/* Info Section */}
         <div style={{
           background: "#111113",
           border: "1px solid #27272a",
@@ -106,22 +98,15 @@ export default function BusinessToolsPage() {
               { icon: "🔒", title: "Privacy Focused", desc: "All calculations happen in your browser" },
               { icon: "📱", title: "Mobile Friendly", desc: "Works on any device, anytime, anywhere" },
             ].map((item, i) => (
-              <div key={i} style={{
-                padding: 16,
-                background: "#18181b",
-                borderRadius: 8,
-              }}>
+              <div key={i} style={{ padding: 16, background: "#18181b", borderRadius: 8 }}>
                 <div style={{ fontSize: 32, marginBottom: 8 }}>{item.icon}</div>
-                <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 6 }}>
-                  {item.title}
-                </h3>
+                <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 6 }}>{item.title}</h3>
                 <p style={{ fontSize: 12, color: "#a1a1aa" }}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA */}
         <div style={{ textAlign: "center" }}>
           <h3 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 12 }}>
             Explore All Our Tools

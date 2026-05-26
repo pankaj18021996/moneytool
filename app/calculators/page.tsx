@@ -1,7 +1,6 @@
+"use client";
 import Link from "next/link";
-import { Metadata } from "next";
 
-// Client Component for hover effect
 function CalculatorCard({ calc }: { calc: any }) {
   return (
     <Link
@@ -13,16 +12,7 @@ function CalculatorCard({ calc }: { calc: any }) {
         borderRadius: 12,
         padding: 24,
         textDecoration: "none",
-        transition: "all 0.2s",
         cursor: "pointer",
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = "#10b981";
-        (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = "#27272a";
-        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
       }}
     >
       <h3 style={{ fontSize: 16, fontWeight: 600, color: "#f4f4f5", marginBottom: 8 }}>
@@ -37,14 +27,6 @@ function CalculatorCard({ calc }: { calc: any }) {
     </Link>
   );
 }
-
-export const metadata: Metadata = {
-  title: "Financial Calculators | MoneyTool",
-  description: "Explore 15+ free financial calculators for EMI, SIP, FD, GST, taxes, salary and more. No signup required.",
-  alternates: {
-    canonical: "https://www.moneytool.in/calculators",
-  },
-};
 
 const calculatorCategories = [
   {
@@ -85,17 +67,15 @@ export default function CalculatorsPage() {
   return (
     <main style={{ background: "#0a0a0a", minHeight: "100vh", color: "#f4f4f5" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
-        {/* Header */}
         <div style={{ marginBottom: 60, textAlign: "center" }}>
           <h1 style={{ fontSize: 40, fontWeight: 800, marginBottom: 16, color: "#f4f4f5" }}>
             All Financial Calculators
           </h1>
           <p style={{ fontSize: 16, color: "#a1a1aa", maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
-            15+ free financial calculators to help you make smart money decisions. Calculate EMI, SIP returns, taxes, and more — instantly.
+            15+ free financial calculators to help you make smart money decisions.
           </p>
         </div>
 
-        {/* Categories */}
         {calculatorCategories.map((category) => (
           <div key={category.name} style={{ marginBottom: 60 }}>
             <h2 style={{ fontSize: 24, fontWeight: 700, color: "#f4f4f5", marginBottom: 8, display: "flex", alignItems: "center", gap: 12 }}>
@@ -105,11 +85,7 @@ export default function CalculatorsPage() {
             <p style={{ fontSize: 14, color: "#71717a", marginBottom: 24 }}>
               {category.calculators.length} tools available
             </p>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: 20,
-            }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 20 }}>
               {category.calculators.map((calc) => (
                 <CalculatorCard key={calc.href} calc={calc} />
               ))}
@@ -117,31 +93,14 @@ export default function CalculatorsPage() {
           </div>
         ))}
 
-        {/* CTA */}
-        <div style={{
-          background: "rgba(16,185,129,0.1)",
-          border: "1px solid #10b981",
-          borderRadius: 12,
-          padding: 40,
-          textAlign: "center",
-          marginTop: 80,
-        }}>
+        <div style={{ background: "rgba(16,185,129,0.1)", border: "1px solid #10b981", borderRadius: 12, padding: 40, textAlign: "center", marginTop: 80 }}>
           <h3 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 12 }}>
             Start Planning Your Finances Today
           </h3>
           <p style={{ fontSize: 14, color: "#a1a1aa", marginBottom: 24 }}>
-            All calculators are free, require no signup, and give instant results. No ads, no spam.
+            All calculators are free, require no signup, and give instant results.
           </p>
-          <Link href="/emi-calculator" style={{
-            display: "inline-block",
-            background: "#10b981",
-            color: "#fff",
-            padding: "12px 32px",
-            borderRadius: 8,
-            textDecoration: "none",
-            fontWeight: 600,
-            fontSize: 14,
-          }}>
+          <Link href="/emi-calculator" style={{ display: "inline-block", background: "#10b981", color: "#fff", padding: "12px 32px", borderRadius: 8, textDecoration: "none", fontWeight: 600, fontSize: 14 }}>
             Open EMI Calculator →
           </Link>
         </div>
