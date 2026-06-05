@@ -4,12 +4,19 @@ export const metadata = {
   keywords: [
     "emi calculator",
     "emi calculator india",
+    "emi calculator delhi",
+    "emi calculator mumbai",
     "home loan emi calculator",
     "car loan emi calculator",
     "personal loan emi calculator",
     "emi calculation formula",
     "monthly emi calculator",
   ],
+  geo: {
+    region: "IN",
+    placename: "India",
+    position: "20.5937,78.9629",
+  },
   openGraph: {
     title: "Free EMI Calculator — Home Loan, Car Loan & Personal Loan EMI",
     description: "Calculate your monthly EMI for any loan type instantly with our free calculator.",

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "SWP Calculator India — Systematic Withdrawal Plan Calculator",
-  description: "Calculate your SWP withdrawal amount and portfolio longevity. Use our free Systematic Withdrawal Plan calculator for retirement planning.",
+  description: "Estimate systematic withdrawals, corpus longevity, and retirement income using our SWP calculator. Plan monthly withdrawals with realistic return assumptions.",
   keywords: [
     "swp calculator",
     "systematic withdrawal plan calculator",
@@ -9,7 +9,7 @@ export const metadata = {
   ],
   openGraph: {
     title: "Free SWP Calculator — Calculate Your Withdrawal Amount",
-    description: "Plan your systematic withdrawals with our SWP calculator.",
+    description: "Estimate withdrawal longevity and corpus sustainability with our SWP calculator.",
     url: "https://www.moneytool.in/swp-calculator",
     images: [
       {
@@ -23,7 +23,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Free SWP Calculator — Calculate Your Withdrawal Amount",
-    description: "Plan your systematic withdrawals with our SWP calculator.",
+    description: "Estimate withdrawal longevity and corpus sustainability with our SWP calculator.",
     image: "https://www.moneytool.in/og-images/swp-calculator.png",
   },
   alternates: {

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "RD Calculator India — Recurring Deposit Calculator & Interest",
-  description: "Calculate RD maturity amount with our free Recurring Deposit calculator. Plan your monthly savings and see your investment grow.",
+  description: "Estimate RD maturity, total contributions, and returns with our free Recurring Deposit calculator. Plan disciplined monthly savings and compare tenure and interest scenarios.",
   keywords: [
     "rd calculator",
     "recurring deposit calculator",
@@ -10,7 +10,7 @@ export const metadata = {
   ],
   openGraph: {
     title: "Free RD Calculator — Calculate Recurring Deposit Returns",
-    description: "Calculate your RD maturity amount and interest instantly.",
+    description: "Estimate RD maturity amount and total returns instantly with a free recurring deposit calculator.",
     url: "https://www.moneytool.in/rd-calculator",
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Free RD Calculator — Calculate Recurring Deposit Returns",
-    description: "Calculate your RD maturity amount and interest instantly.",
+    description: "Estimate RD maturity amount and total returns instantly with a free recurring deposit calculator.",
     image: "https://www.moneytool.in/og-images/rd-calculator.png",
   },
   alternates: {
