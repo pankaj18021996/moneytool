@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 
 const faqs = [
@@ -29,6 +30,8 @@ const faqs = [
 ];
 
 export default function PPFCalculatorPage() {
+  const [activeFAQ, setActiveFAQ] = React.useState<number | null>(0);
+
   return (
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", color: "#f4f4f5" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
@@ -42,11 +45,11 @@ export default function PPFCalculatorPage() {
 
         {/* Header */}
         <div style={{ marginBottom: 32 }}>
-          <h1 style={{ fontSize: 32, fontWeight: 800, color: "#f4f4f5", marginBottom: 10, lineHeight: 1.2 }}>
-            PPF Calculator India 2026
+          <h1 style={{ fontSize: 36, fontWeight: 800, color: "#f4f4f5", marginBottom: 12, lineHeight: 1.1 }}>
+            Free PPF Calculator India
           </h1>
-          <p style={{ color: "#a1a1aa", fontSize: 16, lineHeight: 1.6, maxWidth: 680 }}>
-            Calculate your Public Provident Fund maturity amount and projected returns. Plan your retirement with 100% tax-free investment.
+          <p style={{ color: "#a1a1aa", fontSize: 17, lineHeight: 1.75, maxWidth: 720 }}>
+            Estimate your Public Provident Fund maturity amount, tax-free returns, and investment breakdown with easy annual deposit, rate, and tenure controls. Use this PPF calculator to plan long-term savings, retirement corpus, and 15-year government-backed growth.
           </p>
         </div>
 
@@ -212,8 +215,28 @@ export default function PPFCalculatorPage() {
             </h2>
             {faqs.map((faq, i) => (
               <div key={i} style={{ borderBottom: i < faqs.length - 1 ? "1px solid #27272a" : "none", padding: "16px 0" }}>
-                <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 8 }}>{faq.q}</h3>
-                <p style={{ fontSize: 13, color: "#71717a", lineHeight: 1.7 }}>{faq.a}</p>
+                <button
+                  type="button"
+                  onClick={() => setActiveFAQ(activeFAQ === i ? null : i)}
+                  style={{
+                    width: "100%",
+                    textAlign: "left",
+                    border: "none",
+                    background: "transparent",
+                    padding: 0,
+                    cursor: "pointer",
+                    color: "#f4f4f5",
+                  }}
+                  aria-expanded={activeFAQ === i}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <h3 style={{ fontSize: 14, fontWeight: 600, margin: 0 }}>{faq.q}</h3>
+                    <span style={{ fontSize: 18, color: "#10b981" }}>{activeFAQ === i ? "−" : "+"}</span>
+                  </div>
+                </button>
+                {activeFAQ === i ? (
+                  <p style={{ fontSize: 13, color: "#71717a", lineHeight: 1.7, marginTop: 12 }}>{faq.a}</p>
+                ) : null}
               </div>
             ))}
           </div>
@@ -246,23 +269,29 @@ function PPFCalculatorClient() {
       <div style={{ marginBottom: 24 }}>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Annual Investment</span>
-          <button
-            onClick={() => setAnnual(Number(prompt("Enter amount:", String(annual)) || annual))}
-            style={{
-              background: "#18181b", border: "1px solid #27272a", borderRadius: 8,
-              padding: "4px 12px", color: "#f4f4f5", fontSize: 14, fontWeight: 700,
-              cursor: "pointer", fontFamily: "inherit",
-            }}
-          >
-            {fmt(annual)} ✏️
-          </button>
+          <span style={{ fontSize: 13, color: "#f4f4f5" }}>{fmt(annual)}</span>
         </div>
-        <input
-          type="range" min="500" max="150000" step="500"
-          value={annual} onChange={e => setAnnual(Number(e.target.value))}
-          style={{ width: "100%", accentColor: "#10b981" }}
-        />
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: "#52525b", marginTop: 4 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 100px", gap: 12, marginBottom: 12 }}>
+          <input
+            type="range"
+            min="500"
+            max="150000"
+            step="500"
+            value={annual}
+            onChange={e => setAnnual(Number(e.target.value))}
+            style={{ width: "100%", accentColor: "#10b981" }}
+          />
+          <input
+            type="number"
+            min={500}
+            max={150000}
+            step={500}
+            value={annual}
+            onChange={e => setAnnual(Math.max(500, Math.min(150000, Number(e.target.value) || 500)))}
+            style={{ width: "100%", borderRadius: 10, border: "1px solid #27272a", background: "#18181b", color: "#f4f4f5", padding: "10px 12px" }}
+          />
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: "#52525b" }}>
           <span>₹500</span>
           <span>₹1.5L</span>
         </div>
@@ -271,43 +300,55 @@ function PPFCalculatorClient() {
       <div style={{ marginBottom: 24 }}>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Interest Rate (p.a.)</span>
-          <button
-            onClick={() => setRate(Number(prompt("Enter rate:", String(rate)) || rate))}
-            style={{
-              background: "#18181b", border: "1px solid #27272a", borderRadius: 8,
-              padding: "4px 12px", color: "#f4f4f5", fontSize: 14, fontWeight: 700,
-              cursor: "pointer", fontFamily: "inherit",
-            }}
-          >
-            {rate.toFixed(1)}% ✏️
-          </button>
+          <span style={{ fontSize: 13, color: "#f4f4f5" }}>{rate.toFixed(1)}%</span>
         </div>
-        <input
-          type="range" min="5" max="12" step="0.1"
-          value={rate} onChange={e => setRate(Number(e.target.value))}
-          style={{ width: "100%", accentColor: "#10b981" }}
-        />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 100px", gap: 12, marginBottom: 12 }}>
+          <input
+            type="range"
+            min="5"
+            max="12"
+            step="0.1"
+            value={rate}
+            onChange={e => setRate(Number(e.target.value))}
+            style={{ width: "100%", accentColor: "#10b981" }}
+          />
+          <input
+            type="number"
+            min={5}
+            max={12}
+            step={0.1}
+            value={rate}
+            onChange={e => setRate(Math.max(5, Math.min(12, Number(e.target.value) || 5)))}
+            style={{ width: "100%", borderRadius: 10, border: "1px solid #27272a", background: "#18181b", color: "#f4f4f5", padding: "10px 12px" }}
+          />
+        </div>
       </div>
 
-      <div style={{ marginBottom: 20 }}>
+      <div style={{ marginBottom: 24 }}>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Investment Period</span>
-          <button
-            onClick={() => setYears(Number(prompt("Enter years:", String(years)) || years))}
-            style={{
-              background: "#18181b", border: "1px solid #27272a", borderRadius: 8,
-              padding: "4px 12px", color: "#f4f4f5", fontSize: 14, fontWeight: 700,
-              cursor: "pointer", fontFamily: "inherit",
-            }}
-          >
-            {years} yrs ✏️
-          </button>
+          <span style={{ fontSize: 13, color: "#f4f4f5" }}>{years} yrs</span>
         </div>
-        <input
-          type="range" min="1" max="40" step="1"
-          value={years} onChange={e => setYears(Number(e.target.value))}
-          style={{ width: "100%", accentColor: "#10b981" }}
-        />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 100px", gap: 12, marginBottom: 12 }}>
+          <input
+            type="range"
+            min="1"
+            max="40"
+            step="1"
+            value={years}
+            onChange={e => setYears(Number(e.target.value))}
+            style={{ width: "100%", accentColor: "#10b981" }}
+          />
+          <input
+            type="number"
+            min={1}
+            max={40}
+            step={1}
+            value={years}
+            onChange={e => setYears(Math.max(1, Math.min(40, Number(e.target.value) || 1)))}
+            style={{ width: "100%", borderRadius: 10, border: "1px solid #27272a", background: "#18181b", color: "#f4f4f5", padding: "10px 12px" }}
+          />
+        </div>
       </div>
 
       {/* Results */}
@@ -325,6 +366,33 @@ function PPFCalculatorClient() {
             <p style={{ fontSize: 15, fontWeight: 700, color: s.color }}>{s.value}</p>
           </div>
         ))}
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 18, alignItems: "center", marginBottom: 20 }}>
+        <div style={{ width: 220, height: 220, borderRadius: 999, background: `conic-gradient(#10b981 0% ${iPct}%, #f97316 ${iPct}% 100%)`, position: "relative", boxShadow: "0 0 0 12px #111113" }}>
+          <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", color: "#f4f4f5", fontWeight: 700 }}>
+            <span style={{ fontSize: 22 }}>{iPct}%</span>
+            <span style={{ fontSize: 12, color: "#a1a1aa", marginTop: 4 }}>Invested</span>
+          </div>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#18181b", border: "1px solid #27272a", borderRadius: 12, padding: "14px 16px" }}>
+            <span style={{ color: "#a1a1aa", fontSize: 12 }}>Invested corpus</span>
+            <span style={{ color: "#10b981", fontWeight: 700 }}>{fmt(invested)}</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#18181b", border: "1px solid #27272a", borderRadius: 12, padding: "14px 16px" }}>
+            <span style={{ color: "#a1a1aa", fontSize: 12 }}>Projected returns</span>
+            <span style={{ color: "#f97316", fontWeight: 700 }}>{fmt(returns)}</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#18181b", border: "1px solid #27272a", borderRadius: 12, padding: "14px 16px" }}>
+            <span style={{ color: "#a1a1aa", fontSize: 12 }}>Total maturity</span>
+            <span style={{ color: "#f4f4f5", fontWeight: 700 }}>{fmt(maturity)}</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#18181b", border: "1px solid #27272a", borderRadius: 12, padding: "14px 16px" }}>
+            <span style={{ color: "#a1a1aa", fontSize: 12 }}>Effective rate</span>
+            <span style={{ color: "#f4f4f5", fontWeight: 700 }}>{rate.toFixed(1)}%</span>
+          </div>
+        </div>
       </div>
 
       {/* Progress Bar */}
@@ -346,5 +414,3 @@ function PPFCalculatorClient() {
     </div>
   );
 }
-
-import React from "react";
