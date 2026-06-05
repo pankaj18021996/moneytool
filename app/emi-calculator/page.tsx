@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LoanCalculator from "../components/LoanCalculator";
+import EMIClient from "./EMIClient";
 import { metadata as seoMetadata } from "./metadata";
 
 export const metadata: Metadata = seoMetadata as Metadata;
@@ -68,6 +69,18 @@ const jsonLd = {
   })),
 };
 
+const productLd = {
+  "@context": "https://schema.org",
+  "@type": "FinancialProduct",
+  name: "EMI Calculator",
+  description: "Interactive EMI calculator for home, car, personal and education loans. Calculates monthly EMI, total interest and amortization schedule.",
+  provider: {
+    "@type": "Organization",
+    name: "MoneyTool",
+    url: "https://www.moneytool.in"
+  }
+};
+
 export default function EMICalculatorPage() {
   return (
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
@@ -77,6 +90,7 @@ export default function EMICalculatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }} />
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
 
@@ -129,18 +143,9 @@ export default function EMICalculatorPage() {
         }}>
 
           {/* Left — Calculator */}
-          <LoanCalculator
-            defaultAmount={3000000}
-            defaultRate={8.5}
-            defaultTenure={240}
-            minAmount={50000}
-            maxAmount={100000000}
-            minRate={6}
-            maxRate={36}
-            minTenure={12}
-            maxTenure={360}
-            amountStep={50000}
-          />
+          <div>
+            <EMIClient />
+          </div>
 
           {/* Right — Sidebar */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>

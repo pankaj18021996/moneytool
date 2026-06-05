@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Retirement Calculator India — Retirement Planning & Corpus Calculator",
-  description: "Calculate your retirement corpus requirement and monthly savings needed. Plan your retirement with our free retirement planning calculator.",
+  description: "Estimate your retirement corpus and monthly savings needed. Plan for inflation, expected returns, and future expenses with a free retirement calculator.",
   keywords: [
     "retirement calculator",
     "retirement calculator india",
@@ -10,7 +10,7 @@ export const metadata = {
   ],
   openGraph: {
     title: "Free Retirement Calculator — Plan Your Retirement Corpus",
-    description: "Calculate how much you need to save for a comfortable retirement.",
+    description: "Estimate how much you need to save for a comfortable retirement, factoring in inflation and investment returns.",
     url: "https://www.moneytool.in/retirement-calculator",
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Free Retirement Calculator — Plan Your Retirement Corpus",
-    description: "Calculate how much you need to save for a comfortable retirement.",
+    description: "Estimate how much you need to save for a comfortable retirement, factoring in inflation and investment returns.",
     image: "https://www.moneytool.in/og-images/retirement-calculator.png",
   },
   alternates: {

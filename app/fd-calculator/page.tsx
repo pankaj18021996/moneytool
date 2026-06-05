@@ -1,16 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FDCalculatorClient from "./FDCalculatorClient";
+import FDCalculatorFAQ from "./FDCalculatorFAQ";
 
 export const metadata: Metadata = {
-  title: "FD Calculator India 2026 – Fixed Deposit Returns | MoneyTool",
+  title: "Free FD Calculator India 2026 — Fixed Deposit Maturity Calculator",
   description:
-    "Calculate your Fixed Deposit maturity amount and interest earned instantly. Supports monthly, quarterly and annual compounding. Free online FD calculator.",
+    "Use our free FD calculator to estimate fixed deposit maturity value, interest earned, and effective yield. Compare monthly, quarterly, and annual compounding for Indian bank deposits.",
+  keywords: [
+    "fd calculator",
+    "fixed deposit calculator",
+    "fd maturity calculator",
+    "fixed deposit interest calculator",
+    "fd return calculator",
+  ],
   alternates: { canonical: "https://www.moneytool.in/calculators/fd-calculator" },
   openGraph: {
-    title: "FD Calculator India 2026 – MoneyTool",
-    description: "Calculate FD maturity amount and interest with compound frequency options.",
-    images: ["/og-image.png"],
+    title: "Free FD Calculator India 2026 — MoneyTool",
+    description: "Estimate FD maturity value and interest with compounding frequency options.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FD Calculator — Fixed Deposit Maturity Calculator",
+      },
+    ],
   },
 };
 
@@ -192,16 +207,22 @@ export default function FDCalculatorPage() {
           ))}
         </div>
 
-        {/* FAQ */}
+        {/* FD Benefits */}
         <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 32 }}>
-          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>Frequently Asked Questions</h2>
-          {faqs.map((faq, i) => (
-            <div key={i} style={{ borderBottom: i < faqs.length - 1 ? "1px solid #27272a" : "none", padding: "16px 0" }}>
-              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 8 }}>{faq.q}</h3>
-              <p style={{ fontSize: 13, color: "#71717a", lineHeight: 1.7 }}>{faq.a}</p>
-            </div>
-          ))}
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 16 }}>Why Use an FD Calculator?</h2>
+          <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.9, marginBottom: 12 }}>
+            A Fixed Deposit calculator helps you plan your savings with confidence. Enter your principal, rate, tenure, and compounding frequency to see exactly how much your money will grow.
+          </p>
+          <ul style={{ paddingLeft: 18, color: "#a1a1aa", fontSize: 14, lineHeight: 1.9, margin: 0 }}>
+            <li style={{ marginBottom: 8 }}>Compare FD returns for different compounding frequencies.</li>
+            <li style={{ marginBottom: 8 }}>Estimate maturity value before you deposit.</li>
+            <li style={{ marginBottom: 8 }}>See the effective annual yield and year-wise growth.</li>
+            <li>Check the impact of interest rate changes on your final corpus.</li>
+          </ul>
         </div>
+
+        {/* FAQ */}
+        <FDCalculatorFAQ faqs={faqs} />
 
       </div>
     </div>
