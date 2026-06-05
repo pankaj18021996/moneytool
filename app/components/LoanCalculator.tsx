@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 const fmt = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
 const fmtShort = (n: number) => {
@@ -26,6 +26,7 @@ type Props = {
   minTenure: number;
   maxTenure: number;
   amountStep?: number;
+  onChange?: (vals: { amount: number; rate: number; tenure: number; emi: number; totalPay: number; totalInt: number }) => void;
 };
 
 /* ── Reusable Slider Row with manual input ── */
@@ -134,6 +135,7 @@ export default function LoanCalculator({
   defaultAmount, defaultRate, defaultTenure,
   minAmount, maxAmount, minRate, maxRate,
   minTenure, maxTenure, amountStep = 50000,
+  onChange,
 }: Props) {
   const [amount, setAmount] = useState(defaultAmount);
   const [rate, setRate]     = useState(defaultRate);
@@ -165,6 +167,10 @@ export default function LoanCalculator({
     }
     return rows;
   }, [amount, rate, tenure, emi]);
+
+  useEffect(() => {
+    if (onChange) onChange({ amount, rate, tenure, emi, totalPay, totalInt });
+  }, [amount, rate, tenure, emi, totalPay, totalInt, onChange]);
 
   const totalPages = Math.ceil(schedule.length / PER);
   const pageRows   = schedule.slice(page * PER, (page + 1) * PER);

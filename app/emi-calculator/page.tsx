@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LoanCalculator from "../components/LoanCalculator";
-import dynamic from "next/dynamic";
-const PieChart = dynamic(() => import("../components/PieChart"), { ssr: false });
+import EMIClient from "./EMIClient";
 import { metadata as seoMetadata } from "./metadata";
 
 export const metadata: Metadata = seoMetadata as Metadata;
@@ -144,23 +143,8 @@ export default function EMICalculatorPage() {
         }}>
 
           {/* Left — Calculator */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 160px", gap: 16 }}>
-            <LoanCalculator
-            defaultAmount={3000000}
-            defaultRate={8.5}
-            defaultTenure={240}
-            minAmount={50000}
-            maxAmount={100000000}
-            minRate={6}
-            maxRate={36}
-            minTenure={12}
-            maxTenure={360}
-            amountStep={50000}
-            />
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-              {/* compute pie from defaults */}
-              <PieChart principal={3000000} interest={Math.max(0, ( ( ( (3000000 * (8.5/1200)) * Math.pow(1 + (8.5/1200), 240) )/(Math.pow(1 + (8.5/1200), 240) - 1) ) * 240) - 3000000 )} />
-            </div>
+          <div>
+            <EMIClient />
           </div>
 
           {/* Right — Sidebar */}
