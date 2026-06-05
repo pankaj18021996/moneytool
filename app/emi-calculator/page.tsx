@@ -68,6 +68,18 @@ const jsonLd = {
   })),
 };
 
+const productLd = {
+  "@context": "https://schema.org",
+  "@type": "FinancialProduct",
+  name: "EMI Calculator",
+  description: "Interactive EMI calculator for home, car, personal and education loans. Calculates monthly EMI, total interest and amortization schedule.",
+  provider: {
+    "@type": "Organization",
+    name: "MoneyTool",
+    url: "https://www.moneytool.in"
+  }
+};
+
 export default function EMICalculatorPage() {
   return (
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
@@ -77,6 +89,7 @@ export default function EMICalculatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }} />
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
 

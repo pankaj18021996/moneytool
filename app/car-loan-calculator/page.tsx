@@ -254,17 +254,23 @@ function CarLoanCalculatorClient() {
     <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24, marginBottom: 16 }}>
       {/* Car price and down payment inputs */}
       <div style={{ marginBottom: 18 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Car Price (Ex-showroom / On-road)</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{fmt(carPrice)}</span>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input type="number" value={carPrice} onChange={e => setCarPrice(Number(e.target.value || 0))} style={{ width: 140, background: "#0b0b0c", border: "1px solid #27272a", color: "#f4f4f5", padding: "6px 8px", borderRadius: 8 }} />
+            <span style={{ fontSize: 14, fontWeight: 700 }}>{fmt(carPrice)}</span>
+          </div>
         </div>
         <input type="range" min="300000" max="50000000" step="50000" value={carPrice} onChange={e => setCarPrice(Number(e.target.value))} style={{ width: "100%", accentColor: "#10b981" }} />
       </div>
 
       <div style={{ marginBottom: 18 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Down Payment</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{fmt(downPayment)} <span style={{ color: "#71717a", fontSize: 12 }}>/ {Math.round((downPayment / Math.max(1, carPrice)) * 100)}%</span></span>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input type="number" value={downPayment} onChange={e => setDownPayment(Math.min(Number(e.target.value || 0), carPrice))} style={{ width: 120, background: "#0b0b0c", border: "1px solid #27272a", color: "#f4f4f5", padding: "6px 8px", borderRadius: 8 }} />
+            <span style={{ fontSize: 14, fontWeight: 700 }}>{fmt(downPayment)} <span style={{ color: "#71717a", fontSize: 12 }}>/ {Math.round((downPayment / Math.max(1, carPrice)) * 100)}%</span></span>
+          </div>
         </div>
         <input type="range" min="0" max={carPrice} step="5000" value={downPayment} onChange={e => setDownPayment(Math.min(Number(e.target.value), carPrice))} style={{ width: "100%", accentColor: "#10b981" }} />
       </div>
@@ -277,17 +283,23 @@ function CarLoanCalculatorClient() {
       </div>
 
       <div style={{ marginBottom: 24 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Interest Rate (%)</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{rate.toFixed(2)}%</span>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input type="number" value={rate} onChange={e => setRate(Number(e.target.value || 0))} step={0.01} style={{ width: 80, background: "#0b0b0c", border: "1px solid #27272a", color: "#f4f4f5", padding: "6px 8px", borderRadius: 8 }} />
+            <span style={{ fontSize: 14, fontWeight: 700 }}>{rate.toFixed(2)}%</span>
+          </div>
         </div>
         <input type="range" min="7" max="16" step="0.1" value={rate} onChange={e => setRate(Number(e.target.value))} style={{ width: "100%", accentColor: "#10b981" }} />
       </div>
 
       <div style={{ marginBottom: 20 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Tenure (Months)</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{Math.floor(tenure / 12)}yr {tenure % 12}mo</span>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input type="number" value={tenure} onChange={e => setTenure(Number(e.target.value || 0))} style={{ width: 90, background: "#0b0b0c", border: "1px solid #27272a", color: "#f4f4f5", padding: "6px 8px", borderRadius: 8 }} />
+            <span style={{ fontSize: 14, fontWeight: 700 }}>{Math.floor(tenure / 12)}yr {tenure % 12}mo</span>
+          </div>
         </div>
         <input type="range" min="12" max="84" step="1" value={tenure} onChange={e => setTenure(Number(e.target.value))} style={{ width: "100%", accentColor: "#10b981" }} />
       </div>
@@ -368,6 +380,51 @@ function CarLoanCalculatorClient() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Yearly Summary & Depreciation */}
+      <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 20, marginTop: 16 }}>
+        <h3 style={{ fontSize: 15, fontWeight: 700, color: "#f4f4f5", marginBottom: 12 }}>Yearly Summary & Estimated Depreciation</h3>
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+            <thead>
+              <tr style={{ borderBottom: "2px solid #27272a" }}>
+                {["Year","Principal Paid","Interest Paid","Balance","Est. Value"].map(h=> (
+                  <th key={h} style={{ textAlign: "right", padding: "8px 6px", color: "#71717a" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {(() => {
+                const rows = [];
+                let bal = loanAmount;
+                let cumPrin = 0, cumInt = 0;
+                const depRate = 0.15; // simple annual depreciation
+                for(let y=1;y<=5;y++){
+                  let prinYear = 0, intYear = 0;
+                  for(let m=1;m<=12 && bal>0.5;m++){
+                    const interest = bal * mr;
+                    const principal = Math.min(emi - interest, bal);
+                    bal = Math.max(0, bal - principal);
+                    prinYear += principal; intYear += interest;
+                  }
+                  cumPrin += prinYear; cumInt += intYear;
+                  const estValue = Math.round(carPrice * Math.pow(1 - depRate, y));
+                  rows.push({ y, prinYear, intYear, bal: Math.max(0, Math.round(bal)), estValue });
+                }
+                return rows.map(r => (
+                  <tr key={r.y} style={{ borderBottom: "1px solid #1f1f22" }}>
+                    <td style={{ padding: "8px 6px", textAlign: "right", color: "#a1a1aa" }}>{r.y}</td>
+                    <td style={{ padding: "8px 6px", textAlign: "right", color: "#10b981" }}>{fmt(r.prinYear)}</td>
+                    <td style={{ padding: "8px 6px", textAlign: "right", color: "#f97316" }}>{fmt(r.intYear)}</td>
+                    <td style={{ padding: "8px 6px", textAlign: "right", color: "#a1a1aa" }}>{fmt(r.bal)}</td>
+                    <td style={{ padding: "8px 6px", textAlign: "right", color: "#f4f4f5" }}>{fmt(r.estValue)}</td>
+                  </tr>
+                ));
+              })()}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

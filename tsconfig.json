@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "lib": [
       "dom",
       "dom.iterable",
-      "es6"
+      "es2020"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -22,12 +22,7 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+    
   },
   "include": [
     "next-env.d.ts",

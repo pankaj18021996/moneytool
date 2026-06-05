@@ -255,17 +255,23 @@ function HomeLoanCalculatorClient() {
   return (
     <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24, marginBottom: 16 }}>
       <div style={{ marginBottom: 18 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Property Price (On-road)</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{fmt(propertyPrice)}</span>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input type="number" value={propertyPrice} onChange={e => setPropertyPrice(Number(e.target.value || 0))} style={{ width: 160, background: "#0b0b0c", border: "1px solid #27272a", color: "#f4f4f5", padding: "6px 8px", borderRadius: 8 }} />
+            <span style={{ fontSize: 14, fontWeight: 700 }}>{fmt(propertyPrice)}</span>
+          </div>
         </div>
         <input type="range" min="2000000" max="500000000" step="100000" value={propertyPrice} onChange={e => setPropertyPrice(Number(e.target.value))} style={{ width: "100%", accentColor: "#10b981" }} />
       </div>
 
       <div style={{ marginBottom: 18 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Down Payment</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{fmt(downPayment)} <span style={{ color: "#71717a", fontSize: 12 }}>/ {Math.round((downPayment / Math.max(1, propertyPrice)) * 100)}%</span></span>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input type="number" value={downPayment} onChange={e => setDownPayment(Math.min(Number(e.target.value || 0), propertyPrice))} style={{ width: 140, background: "#0b0b0c", border: "1px solid #27272a", color: "#f4f4f5", padding: "6px 8px", borderRadius: 8 }} />
+            <span style={{ fontSize: 14, fontWeight: 700 }}>{fmt(downPayment)} <span style={{ color: "#71717a", fontSize: 12 }}>/ {Math.round((downPayment / Math.max(1, propertyPrice)) * 100)}%</span></span>
+          </div>
         </div>
         <input type="range" min="0" max={propertyPrice} step="50000" value={downPayment} onChange={e => setDownPayment(Math.min(Number(e.target.value), propertyPrice))} style={{ width: "100%", accentColor: "#10b981" }} />
       </div>
@@ -278,17 +284,23 @@ function HomeLoanCalculatorClient() {
       </div>
 
       <div style={{ marginBottom: 24 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Interest Rate (%)</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{rate.toFixed(2)}%</span>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input type="number" value={rate} onChange={e => setRate(Number(e.target.value || 0))} step={0.01} style={{ width: 90, background: "#0b0b0c", border: "1px solid #27272a", color: "#f4f4f5", padding: "6px 8px", borderRadius: 8 }} />
+            <span style={{ fontSize: 14, fontWeight: 700 }}>{rate.toFixed(2)}%</span>
+          </div>
         </div>
         <input type="range" min="6" max="14" step="0.1" value={rate} onChange={e => setRate(Number(e.target.value))} style={{ width: "100%", accentColor: "#10b981" }} />
       </div>
 
       <div style={{ marginBottom: 20 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
           <span style={{ fontSize: 13, color: "#a1a1aa" }}>Tenure (Months)</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{Math.floor(tenure / 12)}yr {tenure % 12}mo</span>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input type="number" value={tenure} onChange={e => setTenure(Number(e.target.value || 0))} style={{ width: 90, background: "#0b0b0c", border: "1px solid #27272a", color: "#f4f4f5", padding: "6px 8px", borderRadius: 8 }} />
+            <span style={{ fontSize: 14, fontWeight: 700 }}>{Math.floor(tenure / 12)}yr {tenure % 12}mo</span>
+          </div>
         </div>
         <input type="range" min="60" max="360" step="1" value={tenure} onChange={e => setTenure(Number(e.target.value))} style={{ width: "100%", accentColor: "#10b981" }} />
       </div>
