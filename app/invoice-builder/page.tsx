@@ -4,9 +4,13 @@ import React from "react";
 function currency(n: number) { return "₹" + n.toLocaleString("en-IN"); }
 
 export default function InvoiceBuilder() {
-  const [invoiceNo, setInvoiceNo] = React.useState(() => `INV-${Date.now()}`);
+  const [invoiceNo, setInvoiceNo] = React.useState("INV-0001");
   const [date, setDate] = React.useState(() => new Date().toISOString().slice(0,10));
   const [dueDate, setDueDate] = React.useState("");
+
+  React.useEffect(() => {
+    setInvoiceNo(`INV-${Date.now()}`);
+  }, []);
   const [from, setFrom] = React.useState("Your Company Name\nAddress line 1\nCity, State");
   const [to, setTo] = React.useState("Client Name\nClient Address");
   const [items, setItems] = React.useState([{ desc: "", qty: 1, rate: 0 }]);
@@ -114,6 +118,83 @@ export default function InvoiceBuilder() {
               <div>Subtotal: {currency(subtotal)}</div>
               <div>Tax ({taxPct}%): {currency(tax)}</div>
               <div style={{ fontWeight:700 }}>Total: {currency(total)}</div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 32 }}>
+          <div style={{ background: '#111113', border: '1px solid #27272a', borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 700, color: '#f4f4f5', marginBottom: 14 }}>Why use this invoice builder?</h2>
+            <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8, marginBottom: 14 }}>
+              This invoice builder helps freelancers, consultants, and small businesses generate clean, professional invoices instantly. You can enter line items, quantities, rates, and tax percentages without any complex setup, so you always have an accurate total and printable invoice ready for your client.
+            </p>
+            <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8 }}>
+              A well-formatted invoice reduces confusion, speeds up payment, and makes your business look more trustworthy. This tool also makes it easy to preview the invoice before printing or saving as PDF.
+            </p>
+          </div>
+
+          <div style={{ background: '#111113', border: '1px solid #27272a', borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 700, color: '#f4f4f5', marginBottom: 14 }}>How the calculations work</h2>
+            <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8, marginBottom: 14 }}>
+              The invoice total is calculated using a simple three-step formula. First, the tool totals each line item by multiplying quantity by rate. Then it adds GST or service tax using the percentage you enter. Finally, the invoice total is the sum of subtotal and tax.
+            </p>
+            <div style={{ background: '#18181b', borderRadius: 12, padding: 18, marginBottom: 14 }}>
+              <p style={{ fontSize: 13, color: '#a1a1aa', fontFamily: 'monospace', lineHeight: 1.8 }}>
+                Subtotal = Σ (Quantity × Rate)<br />
+                Tax = Subtotal × (Tax % ÷ 100)<br />
+                Total = Subtotal + Tax
+              </p>
+            </div>
+            <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8 }}>
+              Example: if you sell 2 items at ₹1,500 each and 1 item at ₹6,000, the subtotal becomes ₹9,000. With 18% tax, the tax amount is ₹1,620, so the final invoice total becomes ₹10,620. The tool calculates this automatically as you type.
+            </p>
+          </div>
+
+          <div style={{ background: '#111113', border: '1px solid #27272a', borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 700, color: '#f4f4f5', marginBottom: 14 }}>Common mistakes to avoid</h2>
+            <ul style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.9, paddingLeft: 20, margin: 0 }}>
+              <li style={{ marginBottom: 10 }}>Entering the wrong tax percentage — always verify whether your service is charged at 5%, 12%, 18%, or 28% GST.</li>
+              <li style={{ marginBottom: 10 }}>Forgetting to include all items — add each service and expense separately so the subtotal is complete.</li>
+              <li style={{ marginBottom: 10 }}>Using the wrong currency formatting — this tool uses Indian rupees and formatting to avoid confusion.</li>
+              <li style={{ marginBottom: 10 }}>Not checking the preview — the printed invoice should match the calculator summary exactly.</li>
+              <li style={{ marginBottom: 10 }}>Leaving description fields blank — clear descriptions help clients approve invoices faster.</li>
+            </ul>
+          </div>
+
+          <div style={{ background: '#111113', border: '1px solid #27272a', borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 700, color: '#f4f4f5', marginBottom: 14 }}>Frequently asked questions</h2>
+            <div style={{ display: 'grid', gap: 18 }}>
+              {[
+                {
+                  q: 'Can I use this tool for GST invoices?',
+                  a: 'Yes. Enter the tax rate in the field and the calculator applies it to the subtotal. You can use it for most GST slabs used in India.',
+                },
+                {
+                  q: 'Can I print or save the invoice as a PDF?',
+                  a: 'Yes. Click the Print / Save as PDF button to open the browser print dialog, where you can save the invoice as a PDF file.',
+                },
+                {
+                  q: 'Does this invoice include company and client details?',
+                  a: 'Yes. Add your company details in the From box and your client details in the To box for a professional invoice layout.',
+                },
+                {
+                  q: 'What if I need to change the invoice number?',
+                  a: 'You can edit the Invoice No field at the top to use any number or code your business prefers.',
+                },
+                {
+                  q: 'Can I calculate multiple items and taxes at once?',
+                  a: 'Yes. Add multiple line items and the tool will sum them automatically. It applies the same tax rate to the full subtotal.',
+                },
+                {
+                  q: 'Is the total updated automatically?',
+                  a: 'Yes. Whenever you change quantities, rates, or tax percentage, the subtotal, tax, and final total update immediately.',
+                },
+              ].map((faq, index) => (
+                <div key={index} style={{ borderBottom: index < 5 ? '1px solid #27272a' : 'none', paddingBottom: index < 5 ? 16 : 0 }}>
+                  <h3 style={{ fontSize: 16, fontWeight: 600, color: '#f4f4f5', marginBottom: 8 }}>{faq.q}</h3>
+                  <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8, margin: 0 }}>{faq.a}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

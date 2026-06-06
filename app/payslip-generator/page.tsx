@@ -108,6 +108,79 @@ export default function PayslipGenerator(){
           </tbody>
         </table>
       </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 32 }}>
+        <div style={{ background: '#111113', border: '1px solid #27272a', borderRadius: 16, padding: 28 }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: '#f4f4f5', marginBottom: 14 }}>Why use this payslip generator?</h2>
+          <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8, marginBottom: 14 }}>
+            Use this tool to generate a complete monthly payslip with all salary components, deductions, and net pay clearly displayed. This is especially useful for salaried professionals, employers, and payroll managers who want an accurate salary breakdown in seconds.
+          </p>
+          <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8 }}>
+            The payslip summary helps you verify salary calculations and can be shared with employees, used for bank applications, or stored for record keeping.
+          </p>
+        </div>
+
+        <div style={{ background: '#111113', border: '1px solid #27272a', borderRadius: 16, padding: 28 }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: '#f4f4f5', marginBottom: 14 }}>How the salary is calculated</h2>
+          <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8, marginBottom: 14 }}>
+            The gross salary is the sum of Basic, HRA, Allowances and any other earnings. From this amount, payroll deductions such as PF, tax, and other deductions are subtracted. The result is your net pay — the amount you take home.
+          </p>
+          <div style={{ background: '#18181b', borderRadius: 12, padding: 18, marginBottom: 14 }}>
+            <p style={{ fontSize: 13, color: '#a1a1aa', fontFamily: 'monospace', lineHeight: 1.8 }}>
+              Gross = Basic + HRA + Allowances + Other Earnings<br />
+              Total Deductions = PF + Tax + Other Deductions<br />
+              Net Pay = Gross - Total Deductions
+            </p>
+          </div>
+          <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8 }}>
+            For example, with ₹50,000 basic, ₹20,000 HRA, ₹5,000 allowances and ₹0 other earnings, gross pay is ₹75,000. If PF is ₹1,800, tax is ₹5,000 and other deductions are ₹0, net pay becomes ₹68,200.
+          </p>
+        </div>
+
+        <div style={{ background: '#111113', border: '1px solid #27272a', borderRadius: 16, padding: 28 }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: '#f4f4f5', marginBottom: 14 }}>Common mistakes to avoid</h2>
+          <ul style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.9, paddingLeft: 20, margin: 0 }}>
+            <li style={{ marginBottom: 10 }}>Entering the wrong HRA amount — ensure the HRA field matches what your employer pays.</li>
+            <li style={{ marginBottom: 10 }}>Using incorrect tax or PF values — verify the actual deduction amounts in your salary slip or payroll statement.</li>
+            <li style={{ marginBottom: 10 }}>Ignoring other earnings — any bonuses or allowances should be added separately to compute gross pay correctly.</li>
+            <li style={{ marginBottom: 10 }}>Mixing annual and monthly figures — this tool assumes monthly values for all inputs.</li>
+            <li style={{ marginBottom: 10 }}>Forgetting to update the month — set the correct month so the payslip is easy to identify later.</li>
+          </ul>
+        </div>
+
+        <div style={{ background: '#111113', border: '1px solid #27272a', borderRadius: 16, padding: 28 }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: '#f4f4f5', marginBottom: 14 }}>Frequently asked questions</h2>
+          <div style={{ display: 'grid', gap: 18 }}>
+            {[
+              {
+                q: 'Can I use this to generate salary slips for employees?',
+                a: 'Yes. Enter the employee details, salary components, and deductions to generate a complete payslip. It is suited for small teams and contractors.',
+              },
+              {
+                q: 'Does this calculator handle monthly PF and tax deductions?',
+                a: 'Yes. Enter the monthly PF and tax amounts and the payslip will subtract them from gross salary to show net pay.',
+              },
+              {
+                q: 'Can I print the payslip?',
+                a: 'Yes. Use the Print Payslip button to open the browser print dialog and save the payslip as a PDF or print it directly.',
+              },
+              {
+                q: 'What if my employer has additional deductions?',
+                a: 'You can add those values in the Other Deductions field to include them in the total deduction calculation.',
+              },
+              {
+                q: 'Is the net pay calculation accurate for India?',
+                a: 'This tool uses standard salary breakdown rules for Indian payslips and is designed for monthly payroll estimates.',
+              },
+            ].map((faq, index) => (
+              <div key={index} style={{ borderBottom: index < 4 ? '1px solid #27272a' : 'none', paddingBottom: index < 4 ? 16 : 0 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: '#f4f4f5', marginBottom: 8 }}>{faq.q}</h3>
+                <p style={{ color: '#a1a1aa', fontSize: 14, lineHeight: 1.8, margin: 0 }}>{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
