@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 
 const BLOG_POSTS = [
@@ -94,6 +93,32 @@ export default function Blog() {
             </Link>
           </article>
         ))}
+      </div>
+
+      <div style={{ marginTop: 60, display: "grid", gap: 24 }}>
+        <section style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 12, padding: 28 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 14, color: "#10b981" }}>
+            Why read MoneyTool's blog?
+          </h2>
+          <p style={{ fontSize: 15, color: "#a1a1aa", lineHeight: 1.8, marginBottom: 16 }}>
+            MoneyTool's blog articles are written for Indian readers who want quick clarity on loans, investments, taxes, and small business finance. Each article combines practical calculators with real examples, so you can learn and apply the advice immediately.
+          </p>
+          <p style={{ fontSize: 15, color: "#a1a1aa", lineHeight: 1.8 }}>
+            Whether you are comparing home loan options, planning a SIP, or trying to understand GST compliance, these guides focus on the exact decisions most people face in India today.
+          </p>
+        </section>
+
+        <section style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 12, padding: 28 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 14, color: "#10b981" }}>
+            How to use the blog with the tools
+          </h2>
+          <p style={{ fontSize: 15, color: "#a1a1aa", lineHeight: 1.8, marginBottom: 16 }}>
+            Each post links to the calculators that support the topic, so you can test different scenarios while you read. This approach helps you move from theory to action in minutes.
+          </p>
+          <p style={{ fontSize: 15, color: "#a1a1aa", lineHeight: 1.8 }}>
+            Use the blog for planning, and use the calculators for execution — together they make it easier to manage your money without guesswork.
+          </p>
+        </section>
       </div>
 
       <div style={{ marginTop: "60px", padding: "40px 24px", background: "#111113", borderRadius: "12px", border: "1px solid #27272a", textAlign: "center" }}>

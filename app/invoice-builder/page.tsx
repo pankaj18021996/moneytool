@@ -57,9 +57,23 @@ export default function InvoiceBuilder() {
               <div style={{ textAlign: 'right' }}>{currency((Number(it.qty)||0)*(Number(it.rate)||0))}</div>
             </div>
           ))}
-          <div style={{ display: 'flex', gap: 8 }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             <button onClick={addItem}>Add item</button>
             <button onClick={()=>setItems([{ desc: '', qty:1, rate:0 }])}>Reset</button>
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span>Tax %</span>
+                <input
+                  type="number"
+                  min={0}
+                  max={100}
+                  step={1}
+                  value={taxPct}
+                  onChange={e => setTaxPct(Number(e.target.value || 0))}
+                  style={{ width: 80 }}
+                />
+              </label>
+            </div>
           </div>
         </div>
       </div>

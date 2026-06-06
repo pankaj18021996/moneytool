@@ -11,6 +11,7 @@ export default function Navbar() {
     { href: "/calculators", label: "Calculators" },
     { href: "/business-tools", label: "Business Tools" },
     { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" },
   ];
 
   const isActive = (href: string) => {
