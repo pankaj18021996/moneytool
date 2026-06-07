@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "./components/Breadcrumb";
 "use client";
 
 import Link from "next/link";
@@ -75,9 +76,31 @@ const FEATURES = [
   { icon: "📱", title: "Mobile Friendly", desc: "Works perfectly on mobile, tablet and desktop." },
 ];
 
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MoneyTool",
+  "url": "https://www.moneytool.in",
+  "description": "15+ free financial calculators for India — EMI, SIP, FD, PPF, GST, Income Tax, Salary & Invoice Builder.",
+  "inLanguage": "en-IN",
+  "publisher": {
+    "@type": "Organization",
+    "name": "MoneyTool",
+    "url": "https://www.moneytool.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.moneytool.in/og-image.png"
+    }
+  }
+};
 export default function Home() {
   return (
-    <div style={{
+    <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <div style={{
       background: "#0a0a0a", color: "#f4f4f5",
       minHeight: "100vh",
       fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif",

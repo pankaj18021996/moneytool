@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../components/Breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SalaryCalculatorClient from "./SalaryCalculatorClient";
@@ -50,6 +51,7 @@ const jsonLd = {
 export default function SalaryCalculatorPage() {
   return (
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
+      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"Salary Calculator",url:"https://www.moneytool.in/salary-calculator"}]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

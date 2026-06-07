@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../components/Breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { metadata as seoMetadata } from "./metadata";
@@ -50,6 +51,7 @@ export default function GSTCalculatorPage() {
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
 
       {/* JSON-LD */}
+      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"GST Calculator",url:"https://www.moneytool.in/gst-calculator"}]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

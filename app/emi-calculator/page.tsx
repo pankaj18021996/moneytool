@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../components/Breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import LoanCalculator from "../components/LoanCalculator";
@@ -86,10 +87,12 @@ export default function EMICalculatorPage() {
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
 
       {/* JSON-LD */}
+      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"EMI Calculator",url:"https://www.moneytool.in/emi-calculator"}]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"EMI Calculator",url:"https://www.moneytool.in/emi-calculator"}]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }} />
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>

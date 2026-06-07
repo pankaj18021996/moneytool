@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../components/Breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import FDCalculatorClient from "./FDCalculatorClient";
@@ -71,6 +72,7 @@ const jsonLd = {
 export default function FDCalculatorPage() {
   return (
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
+      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"FD Calculator",url:"https://www.moneytool.in/fd-calculator"}]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../components/Breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SIPCalculatorClient from "./SIPCalculatorClient";
@@ -56,6 +57,7 @@ const jsonLd = {
 export default function SIPCalculatorPage() {
   return (
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
+      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"SIP Calculator",url:"https://www.moneytool.in/sip-calculator"}]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
