@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+import { metadata as seoMetadata } from "./metadata";
+export const metadata: Metadata = seoMetadata as Metadata;
+
 import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";

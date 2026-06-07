@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+import { metadata as seoMetadata } from "./metadata";
+export const metadata: Metadata = seoMetadata as Metadata;
+
 import Link from "next/link";
 
 export default function ContactPage() {
