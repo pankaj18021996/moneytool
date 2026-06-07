@@ -1,3 +1,15 @@
+import FAQSchema from "../components/FAQSchema";
+import { BreadcrumbSchema } from "../components/Breadcrumb";
+
+const carLoanFaqs = [
+  { question: "What is the average car loan EMI in India?", answer: "Average car loan EMI ranges from ₹5,000 to ₹30,000/month depending on car price, interest rate (8.75-12%), and tenure (2-7 years)." },
+  { question: "Can I get a 100% car loan?", answer: "Most banks provide 80-90% of car price. You need to pay 10-20% as down payment." },
+  { question: "What documents are needed for a car loan?", answer: "Identity proof, address proof, income proof (salary slip/ITR), bank statements, and employment letter." },
+  { question: "What is the maximum car loan tenure?", answer: "Most banks offer up to 7 years (84 months). Longer tenure means lower EMI but higher total interest." },
+  { question: "Can I refinance my car loan?", answer: "Yes, if rates have dropped or your credit score improved. Check for prepayment penalties and processing fees first." },
+  { question: "How does car depreciation affect my loan?", answer: "Cars depreciate 15-20% in year one. If loan value exceeds car value, you're underwater — risky if the car is totaled." },
+];
+
 import type { Metadata } from "next";
 import { metadata as seoMetadata } from "./metadata";
 export const metadata: Metadata = seoMetadata as Metadata;
@@ -33,6 +45,9 @@ const bankRates = [
 
 export default function CarLoanCalculatorPage() {
   return (
+    <>
+    <FAQSchema items={carLoanFaqs} />
+    <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"Car Loan Calculator",url:"https://www.moneytool.in/car-loan-calculator"}]} />
     <div style={{ background: "#0a0a0a", minHeight: "100vh", color: "#f4f4f5" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
 
