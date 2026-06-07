@@ -96,7 +96,8 @@ const websiteSchema = {
 };
 export default function Home() {
   return (
-    <script
+    <>
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
@@ -366,5 +367,6 @@ export default function Home() {
       </section>
 
     </div>
+    </>
   );
 }

@@ -132,5 +132,6 @@ export default function CarLoanCalculatorPage() {
 
       </div>
     </div>
+    </>
   );
 }
