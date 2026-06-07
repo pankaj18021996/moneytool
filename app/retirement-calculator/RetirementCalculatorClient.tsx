@@ -2,6 +2,8 @@
 import Link from "next/link";
 import React from "react";
 import FAQAccordion from "../components/FAQAccordion";
+import AdSenseUnit from "../components/AdSenseUnit";
+import ZerodhaCTA from "../components/ZerodhaCTA";
 
 const fmt = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
 
@@ -166,6 +168,10 @@ export default function RetirementCalculatorPage() {
           </div>
         </section>
 
+        
+        <AdSenseUnit />
+        
+        <ZerodhaCTA context="Start building your retirement corpus today. Open a free demat account and begin a SIP — the earlier you start, the more you benefit from compounding." />
         <FAQAccordion items={faqs} />
       </div>
     </div>

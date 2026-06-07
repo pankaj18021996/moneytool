@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FDCalculatorClient from "./FDCalculatorClient";
 import FDCalculatorFAQ from "./FDCalculatorFAQ";
+import AdSenseUnit from "../components/AdSenseUnit";
+import ZerodhaCTA from "../components/ZerodhaCTA";
 
 export const metadata: Metadata = {
   title: "Free FD Calculator India 2026 — Fixed Deposit Maturity Calculator",
@@ -223,6 +225,10 @@ export default function FDCalculatorPage() {
           </ul>
         </div>
 
+        
+        <AdSenseUnit />
+        
+        <ZerodhaCTA context="Ready to invest beyond Fixed Deposits? Open a free demat account and start investing in mutual funds for higher long-term returns." />
         {/* FAQ */}
         <FDCalculatorFAQ faqs={faqs} />
 

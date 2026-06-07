@@ -2,6 +2,8 @@
 import Link from "next/link";
 import React from "react";
 import FAQAccordion from "../components/FAQAccordion";
+import AdSenseUnit from "../components/AdSenseUnit";
+import ZerodhaCTA from "../components/ZerodhaCTA";
 
 const fmt = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
 
@@ -161,6 +163,10 @@ export default function RDCalculatorPage() {
           </div>
         </section>
 
+        
+        <AdSenseUnit />
+        
+        <ZerodhaCTA context="Ready to grow wealth beyond Recurring Deposits? Open a free demat account and start a SIP in mutual funds for better inflation-adjusted returns." />
         <FAQAccordion items={faqs} />
       </div>
     </div>

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { metadata as seoMetadata } from "./metadata";
 import GSTCalculatorClient from "./GSTCalculatorClient";
+import AdSenseUnit from "../components/AdSenseUnit";
 
 export const metadata: Metadata = seoMetadata as Metadata;
 
@@ -151,6 +152,8 @@ export default function GSTCalculatorPage() {
           ))}
         </div>
 
+        
+        <AdSenseUnit />
         {/* FAQ */}
         <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 32 }}>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>

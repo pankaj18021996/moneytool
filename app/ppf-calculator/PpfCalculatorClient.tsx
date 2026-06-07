@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import AdSenseUnit from "../components/AdSenseUnit";
+import ZerodhaCTA from "../components/ZerodhaCTA";
 
 const faqs = [
   {
@@ -208,7 +210,11 @@ export default function PPFCalculatorPage() {
             <p style={{ fontSize: 11, color: "#52525b", marginTop: 12 }}>*SIP returns are not guaranteed and subject to market conditions</p>
           </div>
 
-          {/* FAQ */}
+          
+        <AdSenseUnit />
+        
+        <ZerodhaCTA context="Ready to diversify beyond PPF? Open a free demat account and explore equity mutual funds for potentially higher returns over the long term." />
+        {/* FAQ */}
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>
               Frequently Asked Questions

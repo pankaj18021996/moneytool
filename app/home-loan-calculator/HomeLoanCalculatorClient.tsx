@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import AdSenseUnit from "../components/AdSenseUnit";
 
 const fmt = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
 
@@ -184,7 +185,9 @@ export default function HomeLoanCalculatorPage() {
             <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 20, color: "#f4f4f5" }}>
               Frequently Asked Questions
             </h2>
-            {faqs.map((faq, i) => (
+            
+        <AdSenseUnit />
+        {faqs.map((faq, i) => (
               <div key={i} style={{ borderBottom: i < faqs.length - 1 ? "1px solid #27272a" : "none", padding: "16px 0" }}>
                 <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 8 }}>{faq.q}</h3>
                 <p style={{ fontSize: 13, color: "#71717a", lineHeight: 1.7 }}>{faq.a}</p>

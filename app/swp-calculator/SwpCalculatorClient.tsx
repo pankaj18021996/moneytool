@@ -2,6 +2,8 @@
 import Link from "next/link";
 import React from "react";
 import FAQAccordion from "../components/FAQAccordion";
+import AdSenseUnit from "../components/AdSenseUnit";
+import ZerodhaCTA from "../components/ZerodhaCTA";
 
 const fmt = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
 
@@ -166,6 +168,10 @@ export default function SWPCalculatorPage() {
           </div>
         </section>
 
+        
+        <AdSenseUnit />
+        
+        <ZerodhaCTA context="Ready to set up your Systematic Withdrawal Plan? Open a free demat account and begin your investment journey with mutual funds today." />
         <FAQAccordion items={faqs} />
       </div>
     </div>
