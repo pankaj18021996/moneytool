@@ -38,10 +38,16 @@ function BusinessToolCard({ tool }: { tool: any }) {
 
 const businessTools = [
   {
-    name: "GST Calculator",
-    href: "/gst-calculator",
-    icon: "🧮",
-    desc: "Quickly calculate GST on products and services. Supports all GST slabs (5%, 12%, 18%, 28%).",
+    name: "Invoice Builder",
+    href: "/invoice-builder",
+    icon: "📄",
+    desc: "Create professional GST invoices with export-ready formatting and download as PDF.",
+  },
+  {
+    name: "Payslip Generator",
+    href: "/payslip-generator",
+    icon: "🧑‍💼",
+    desc: "Generate salary slips with deductions, net pay and employer details for easy payroll records.",
   },
   {
     name: "Salary Calculator",
