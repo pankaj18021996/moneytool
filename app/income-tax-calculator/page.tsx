@@ -12,6 +12,22 @@ const faqs = [
   { question: "What surcharge applies on high income?", answer: "Above ₹1Cr: 15% surcharge (new regime) or 25% (old regime), plus 4% health and education cess." },
   { question: "Is this calculator accurate for filing?", answer: "It provides estimates. Consult a CA for accurate tax planning and filing." },
 ];
+
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Income Tax Calculator India FY 2025-26",
+  url: "https://www.moneytool.in/income-tax-calculator",
+  description: "Free income tax calculator for India FY 2025-26. Calculate tax under new and old regime, compare both regimes, and see your net take-home after all deductions.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["New vs Old regime comparison", "Section 80C/80D deductions", "Standard deduction included", "Surcharge and cess auto-calculated"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
 export default function Page() {
-  return (<><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"Income Tax Calculator",url:"https://www.moneytool.in/income-tax-calculator"}]} /><IncomeTaxCalculatorClient /></>);
+  return (<><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} /><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"Income Tax Calculator",url:"https://www.moneytool.in/income-tax-calculator"}]} /><IncomeTaxCalculatorClient /></>);
 }

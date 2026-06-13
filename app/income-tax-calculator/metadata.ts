@@ -1,13 +1,6 @@
 export const metadata = {
   title: "Income Tax Calculator India — FY 2025-26 Income Tax Calculator",
   description: "Calculate your income tax liability instantly for FY 2025-26. Use our free income tax calculator with latest tax rates and slabs.",
-  keywords: [
-    "income tax calculator",
-    "income tax calculator india",
-    "income tax calculator fy 2025-26",
-    "tax calculator",
-    "income tax slab calculator",
-  ],
   openGraph: {
     title: "Free Income Tax Calculator — FY 2025-26 Tax Calculation",
     description: "Calculate your income tax liability with our accurate tax calculator.",

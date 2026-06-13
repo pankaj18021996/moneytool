@@ -12,6 +12,22 @@ const faqs = [
   { question: "Is PPF eligible for tax benefits?", answer: "Yes. PPF qualifies under Section 80C and interest is completely tax-free." },
   { question: "Can senior citizens open a PPF account?", answer: "Yes, anyone including minors and senior citizens can open a PPF account." },
 ];
+
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "PPF Calculator India",
+  url: "https://www.moneytool.in/ppf-calculator",
+  description: "Free PPF calculator for India. Calculate Public Provident Fund maturity value, year-wise interest, and total returns at current 7.1% government rate.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["Annual compounding at 7.1%", "Year-wise interest breakdown", "Partial withdrawal eligibility", "15-year maturity calculation"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
 export default function Page() {
-  return (<><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"PPF Calculator",url:"https://www.moneytool.in/ppf-calculator"}]} /><PpfCalculatorClient /></>);
+  return (<><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} /><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"PPF Calculator",url:"https://www.moneytool.in/ppf-calculator"}]} /><PpfCalculatorClient /></>);
 }

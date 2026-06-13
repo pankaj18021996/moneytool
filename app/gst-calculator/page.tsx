@@ -47,9 +47,27 @@ const jsonLd = {
   })),
 };
 
+
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "GST Calculator India",
+  url: "https://www.moneytool.in/gst-calculator",
+  description: "Free GST calculator for India. Calculate GST at 5%, 12%, 18%, 28% rates. Separate CGST, SGST and IGST for inter-state and intra-state transactions.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["All GST slabs supported", "CGST + SGST split for intra-state", "IGST for inter-state", "Add/remove GST from price"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
 export default function GSTCalculatorPage() {
   return (
-    <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} />
+      <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
 
       {/* JSON-LD */}
       <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"GST Calculator",url:"https://www.moneytool.in/gst-calculator"}]} />
@@ -169,5 +187,6 @@ export default function GSTCalculatorPage() {
 
       </div>
     </div>
+    </>
   );
 }

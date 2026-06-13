@@ -12,6 +12,22 @@ const faqs = [
   { question: "How does HRA save taxes?", answer: "HRA reduces your taxable income, directly lowering your income tax. More HRA exemption means lower tax." },
   { question: "Can I claim HRA if I move cities?", answer: "Yes. File a revised ITR if your HRA changes due to relocation. The new exemption applies from the month of relocation." },
 ];
+
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "HRA Calculator India",
+  url: "https://www.moneytool.in/hra-calculator",
+  description: "Free HRA exemption calculator for India. Calculate House Rent Allowance tax exemption based on salary, rent paid, and city of residence.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["Metro and non-metro city support", "Minimum of three conditions", "Old regime only", "Monthly and annual calculation"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
 export default function Page() {
-  return (<><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"HRA Calculator",url:"https://www.moneytool.in/hra-calculator"}]} /><HraCalculatorClient /></>);
+  return (<><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} /><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"HRA Calculator",url:"https://www.moneytool.in/hra-calculator"}]} /><HraCalculatorClient /></>);
 }

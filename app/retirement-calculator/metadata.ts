@@ -1,13 +1,6 @@
 export const metadata = {
   title: "Retirement Calculator India — Retirement Planning & Corpus Calculator",
   description: "Estimate your retirement corpus and monthly savings needed. Plan for inflation, expected returns, and future expenses with a free retirement calculator.",
-  keywords: [
-    "retirement calculator",
-    "retirement calculator india",
-    "retirement planning calculator",
-    "retirement corpus calculator",
-    "monthly savings calculator",
-  ],
   openGraph: {
     title: "Free Retirement Calculator — Plan Your Retirement Corpus",
     description: "Estimate how much you need to save for a comfortable retirement, factoring in inflation and investment returns.",

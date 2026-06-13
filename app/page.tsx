@@ -1,372 +1,86 @@
-import { BreadcrumbSchema } from "./components/Breadcrumb";
-"use client";
+import type { Metadata } from "next";
+import HomeClient from "./HomeClient";
 
-import Link from "next/link";
-
-function ToolCard({ tool }: { tool: any }) {
-  return (
-    <div className={`tool-card${tool.coming ? " tool-card-coming" : ""}`} style={{
-      background: "#111113", border: "1px solid #27272a",
-      borderRadius: 16, padding: 20, position: "relative",
-      transition: "border-color 0.2s, transform 0.2s",
-    }}>
-      {tool.popular && !tool.coming && (
-        <span style={{
-          position: "absolute", top: 16, right: 16, fontSize: 11,
-          background: "rgba(16,185,129,0.1)", color: "#10b981",
-          border: "1px solid rgba(16,185,129,0.2)",
-          padding: "2px 10px", borderRadius: 999, fontWeight: 500,
-        }}>Popular</span>
-      )}
-      <div style={{ fontSize: 28, marginBottom: 12 }}>{tool.icon}</div>
-      <h3 style={{ fontSize: 15, fontWeight: 600, color: "#f4f4f5", marginBottom: 6 }}>
-        {tool.title}
-      </h3>
-      <p style={{ fontSize: 13, color: "#a1a1aa", lineHeight: 1.5, marginBottom: 16 }}>
-        {tool.desc}
-      </p>
-      {tool.coming ? (
-        <span style={{ fontSize: 13, color: "#52525b" }}>Coming soon...</span>
-      ) : (
-        <Link href={tool.link} style={{
-          fontSize: 13, fontWeight: 600,
-          color: "#10b981", textDecoration: "none",
-        }}>
-          Open Tool →
-        </Link>
-      )}
-    </div>
-  );
-}
-
-const INVESTMENT_TOOLS = [
-  { id: "sip", title: "SIP Calculator", desc: "Calculate returns on Systematic Investment Plans", icon: "📈", link: "/sip-calculator", popular: true, coming: false },
-  { id: "ppf", title: "PPF Calculator", desc: "Calculate Public Provident Fund returns and maturity", icon: "🐖", link: "/ppf-calculator", popular: true, coming: false },
-  { id: "fd", title: "FD Calculator", desc: "Calculate Fixed Deposit returns and maturity amount", icon: "🏦", link: "/fd-calculator", popular: false, coming: false },
-  { id: "rd", title: "RD Calculator", desc: "Calculate Recurring Deposit returns and interest", icon: "📅", link: "/rd-calculator", popular: false, coming: false },
-  { id: "swp", title: "SWP Calculator", desc: "Calculate Systematic Withdrawal Plan returns", icon: "💸", link: "/swp-calculator", popular: false, coming: false },
-  { id: "retirement", title: "Retirement Planner", desc: "Plan your retirement corpus and monthly savings", icon: "🌅", link: "/retirement-calculator", popular: true, coming: false },
-];
-
-const LOAN_TOOLS = [
-  { id: "emi", title: "EMI Calculator", desc: "Calculate monthly EMI for home, car & personal loans", icon: "💳", link: "/emi-calculator", popular: true, coming: false },
-  { id: "home-loan", title: "Home Loan Calculator", desc: "Calculate home loan EMI, eligibility & total interest", icon: "🏠", link: "/home-loan-calculator", popular: true, coming: false },
-  { id: "car-loan", title: "Car Loan Calculator", desc: "Calculate car loan EMI and total cost of ownership", icon: "🚗", link: "/car-loan-calculator", popular: false, coming: false },
-];
-
-const TAX_TOOLS = [
-  { id: "income-tax", title: "Income Tax Calculator", desc: "Calculate your income tax liability for FY 2025-26", icon: "🏛️", link: "/income-tax-calculator", popular: true, coming: false },
-  { id: "salary", title: "Salary Calculator", desc: "Calculate in-hand salary from CTC with all deductions", icon: "💰", link: "/salary-calculator", popular: false, coming: false },
-  { id: "gst", title: "GST Calculator", desc: "Calculate GST amounts and tax breakdowns instantly", icon: "🧾", link: "/gst-calculator", popular: false, coming: false },
-  { id: "hra", title: "HRA Calculator", desc: "Calculate House Rent Allowance exemption & savings", icon: "🏘️", link: "/hra-calculator", popular: false, coming: false },
-  { id: "tds", title: "TDS Calculator", desc: "Calculate TDS on salary, rent & professional fees", icon: "📑", link: "/tds-calculator", popular: false, coming: false },
-];
-
-const BUSINESS_TOOLS = [
-  { id: "invoice", title: "Invoice Builder", desc: "Create professional GST invoices and download as PDF", icon: "📄", link: "/invoice-builder", popular: true, coming: false },
-  { id: "payslip", title: "Payslip Generator", desc: "Generate professional salary slips with all deductions", icon: "🧑‍💼", link: "/payslip-generator", popular: false, coming: false },
-];
-
-const TOOLS = [...INVESTMENT_TOOLS, ...LOAN_TOOLS, ...TAX_TOOLS, ...BUSINESS_TOOLS];
-
-const FEATURES = [
-  { icon: "⚡", title: "100% Free Tools", desc: "All calculators completely free. No hidden charges, no premium plans ever." },
-  { icon: "🔒", title: "No Login Required", desc: "Start calculating immediately. No registration needed. Your privacy matters." },
-  { icon: "🎯", title: "Accurate & Fast", desc: "Instant precise calculations using industry-standard formulas." },
-  { icon: "📱", title: "Mobile Friendly", desc: "Works perfectly on mobile, tablet and desktop." },
-];
-
+export const metadata: Metadata = {
+  title: "MoneyTool — Free Financial Calculators & Tools for India",
+  description:
+    "15+ free financial tools — EMI, SIP, FD, PPF, GST, Income Tax, Salary & Invoice Builder. No login required. Instant results. Made for India.",
+  alternates: { canonical: "https://www.moneytool.in" },
+};
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "MoneyTool",
-  "url": "https://www.moneytool.in",
-  "description": "15+ free financial calculators for India — EMI, SIP, FD, PPF, GST, Income Tax, Salary & Invoice Builder.",
-  "inLanguage": "en-IN",
-  "publisher": {
-    "@type": "Organization",
-    "name": "MoneyTool",
-    "url": "https://www.moneytool.in",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.moneytool.in/og-image.png"
-    }
-  }
+  name: "MoneyTool",
+  url: "https://www.moneytool.in",
+  description: "15+ free financial calculators for India — EMI, SIP, FD, PPF, GST, Income Tax, Salary & Invoice Builder.",
+  inLanguage: "en-IN",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://www.moneytool.in/calculators?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "MoneyTool",
+  url: "https://www.moneytool.in",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.moneytool.in/og-image.png",
+    width: 512,
+    height: 512,
+  },
+  description: "Free financial calculators and tools for India — EMI, SIP, Income Tax, GST, Invoice Builder and more.",
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "contact@moneytool.in",
+    contactType: "customer support",
+    availableLanguage: ["English", "Hindi"],
+  },
+  sameAs: [],
+  foundingDate: "2025",
+  areaServed: "IN",
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Free Financial Calculators for India",
+  description: "Comprehensive list of free financial calculators and tools available on MoneyTool",
+  numberOfItems: 16,
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "EMI Calculator", url: "https://www.moneytool.in/emi-calculator" },
+    { "@type": "ListItem", position: 2, name: "SIP Calculator", url: "https://www.moneytool.in/sip-calculator" },
+    { "@type": "ListItem", position: 3, name: "Income Tax Calculator", url: "https://www.moneytool.in/income-tax-calculator" },
+    { "@type": "ListItem", position: 4, name: "PPF Calculator", url: "https://www.moneytool.in/ppf-calculator" },
+    { "@type": "ListItem", position: 5, name: "FD Calculator", url: "https://www.moneytool.in/fd-calculator" },
+    { "@type": "ListItem", position: 6, name: "Home Loan Calculator", url: "https://www.moneytool.in/home-loan-calculator" },
+    { "@type": "ListItem", position: 7, name: "Salary Calculator", url: "https://www.moneytool.in/salary-calculator" },
+    { "@type": "ListItem", position: 8, name: "GST Calculator", url: "https://www.moneytool.in/gst-calculator" },
+    { "@type": "ListItem", position: 9, name: "HRA Calculator", url: "https://www.moneytool.in/hra-calculator" },
+    { "@type": "ListItem", position: 10, name: "TDS Calculator", url: "https://www.moneytool.in/tds-calculator" },
+    { "@type": "ListItem", position: 11, name: "Invoice Builder", url: "https://www.moneytool.in/invoice-builder" },
+    { "@type": "ListItem", position: 12, name: "Payslip Generator", url: "https://www.moneytool.in/payslip-generator" },
+    { "@type": "ListItem", position: 13, name: "Car Loan Calculator", url: "https://www.moneytool.in/car-loan-calculator" },
+    { "@type": "ListItem", position: 14, name: "RD Calculator", url: "https://www.moneytool.in/rd-calculator" },
+    { "@type": "ListItem", position: 15, name: "SWP Calculator", url: "https://www.moneytool.in/swp-calculator" },
+    { "@type": "ListItem", position: 16, name: "Retirement Planner", url: "https://www.moneytool.in/retirement-calculator" },
+  ],
+};
+
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      <div style={{
-      background: "#0a0a0a", color: "#f4f4f5",
-      minHeight: "100vh",
-      fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif",
-    }}>
-      <style>{`
-        .tool-card:not(.tool-card-coming):hover {
-          border-color: #10b981 !important;
-          transform: translateY(-2px);
-        }
-        .popular-card:hover {
-          border-color: #10b981 !important;
-          transform: translateY(-2px);
-        }
-        .hero-btn-primary:hover { background: #059669 !important; }
-        .hero-btn-secondary:hover { border-color: #10b981 !important; }
-      `}</style>
-
-      {/* HERO */}
-      <section style={{ borderBottom: "1px solid #27272a" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 24px", textAlign: "center" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)",
-            color: "#10b981", fontSize: 13, padding: "6px 16px",
-            borderRadius: 999, marginBottom: 24, fontWeight: 500,
-          }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#10b981", display: "inline-block" }}></span>
-            100% Free • No Login Required
-          </div>
-          <h1 style={{ fontSize: 48, fontWeight: 800, color: "#f4f4f5", marginBottom: 16, lineHeight: 1.2 }}>
-            All Your Financial<br />
-            <span style={{ color: "#10b981" }}>Tools in One Place</span>
-          </h1>
-          <p style={{ color: "#a1a1aa", fontSize: 18, maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.6 }}>
-            EMI, SIP, FD, PPF, Tax, GST & Invoice tools —
-            fast and free. Make smarter financial decisions with ease.
-          </p>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/emi-calculator" className="hero-btn-primary" style={{
-              background: "#10b981", color: "#fff",
-              padding: "12px 28px", borderRadius: 10,
-              fontSize: 15, fontWeight: 600, textDecoration: "none",
-              display: "inline-block", transition: "background 0.2s",
-            }}>
-              Start Calculating →
-            </Link>
-            <Link href="/about" className="hero-btn-secondary" style={{
-              background: "transparent", color: "#f4f4f5",
-              padding: "12px 28px", borderRadius: 10,
-              fontSize: 15, fontWeight: 600, textDecoration: "none",
-              border: "1px solid #27272a", display: "inline-block",
-              transition: "border-color 0.2s",
-            }}>
-              Learn More
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* STATS */}
-      <section style={{ borderBottom: "1px solid #27272a", background: "#111113" }}>
-        <div style={{
-          maxWidth: 1100, margin: "0 auto", padding: "32px 24px",
-          display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-          gap: 24, textAlign: "center",
-        }}>
-          {[
-            { num: "15+", label: "Tools Available" },
-            { num: "100%", label: "Free Forever" },
-            { num: "0", label: "Login Required" },
-          ].map((s) => (
-            <div key={s.label}>
-              <p style={{ fontSize: 36, fontWeight: 800, color: "#f4f4f5", marginBottom: 4 }}>{s.num}</p>
-              <p style={{ fontSize: 14, color: "#a1a1aa" }}>{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ALL TOOLS */}
-      <section style={{ borderBottom: "1px solid #27272a" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
-
-          <div style={{ marginBottom: 60 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
-              <span style={{ fontSize: 28 }}>📈</span>
-              <div>
-                <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f4f4f5", marginBottom: 4 }}>Investment Calculators</h2>
-                <p style={{ color: "#a1a1aa", fontSize: 14 }}>Plan your investments with SIP, PPF, FD, RD & more</p>
-              </div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-              {INVESTMENT_TOOLS.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
-            </div>
-          </div>
-
-          <div style={{ marginBottom: 60 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
-              <span style={{ fontSize: 28 }}>💳</span>
-              <div>
-                <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f4f4f5", marginBottom: 4 }}>Loan Calculators</h2>
-                <p style={{ color: "#a1a1aa", fontSize: 14 }}>Calculate EMI for home, car & personal loans</p>
-              </div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-              {LOAN_TOOLS.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
-            </div>
-          </div>
-
-          <div style={{ marginBottom: 60 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
-              <span style={{ fontSize: 28 }}>🏛️</span>
-              <div>
-                <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f4f4f5", marginBottom: 4 }}>Tax & Salary Calculators</h2>
-                <p style={{ color: "#a1a1aa", fontSize: 14 }}>Calculate income tax, salary, GST, HRA & TDS</p>
-              </div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-              {TAX_TOOLS.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
-            </div>
-          </div>
-
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
-              <span style={{ fontSize: 28 }}>📄</span>
-              <div>
-                <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f4f4f5", marginBottom: 4 }}>Business Tools</h2>
-                <p style={{ color: "#a1a1aa", fontSize: 14 }}>Create invoices and payslips with PDF export</p>
-              </div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-              {BUSINESS_TOOLS.map((tool) => <ToolCard key={tool.id} tool={tool} />)}
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section style={{ borderBottom: "1px solid #27272a", background: "#111113" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 6,
-            background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)",
-            color: "#22c55e", fontSize: 12, padding: "4px 12px",
-            borderRadius: 999, marginBottom: 20, fontWeight: 500,
-          }}>
-            ⭐ User Reviews
-          </div>
-          <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f4f4f5", marginBottom: 32 }}>
-            What Users Say
-          </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 24 }}>
-            {[
-              { name: "Rajesh Kumar", role: "Home Buyer", text: "The EMI calculator saved me hours of research. I could instantly compare different loan options and decide what works for my budget.", rating: 5 },
-              { name: "Priya Singh", role: "Investor", text: "The SIP calculator is so accurate and easy to use. Helped me plan my mutual fund investments with clear visibility on returns.", rating: 5 },
-              { name: "Amit Patel", role: "Business Owner", text: "The GST and Invoice tools are lifesavers for my small business. Quick, reliable, and absolutely free. No hidden charges.", rating: 5 },
-              { name: "Sneha Desai", role: "Tax Consultant", text: "I recommend MoneyTool to all my clients for quick income tax calculations. The tools are accurate and updated with latest tax rules.", rating: 5 },
-            ].map((testimonial, idx) => (
-              <div key={idx} style={{
-                background: "#0a0a0a", border: "1px solid #27272a",
-                borderRadius: 16, padding: 24,
-                display: "flex", flexDirection: "column", gap: 12,
-              }}>
-                <div style={{ display: "flex", gap: 8 }}>
-                  {Array(testimonial.rating).fill(0).map((_, i) => (
-                    <span key={i} style={{ fontSize: 14 }}>⭐</span>
-                  ))}
-                </div>
-                <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.6, flex: 1 }}>
-                  "{testimonial.text}"
-                </p>
-                <div>
-                  <p style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 2 }}>{testimonial.name}</p>
-                  <p style={{ fontSize: 12, color: "#52525b" }}>{testimonial.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* POPULAR */}
-      <section style={{ borderBottom: "1px solid #27272a", background: "#0a0a0a" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 6,
-            background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.2)",
-            color: "#f59e0b", fontSize: 12, padding: "4px 12px",
-            borderRadius: 999, marginBottom: 20, fontWeight: 500,
-          }}>
-            🔥 Top Used Tools
-          </div>
-          <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f4f4f5", marginBottom: 8 }}>
-            Our Most Popular Tools
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: 15, marginBottom: 32 }}>
-            15+ free financial calculators trusted by thousands of Indians daily
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 16 }}>
-            {TOOLS.filter((t) => t.popular && !t.coming).map((tool) => (
-              <Link key={tool.id} href={tool.link} className="popular-card" style={{
-                background: "#18181b", border: "1px solid #27272a",
-                borderRadius: 16, padding: 24, textDecoration: "none",
-                display: "block", transition: "border-color 0.2s, transform 0.2s",
-              }}>
-                <div style={{ fontSize: 32, marginBottom: 16 }}>{tool.icon}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: "#f4f4f5", marginBottom: 8 }}>{tool.title}</h3>
-                <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.6, marginBottom: 20 }}>{tool.desc}</p>
-                <span style={{ fontSize: 14, fontWeight: 600, color: "#10b981" }}>Try {tool.title} →</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHY US */}
-      <section style={{ borderBottom: "1px solid #27272a" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
-          <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f4f4f5", marginBottom: 8 }}>
-            Why Choose MoneyTool?
-          </h2>
-          <p style={{ color: "#a1a1aa", fontSize: 15, marginBottom: 32 }}>
-            Committed to making financial planning accessible, simple and free for everyone
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 16 }}>
-            {FEATURES.map((f) => (
-              <div key={f.title} style={{
-                background: "#111113", border: "1px solid #27272a",
-                borderRadius: 16, padding: 24,
-              }}>
-                <div style={{ fontSize: 28, marginBottom: 12 }}>{f.icon}</div>
-                <h3 style={{ fontSize: 15, fontWeight: 600, color: "#f4f4f5", marginBottom: 8 }}>{f.title}</h3>
-                <p style={{ fontSize: 13, color: "#a1a1aa", lineHeight: 1.6 }}>{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEO */}
-      <section style={{ borderBottom: "1px solid #27272a", background: "#111113" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 24px" }}>
-          <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f4f4f5", marginBottom: 24 }}>
-            Comprehensive Financial Tools for Every Indian
-          </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-            <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.8 }}>
-              MoneyTool provides a comprehensive suite of financial calculators
-              and tools designed to help individuals and businesses make informed
-              financial decisions. Whether you are planning a loan, calculating
-              taxes, or creating professional invoices, our platform offers
-              accurate, fast and completely free tools.
-            </p>
-            <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.8 }}>
-              Calculate your income tax liability accurately with our income tax
-              calculator. Understand your take-home salary with our salary
-              calculator that breaks down all deductions. Create professional
-              invoices and export them as PDFs instantly.
-            </p>
-          </div>
-        </div>
-      </section>
-
-    </div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <HomeClient />
     </>
   );
 }

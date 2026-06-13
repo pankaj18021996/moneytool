@@ -10,6 +10,22 @@ const faqs = [
   { question: "What is the current RD interest rate?", answer: "RD rates vary by bank and tenure, typically 5.5% to 7.0% in 2026." },
   { question: "Is RD interest taxable?", answer: "Yes. RD interest is taxable as income, and banks may deduct TDS if it exceeds the prescribed threshold." },
 ];
+
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "RD Calculator India",
+  url: "https://www.moneytool.in/rd-calculator",
+  description: "Free Recurring Deposit calculator for India. Calculate RD maturity amount and interest for monthly deposits at bank rates.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["Monthly compounding", "Maturity value calculation", "Interest earned breakdown", "All tenure options"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
 export default function Page() {
-  return (<><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"RD Calculator",url:"https://www.moneytool.in/rd-calculator"}]} /><RdCalculatorClient /></>);
+  return (<><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} /><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"RD Calculator",url:"https://www.moneytool.in/rd-calculator"}]} /><RdCalculatorClient /></>);
 }

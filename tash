@@ -1,0 +1,55 @@
+[33m41965db[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix Business Tools page: remove GST Calculator and show business-specific tools
+[33m09791be[m feat: add AdSense + Zerodha affiliate, fix JSX fragment wrapping
+[33m461803a[m feat: add AdSense units across all calculator pages + extend Zerodha affiliate to investment pages
+[33m31cf82c[m feat: add BreadcrumbList schema to all calculator pages + WebSite schema on homepage
+[33mb56a3e4[m feat: add FAQPage + BreadcrumbList schema to 8 calculator pages
+[33m17f9b69[m fix: wire metadata, split client/server components, fix all 404s
+[33md70e01b[m Add contact page and metadata updates; improve blog content, navigation, and invoice builder UI
+[33m6b9fc3f[m Fix invoice and payslip pages: add metadata files, resolve hydration issue, and confirm build
+[33m81003cf[m feat: add Invoice Builder and Payslip Generator; optimize fonts; split client components
+[33ma39f894[m Merge feat/emi-overhaul: EMI overhaul
+[33mc0b3de7[m[33m ([m[1;31morigin/feat/emi-overhaul[m[33m, [m[1;32mfeat/emi-overhaul[m[33m)[m feat(emi): wire LoanCalculator to PieChart via EMIClient (live breakdown)
+[33mebe3a8c[m feat(emi): add PieChart and fix build artifacts
+[33md8bed0e[m EMI improvements: numeric inputs for car/home, yearly summary & depreciation for car, FinancialProduct JSON-LD
+[33m45adabf[m EMI overhaul: add car/home down payment, amortization schedules; add personal & education loan pages; improve EMI SEO/GEO metadata
+[33m8686f1c[m Changes done
+[33mcd392f3[m complete emi calculator dark theme
+[33mf392e24[m fix: remove onMouseEnter from blog, calculators, relatedtools
+[33mfba4bd0[m Final check
+[33md1c476e[m fix: remove mouse event handlers from nav links
+[33m7328082[m fix: remove onMouseEnter onMouseLeave from nav links
+[33m797a9cc[m Final
+[33m3126b19[m Check
+[33m451a33e[m Feature: Unified navbar and calculator hub pages
+[33m4d8f27a[m Fix: Build errors and production compilation
+[33m9fae1a2[m Redesign: SIP calculator to match moneyutility.in layout
+[33m08ebac5[m Enhance: Match SIP and GST calculator layouts to EMI design
+[33me60afc1[m Fix: Major SEO improvements and structure fixes
+[33m828c252[m All SEO calculator added
+[33m352ca3d[m All new calculator added again
+[33mb8531ed[m All new calculator added
+[33m497206a[m complete emi calculator new
+[33mc1ba88f[m fix: rename next.config.ts to next.config.mjs
+[33mdf371c6[m dark theme like moneytool
+[33m88a5b78[m complete website redesign like moneyutility
+[33m3fd8a4d[m beautiful
+[33m2dfdc5f[m beautiful new design
+[33m40d948b[m Upgrade EMI calculator with prepayment, comparison, affordability & amortization
+[33mf78b5e5[m fix layout warnings
+[33m759ffaf[m fix layout and emi seo
+[33m621f047[m fix navbar and footer
+[33m15dcc3f[m add fd calculator complete
+[33m6bc12d3[m add salary calculator complete
+[33mb1ccf8b[m add customizable salary calculator
+[33m6933b7c[m add gst calculator complete
+[33m3b4056c[m add zerodha to sip calculator
+[33m1febfb6[m add footer
+[33mb7de7a1[m add navbar
+[33m85ceae6[m add about and privacy policy pages
+[33maefd78d[m add adsense
+[33mae4c99b[m add sitemap
+[33m1bc5fe6[m add google verification file
+[33m2d188b7[m add homepage
+[33m6cf2ed1[m add sip calculator
+[33m3e29888[m add emi calculator
+[33m128c194[m first commit

@@ -1,13 +1,6 @@
 export const metadata = {
   title: "HRA Calculator India — House Rent Allowance Tax Exemption Calculator",
   description: "Calculate HRA exemption and tax savings. Use our free HRA calculator to maximize your tax benefits under Section 10(13A).",
-  keywords: [
-    "hra calculator",
-    "hra calculator india",
-    "house rent allowance calculator",
-    "hra exemption calculator",
-    "hra tax benefit calculator",
-  ],
   openGraph: {
     title: "Free HRA Calculator — Calculate HRA Exemption & Tax Savings",
     description: "Calculate your HRA exemption and maximize tax benefits.",

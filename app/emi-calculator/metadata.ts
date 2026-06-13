@@ -1,17 +1,6 @@
 export const metadata = {
   title: "EMI Calculator India — Free Home, Car & Loan EMI Calculator",
   description: "Calculate EMI instantly for home loans, car loans, and personal loans. Use our free EMI calculator to understand your monthly payments before taking a loan.",
-  keywords: [
-    "emi calculator",
-    "emi calculator india",
-    "emi calculator delhi",
-    "emi calculator mumbai",
-    "home loan emi calculator",
-    "car loan emi calculator",
-    "personal loan emi calculator",
-    "emi calculation formula",
-    "monthly emi calculator",
-  ],
   geo: {
     region: "IN",
     placename: "India",

@@ -1,13 +1,6 @@
 export const metadata = {
   title: "Home Loan Calculator India — Home Loan EMI & Eligibility Calculator",
   description: "Calculate home loan EMI, interest, and check eligibility. Use our free home loan calculator with tax benefits.",
-  keywords: [
-    "home loan calculator",
-    "home loan calculator india",
-    "home loan emi calculator",
-    "home loan eligibility calculator",
-    "home loan interest calculator",
-  ],
   openGraph: {
     title: "Free Home Loan Calculator — Calculate EMI & Eligibility",
     description: "Calculate your home loan EMI and eligibility instantly.",

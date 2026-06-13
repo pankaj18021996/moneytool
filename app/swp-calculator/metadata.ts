@@ -1,12 +1,6 @@
 export const metadata = {
   title: "SWP Calculator India — Systematic Withdrawal Plan Calculator",
   description: "Estimate systematic withdrawals, corpus longevity, and retirement income using our SWP calculator. Plan monthly withdrawals with realistic return assumptions.",
-  keywords: [
-    "swp calculator",
-    "systematic withdrawal plan calculator",
-    "swp calculator india",
-    "retirement withdrawal calculator",
-  ],
   openGraph: {
     title: "Free SWP Calculator — Calculate Your Withdrawal Amount",
     description: "Estimate withdrawal longevity and corpus sustainability with our SWP calculator.",

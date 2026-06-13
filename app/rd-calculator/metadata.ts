@@ -1,13 +1,6 @@
 export const metadata = {
   title: "RD Calculator India — Recurring Deposit Calculator & Interest",
   description: "Estimate RD maturity, total contributions, and returns with our free Recurring Deposit calculator. Plan disciplined monthly savings and compare tenure and interest scenarios.",
-  keywords: [
-    "rd calculator",
-    "recurring deposit calculator",
-    "rd calculator india",
-    "recurring deposit calculator india",
-    "rd interest calculator",
-  ],
   openGraph: {
     title: "Free RD Calculator — Calculate Recurring Deposit Returns",
     description: "Estimate RD maturity amount and total returns instantly with a free recurring deposit calculator.",

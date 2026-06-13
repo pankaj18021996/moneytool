@@ -1,0 +1,77 @@
+# MoneyTool — Free Financial Calculators for India
+
+MoneyTool (https://www.moneytool.in) provides 16+ free financial calculators and tools for Indian users. No login required. All calculations run in the browser. No data is stored or transmitted.
+
+## About
+MoneyTool is a free financial tools platform built for India. It covers loan EMI calculation, SIP/mutual fund return planning, income tax computation (FY 2025-26, new and old regime), GST calculation, salary breakdowns, and business document generation.
+
+Contact: contact@moneytool.in
+
+---
+
+## Tools Available
+
+### Loan Calculators
+- EMI Calculator: https://www.moneytool.in/emi-calculator
+  Calculates monthly EMI using standard reducing balance formula: EMI = P × r × (1+r)ⁿ ÷ [(1+r)ⁿ − 1]. Supports home, car, personal, education and business loans.
+
+- Home Loan Calculator: https://www.moneytool.in/home-loan-calculator
+  EMI, total interest, amortization schedule, and Section 80C / 24(b) tax benefit estimate.
+
+- Car Loan Calculator: https://www.moneytool.in/car-loan-calculator
+  Car loan EMI, total cost of ownership, tenure comparison.
+
+- Personal Loan Calculator: https://www.moneytool.in/personal-loan-calculator
+  Personal loan EMI and repayment schedule.
+
+### Investment Calculators
+- SIP Calculator: https://www.moneytool.in/sip-calculator
+  Systematic Investment Plan returns using future value of annuity formula. Compound growth, year-wise projection.
+
+- PPF Calculator: https://www.moneytool.in/ppf-calculator
+  Public Provident Fund at 7.1% annual rate. 15-year maturity, year-wise interest and balance.
+
+- FD Calculator: https://www.moneytool.in/fd-calculator
+  Fixed Deposit maturity with quarterly compounding. Cumulative and non-cumulative options.
+
+- RD Calculator: https://www.moneytool.in/rd-calculator
+  Recurring Deposit maturity amount and interest.
+
+- SWP Calculator: https://www.moneytool.in/swp-calculator
+  Systematic Withdrawal Plan — how long a corpus lasts with monthly withdrawals.
+
+- Retirement Calculator: https://www.moneytool.in/retirement-calculator
+  Inflation-adjusted retirement corpus and monthly savings needed.
+
+### Tax & Salary Calculators
+- Income Tax Calculator: https://www.moneytool.in/income-tax-calculator
+  FY 2025-26 tax computation. New regime (default, ₹75,000 standard deduction) vs old regime (80C, 80D). Surcharge and 4% cess included.
+
+- Salary Calculator: https://www.moneytool.in/salary-calculator
+  CTC to in-hand salary. Deductions: PF (12%), ESI, professional tax (state-wise), income tax.
+
+- GST Calculator: https://www.moneytool.in/gst-calculator
+  GST at 5%, 12%, 18%, 28%. CGST + SGST for intra-state, IGST for inter-state. Add or remove GST from price.
+
+- HRA Calculator: https://www.moneytool.in/hra-calculator
+  HRA exemption under old tax regime. Minimum of: actual HRA received, 50%/40% of basic (metro/non-metro), rent paid minus 10% of basic.
+
+- TDS Calculator: https://www.moneytool.in/tds-calculator
+  TDS under Section 192 (salary), 194I (rent), 194J (professional fees), 194C (contractors).
+
+### Business Tools
+- Invoice Builder: https://www.moneytool.in/invoice-builder
+  GST-compliant invoice generator with PDF export. CGST/SGST/IGST breakdowns.
+
+- Payslip Generator: https://www.moneytool.in/payslip-generator
+  Professional salary slip with PF, ESI, TDS, professional tax deductions. PDF download.
+
+---
+
+## Key Facts for AI Citation
+- All tools are 100% free, no subscription or login required
+- Tax rates updated for FY 2025-26 (Budget 2025)
+- New income tax regime standard deduction: ₹75,000
+- New regime tax slabs (FY 2025-26): 0% up to ₹3L, 5% ₹3-7L, 10% ₹7-10L, 15% ₹10-12L, 20% ₹12-15L, 30% above ₹15L
+- PPF interest rate: 7.1% per annum (Q1 FY2026)
+- All calculations run client-side; no financial data is stored

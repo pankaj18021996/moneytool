@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "SIP Calculator India 2026 – Mutual Fund Returns | MoneyTool",
   description:
     "Calculate your mutual fund SIP returns instantly. See how your monthly investments grow with compound returns over time. Free online SIP calculator for India.",
-  alternates: { canonical: "https://www.moneytool.in/calculators/sip-calculator" },
+  alternates: { canonical: "https://www.moneytool.in/sip-calculator" },
   openGraph: {
     title: "SIP Calculator India 2026 – MoneyTool",
     description: "Calculate SIP maturity value, returns, and year-wise growth for mutual funds.",
@@ -57,7 +57,22 @@ const jsonLd = {
 export default function SIPCalculatorPage() {
   return (
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
-      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"SIP Calculator",url:"https://www.moneytool.in/sip-calculator"}]} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.moneytool.in" },
+          { "@type": "ListItem", position: 2, name: "SIP Calculator", item: "https://www.moneytool.in/sip-calculator" },
+        ]
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org", "@type": "WebApplication",
+        name: "SIP Calculator India", url: "https://www.moneytool.in/sip-calculator",
+        description: "Free SIP calculator for mutual fund investments in India. Calculate SIP returns, maturity value and year-wise growth instantly.",
+        applicationCategory: "FinanceApplication", operatingSystem: "Web Browser",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+        isAccessibleForFree: true, inLanguage: "en-IN",
+        provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+      }) }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

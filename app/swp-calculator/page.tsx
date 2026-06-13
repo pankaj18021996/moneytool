@@ -10,6 +10,22 @@ const faqs = [
   { question: "Can SWP replace pension income?", answer: "SWP can provide regular cash flow, but factor in inflation, taxes, and required income before relying on it fully." },
   { question: "Is the withdrawal amount guaranteed?", answer: "No. The value depends on corpus performance and return rate. Higher returns help sustain withdrawals longer." },
 ];
+
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "SWP Calculator India",
+  url: "https://www.moneytool.in/swp-calculator",
+  description: "Free SWP (Systematic Withdrawal Plan) calculator for India. Calculate how long your mutual fund corpus will last with monthly withdrawals.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["Monthly withdrawal planning", "Corpus depletion projection", "Year-wise balance tracking", "Inflation-adjusted planning"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
 export default function Page() {
-  return (<><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"SWP Calculator",url:"https://www.moneytool.in/swp-calculator"}]} /><SwpCalculatorClient /></>);
+  return (<><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} /><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"SWP Calculator",url:"https://www.moneytool.in/swp-calculator"}]} /><SwpCalculatorClient /></>);
 }

@@ -1,14 +1,6 @@
 export const metadata = {
   title: "Personal Loan Calculator India — Calculate Personal Loan EMI",
   description: "Calculate EMI for personal loans instantly. Compare interest rates from top banks like HDFC, SBI, ICICI. Free personal loan calculator with amortization schedule.",
-  keywords: [
-    "personal loan calculator",
-    "personal loan calculator india",
-    "personal loan emi calculator",
-    "instant personal loan",
-    "loan emi calculator",
-    "personal loan rates",
-  ],
   openGraph: {
     title: "Personal Loan Calculator India — Calculate Personal Loan EMI",
     description: "Calculate your personal loan EMI instantly. Compare rates from HDFC, SBI, ICICI, Axis and Kotak banks.",

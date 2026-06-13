@@ -18,20 +18,7 @@ export const metadata: Metadata = {
   },
   description:
     "15+ free financial tools — EMI, SIP, FD, PPF, GST, Income Tax, Salary & Invoice Builder. No login required. Instant results. Made for India.",
-  keywords: [
-    "emi calculator india",
-    "sip calculator",
-    "fd calculator",
-    "gst calculator",
-    "salary calculator india",
-    "income tax calculator india",
-    "ppf calculator",
-    "free financial tools india",
-  ],
   metadataBase: new URL("https://www.moneytool.in"),
-  verification: {
-    google: "",
-  },
   openGraph: {
     type: "website",
     locale: "en_IN",

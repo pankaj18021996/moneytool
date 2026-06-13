@@ -1,9 +1,10 @@
 User-agent: *
 Allow: /
+
 Disallow: /admin
 Disallow: /private
-
-Sitemap: https://www.moneytool.in/sitemap.xml
+Disallow: /_next/
+Disallow: /api/
 
 # Crawl-delay for aggressive bots
 User-agent: Googlebot
@@ -11,3 +12,19 @@ Crawl-delay: 0
 
 User-agent: Bingbot
 Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://www.moneytool.in/sitemap.xml
+
+# AI Crawlers — allowed for llms.txt indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /

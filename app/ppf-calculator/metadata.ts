@@ -1,14 +1,6 @@
 export const metadata = {
   title: "PPF Calculator India — Public Provident Fund Calculator & Returns",
   description: "Estimate your PPF maturity amount, tax-free returns, and long-term savings with our free India PPF calculator.",
-  keywords: [
-    "ppf calculator",
-    "ppf calculator india",
-    "ppf investment calculator",
-    "public provident fund calculator",
-    "ppf maturity calculator",
-    "ppf returns calculator",
-  ],
   openGraph: {
     title: "Free PPF Calculator — Calculate PPF Returns & Maturity Amount",
     description: "Plan your PPF investment and calculate maturity amount instantly.",

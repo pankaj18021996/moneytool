@@ -71,16 +71,41 @@ const jsonLd = {
   })),
 };
 
-const productLd = {
+const webAppLd = {
   "@context": "https://schema.org",
-  "@type": "FinancialProduct",
-  name: "EMI Calculator",
-  description: "Interactive EMI calculator for home, car, personal and education loans. Calculates monthly EMI, total interest and amortization schedule.",
+  "@type": "WebApplication",
+  name: "EMI Calculator India",
+  url: "https://www.moneytool.in/emi-calculator",
+  description: "Free EMI calculator for home loans, car loans, personal loans and education loans in India. Calculates monthly EMI, total interest and amortization schedule instantly.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+  },
+  featureList: [
+    "Calculate EMI for any loan type",
+    "View month-by-month amortization schedule",
+    "Compare principal vs interest breakdown",
+    "No login or signup required",
+  ],
   provider: {
     "@type": "Organization",
     name: "MoneyTool",
-    url: "https://www.moneytool.in"
-  }
+    url: "https://www.moneytool.in",
+  },
+  inLanguage: "en-IN",
+  isAccessibleForFree: true,
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.moneytool.in" },
+    { "@type": "ListItem", position: 2, name: "EMI Calculator", item: "https://www.moneytool.in/emi-calculator" },
+  ],
 };
 
 export default function EMICalculatorPage() {
@@ -88,13 +113,9 @@ export default function EMICalculatorPage() {
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
 
       {/* JSON-LD */}
-      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"EMI Calculator",url:"https://www.moneytool.in/emi-calculator"}]} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"EMI Calculator",url:"https://www.moneytool.in/emi-calculator"}]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }} />
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
 

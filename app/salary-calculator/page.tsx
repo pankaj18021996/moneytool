@@ -49,9 +49,27 @@ const jsonLd = {
   })),
 };
 
+
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Salary Calculator India — CTC to In-Hand",
+  url: "https://www.moneytool.in/salary-calculator",
+  description: "Free salary calculator for India. Calculate in-hand salary from CTC with PF, ESI, professional tax, income tax, and all statutory deductions for FY 2025-26.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["CTC to in-hand salary", "PF and ESI deductions", "Professional tax by state", "New vs old tax regime comparison"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
 export default function SalaryCalculatorPage() {
   return (
-    <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} />
+      <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
       <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"Salary Calculator",url:"https://www.moneytool.in/salary-calculator"}]} />
       <script
         type="application/ld+json"
@@ -220,5 +238,6 @@ export default function SalaryCalculatorPage() {
 
       </div>
     </div>
+    </>
   );
 }

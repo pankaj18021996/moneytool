@@ -71,9 +71,27 @@ const jsonLd = {
   })),
 };
 
+
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "FD Calculator India",
+  url: "https://www.moneytool.in/fd-calculator",
+  description: "Free fixed deposit calculator for India. Calculate FD maturity amount, interest earned, and effective yield for cumulative and non-cumulative deposits.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["Quarterly compounding", "Cumulative and non-cumulative", "TDS deduction calculation", "Effective yield comparison"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
 export default function FDCalculatorPage() {
   return (
-    <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} />
+      <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
       <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"FD Calculator",url:"https://www.moneytool.in/fd-calculator"}]} />
       <script
         type="application/ld+json"
@@ -234,5 +252,6 @@ export default function FDCalculatorPage() {
 
       </div>
     </div>
+    </>
   );
 }

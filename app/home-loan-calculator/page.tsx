@@ -12,6 +12,22 @@ const faqs = [
   { question: "Can I prepay my home loan?", answer: "Yes. RBI mandates zero prepayment charges on floating-rate home loans. Fixed-rate loans may have 2-5% penalties." },
   { question: "What documents are needed?", answer: "Salary slip, ITR, bank statements, Aadhaar, PAN, property documents, and credit report." },
 ];
+
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Home Loan Calculator India",
+  url: "https://www.moneytool.in/home-loan-calculator",
+  description: "Free home loan EMI calculator for India. Calculate home loan EMI, total interest payable, amortization schedule, and tax benefit under Section 80C and 24(b).",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["EMI calculation with amortization", "Tax benefit under Section 80C and 24b", "Part prepayment impact", "Bank rate comparison"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
 export default function Page() {
-  return (<><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"Home Loan Calculator",url:"https://www.moneytool.in/home-loan-calculator"}]} /><HomeLoanCalculatorClient /></>);
+  return (<><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} /><FAQSchema items={faqs} /><BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"Home Loan Calculator",url:"https://www.moneytool.in/home-loan-calculator"}]} /><HomeLoanCalculatorClient /></>);
 }
