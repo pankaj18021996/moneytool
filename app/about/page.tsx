@@ -23,10 +23,39 @@ const organizationSchema = {
   description: "Free financial calculators and tools for India. EMI, SIP, Income Tax, GST, Invoice Builder and more.",
   email: "contact@moneytool.in",
   foundingDate: "2025",
+  founder: {
+    "@type": "Person",
+    name: "Pankaj Balecha",
+    jobTitle: "Founder",
+    url: "https://www.moneytool.in/about",
+    knowsAbout: ["Financial Technology", "Software Development", "Personal Finance India"],
+  },
   areaServed: "IN",
   knowsAbout: [
     "Financial Planning", "EMI Calculation", "SIP Returns", "Income Tax India",
     "GST Calculation", "Salary Calculation", "PPF Returns", "Fixed Deposit Returns",
+  ],
+};
+
+// ✅ Person schema — key for E-E-A-T on YMYL finance site
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Pankaj Balecha",
+  jobTitle: "Founder, MoneyTool",
+  url: "https://www.moneytool.in/about",
+  worksFor: {
+    "@type": "Organization",
+    name: "MoneyTool",
+    url: "https://www.moneytool.in",
+  },
+  knowsAbout: [
+    "Financial Calculators",
+    "EMI Calculation",
+    "Income Tax India",
+    "SIP and Mutual Funds",
+    "GST Compliance",
+    "Web Application Development",
   ],
 };
 
@@ -50,6 +79,7 @@ export default function About() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <main style={{ background: "#0a0a0a", minHeight: "100vh", color: "#f4f4f5", fontFamily: "'DM Sans', sans-serif" }}>
@@ -68,6 +98,78 @@ export default function About() {
           </p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
+
+            {/* ✅ FOUNDER SECTION — new addition for E-E-A-T */}
+            <section style={{
+              background: "#111113",
+              border: "1px solid #27272a",
+              borderRadius: 16,
+              padding: 32,
+            }}>
+              <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24, color: "#10b981" }}>
+                Meet the Founder
+              </h2>
+              <div style={{ display: "flex", gap: 24, alignItems: "flex-start", flexWrap: "wrap" }}>
+
+                {/* Avatar placeholder */}
+                <div style={{
+                  width: 72, height: 72, borderRadius: "50%", flexShrink: 0,
+                  background: "linear-gradient(135deg, #10b981, #059669)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 28, fontWeight: 800, color: "#fff",
+                }}>
+                  PB
+                </div>
+
+                <div style={{ flex: 1, minWidth: 220 }}>
+                  <h3 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 4 }}>
+                    Pankaj Balecha
+                  </h3>
+                  <p style={{ fontSize: 13, color: "#10b981", fontWeight: 600, marginBottom: 16 }}>
+                    Founder — MoneyTool
+                  </p>
+                  <p style={{ fontSize: 15, color: "#a1a1aa", lineHeight: 1.8, marginBottom: 12 }}>
+                    Pankaj Balecha is a technology and finance professional based in India. With a background
+                    spanning software development and business finance, he built MoneyTool to solve a problem
+                    he personally encountered — finding accurate, no-nonsense financial calculators that work
+                    correctly for Indian tax rules, loan structures, and investment products.
+                  </p>
+                  <p style={{ fontSize: 15, color: "#a1a1aa", lineHeight: 1.8, marginBottom: 12 }}>
+                    Most financial calculator websites in India are cluttered, require sign-ups, show
+                    misleading results, or are built for a global audience without accounting for India-specific
+                    rules like HRA exemption, Section 80C deductions, GST splits, or the EPF calculation
+                    methodology. MoneyTool was built to fix that — one calculator at a time.
+                  </p>
+                  <p style={{ fontSize: 15, color: "#a1a1aa", lineHeight: 1.8 }}>
+                    Every formula on this site has been cross-verified against RBI guidelines, the Income
+                    Tax Act, GSTN official documentation, and AMFI standards. When rules change — after a
+                    Union Budget or an RBI policy update — the calculators are updated to reflect the new
+                    reality, not the old one.
+                  </p>
+
+                  {/* Credentials strip */}
+                  <div style={{
+                    display: "flex", flexWrap: "wrap", gap: 10, marginTop: 20,
+                  }}>
+                    {[
+                      "🏗️ Tech & Finance Background",
+                      "📊 Built 15+ Financial Tools",
+                      "🇮🇳 India-focused Formulas",
+                      "🔄 Updated Every Budget Season",
+                    ].map((tag) => (
+                      <span key={tag} style={{
+                        fontSize: 12, color: "#10b981",
+                        background: "rgba(16,185,129,0.08)",
+                        border: "1px solid rgba(16,185,129,0.2)",
+                        padding: "4px 12px", borderRadius: 999, fontWeight: 500,
+                      }}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
 
             {/* Mission */}
             <section>
@@ -171,7 +273,7 @@ export default function About() {
             <section style={{ borderTop: "1px solid #27272a", paddingTop: 32 }}>
               <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16, color: "#10b981" }}>Get in Touch</h2>
               <p style={{ fontSize: 15, color: "#a1a1aa", lineHeight: 1.8, marginBottom: 20 }}>
-                Found an error in a calculation? Have a suggestion for a new tool? We read every email and take accuracy feedback seriously.
+                Found an error in a calculation? Have a suggestion for a new tool? Pankaj reads every email and takes accuracy feedback seriously.
               </p>
               <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 12, padding: 20, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
                 <div>
