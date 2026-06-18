@@ -1,137 +1,170 @@
-"use client";
-import React from "react";
-import Link from "next/link";
+import type { Metadata } from "next";
+import FAQSchema from "../components/FAQSchema";
+import { BreadcrumbSchema } from "../components/Breadcrumb";
+import EducationLoanCalculatorPage from "./EducationLoanClient";
 
-const fmt = (n:number) => "₹" + Math.round(n).toLocaleString("en-IN");
+export const metadata: Metadata = {
+  title: "Education Loan EMI Calculator India 2026 | MoneyTool",
+  description:
+    "Free education loan EMI calculator for India. Calculate monthly EMI, total interest, and amortization schedule for student loans. Compare loan amounts from ₹50,000 to ₹50 lakh.",
+  alternates: { canonical: "https://www.moneytool.in/education-loan-calculator" },
+  openGraph: {
+    title: "Education Loan EMI Calculator India 2026",
+    description: "Calculate education loan EMI instantly. See monthly payments, total interest, and full amortization schedule.",
+    type: "website",
+    url: "https://www.moneytool.in/education-loan-calculator",
+    images: [{ url: "https://www.moneytool.in/og-image.png", width: 1200, height: 630 }],
+  },
+};
 
-export default function EducationLoanCalculatorPage(){
+const faqs = [
+  {
+    question: "What is the interest rate on education loans in India?",
+    answer: "Education loan interest rates in India typically range from 8.5% to 15% per annum depending on the lender, loan amount, course, and institution. Government banks (SBI, Bank of Baroda, Canara Bank) generally offer lower rates (8.5–11%) than private banks and NBFCs. Some government schemes offer subsidised rates for economically weaker sections. Female students get an additional 0.5% concession from most public sector banks.",
+  },
+  {
+    question: "What is a moratorium period in an education loan?",
+    answer: "The moratorium period is the repayment holiday given during the course duration plus 6–12 months after course completion (or 6 months after getting a job, whichever is earlier). During this period, you are not required to pay EMIs. However, interest continues to accrue during the moratorium — either as simple interest paid monthly, or capitalised to the principal and repaid with EMIs after the moratorium ends.",
+  },
+  {
+    question: "What is the maximum education loan amount available in India?",
+    answer: "For studies in India, most public sector banks provide up to ₹10 lakh without collateral and up to ₹20–75 lakh with collateral (property, FD, LIC policy). For studies abroad, loans up to ₹1.5 crore are available with collateral from major public sector banks. Private banks and NBFCs may offer higher amounts. The loan amount typically covers tuition fees, accommodation, books, and other course-related expenses.",
+  },
+  {
+    question: "Is education loan interest tax deductible?",
+    answer: "Yes. Under Section 80E of the Income Tax Act, the interest paid on an education loan is fully deductible from taxable income for up to 8 consecutive years from the year repayment starts. There is no upper limit on the deduction amount. This benefit is available under both the old and new tax regimes, making it one of the few deductions available under the new regime.",
+  },
+  {
+    question: "Can I prepay my education loan early?",
+    answer: "Yes. Most banks allow prepayment of education loans without any foreclosure penalty, especially for loans taken by individuals (not companies). Making prepayments reduces the outstanding principal and saves significant interest over the loan tenure. If you receive a salary hike or bonus, directing it toward education loan prepayment is a smart financial move given the relatively high interest rates.",
+  },
+  {
+    question: "What documents are needed for an education loan?",
+    answer: "Typically required: admission letter from the institution, fee structure, mark sheets of previous qualifying exams, income proof of co-applicant (parent/guardian), address proof, identity proof (Aadhaar, PAN), bank statements (last 6 months), and collateral documents if the loan exceeds the no-collateral limit. Some banks may also require a confirmed fee receipt or university acceptance letter.",
+  },
+];
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Education Loan EMI Calculator India",
+  url: "https://www.moneytool.in/education-loan-calculator",
+  description: "Free education loan EMI calculator for India. Calculate monthly EMI and total interest for student loans with amortization schedule.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["Monthly EMI calculation", "Total interest breakdown", "Full amortization schedule", "Moratorium period guidance"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
+export default function Page() {
   return (
-    <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", color: "#f4f4f5" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
-        <div style={{ display: "flex", gap: 8, fontSize: 13, color: "#71717a", marginBottom: 24 }}>
-          <Link href="/" style={{ color: "#71717a", textDecoration: "none" }}>Home</Link>
-          <span>›</span>
-          <span>Education Loan Calculator</span>
-        </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <FAQSchema items={faqs} />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "https://www.moneytool.in" },
+        { name: "Education Loan Calculator", url: "https://www.moneytool.in/education-loan-calculator" },
+      ]} />
 
-        <h1 style={{ fontSize: 32, fontWeight: 800, marginBottom: 10, color: "#f4f4f5" }}>Education Loan Calculator India</h1>
-        <p style={{ color: "#a1a1aa", fontSize: 16, marginBottom: 32, maxWidth: 680 }}>Estimate your education loan EMI and view amortization schedule.</p>
+      {/* Client component — calculator widget */}
+      <EducationLoanCalculatorPage />
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 24, marginBottom: 48 }}>
-          <EducationLoanCalculatorClient />
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div style={{ background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#10b981", marginBottom: 12 }}>💡 Tips</h3>
-              <p style={{ fontSize: 13, color: "#a1a1aa" }}>Education loans often have moratoriums; check lender terms for interest accrual during study period.</p>
-            </div>
-          </div>
-        </div>
+      {/* ✅ SEO Content Block */}
+      <section style={{ maxWidth: "860px", margin: "0 auto", padding: "48px 24px", color: "#a1a1aa" }}>
 
-      </div>
-    </div>
-  );
-}
+        <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#f4f4f5", marginBottom: "12px" }}>
+          Education Loan EMI Calculator India — Student Loan Planning Tool
+        </h2>
+        <p style={{ lineHeight: "1.8", marginBottom: "16px" }}>
+          Use this free education loan EMI calculator to plan your student loan repayment before you apply. Enter
+          the loan amount, interest rate, and tenure — the calculator instantly shows your monthly EMI, total
+          interest payable, total repayment amount, and a complete month-by-month amortization schedule.
+        </p>
+        <p style={{ lineHeight: "1.8", marginBottom: "24px" }}>
+          Education loans in India have a unique feature called the moratorium period — you are not required to
+          repay during the course and for 6–12 months after graduation. However, interest continues to accrue
+          during this period. Use this calculator to understand the actual repayment burden after the moratorium
+          ends so you can plan your finances before and after graduation.
+        </p>
 
-function EducationLoanCalculatorClient(){
-  const [amount, setAmount] = React.useState(1000000);
-  const [rate, setRate] = React.useState(10.0);
-  const [tenure, setTenure] = React.useState(120);
-
-  const mr = rate / 1200;
-  const emi = (amount * mr * Math.pow(1 + mr, tenure)) / (Math.pow(1 + mr, tenure) - 1);
-  const totalPay = emi * tenure;
-  const totalInt = totalPay - amount;
-
-  const [showSched, setShowSched] = React.useState(false);
-  const [page, setPage] = React.useState(0);
-
-  const schedule = React.useMemo(() => {
-    const rows:any[] = [];
-    let bal = amount;
-    for(let m=1;m<=tenure && bal>0.5;m++){
-      const interest = bal * mr;
-      const principal = Math.min(emi - interest, bal);
-      bal = Math.max(0, bal - principal);
-      rows.push({ month: m, emi: interest+principal, prin: principal, int: interest, bal });
-    }
-    return rows;
-  },[amount,mr,tenure,emi]);
-
-  const PER = 12;
-  const totalPages = Math.ceil(schedule.length / PER) || 1;
-  const pageRows = schedule.slice(page*PER, (page+1)*PER);
-
-  return (
-    <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24, marginBottom: 16 }}>
-      <div style={{ marginBottom: 18 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-          <span style={{ fontSize: 13, color: "#a1a1aa" }}>Loan Amount</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{fmt(amount)}</span>
-        </div>
-        <input type="range" min="50000" max="5000000" step="5000" value={amount} onChange={e=>setAmount(Number(e.target.value))} style={{ width: "100%", accentColor: "#10b981" }} />
-      </div>
-
-      <div style={{ marginBottom: 24 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-          <span style={{ fontSize: 13, color: "#a1a1aa" }}>Interest Rate (%)</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{rate.toFixed(2)}%</span>
-        </div>
-        <input type="range" min="7" max="15" step="0.1" value={rate} onChange={e=>setRate(Number(e.target.value))} style={{ width: "100%", accentColor: "#10b981" }} />
-      </div>
-
-      <div style={{ marginBottom: 20 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-          <span style={{ fontSize: 13, color: "#a1a1aa" }}>Tenure (Months)</span>
-          <span style={{ fontSize: 14, fontWeight: 700 }}>{Math.floor(tenure/12)}yr {tenure%12}mo</span>
-        </div>
-        <input type="range" min="12" max="180" step="1" value={tenure} onChange={e=>setTenure(Number(e.target.value))} style={{ width: "100%", accentColor: "#10b981" }} />
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10 }}>
-        {[{ label: "Monthly EMI", value: fmt(emi), color: "#10b981" },{ label: "Total Interest", value: fmt(totalInt), color: "#f97316" },{ label: "Total Payment", value: fmt(totalPay), color: "#f4f4f5" }].map(s=> (
-          <div key={s.label} style={{ background: "#18181b", borderRadius: 12, padding: "14px 10px", textAlign: "center" }}>
-            <p style={{ fontSize: 10, color: "#71717a", marginBottom: 4 }}>{s.label}</p>
-            <p style={{ fontSize: 15, fontWeight: 700, color: s.color }}>{s.value}</p>
-          </div>
-        ))}
-      </div>
-
-      <div style={{ border: "1px solid #27272a", borderRadius: 16, overflow: "hidden", marginTop: 12 }}>
-        <button onClick={()=>{ setShowSched(!showSched); setPage(0); }} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 20px", background: "#111113", border: "none", cursor: "pointer", fontSize: 14, fontWeight: 500, color: "#f4f4f5" }}>
-          <span>📋 Amortization Schedule</span>
-          <span style={{ color: "#71717a", display: "inline-block", transform: showSched ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>▾</span>
-        </button>
-        {showSched && (
-          <div style={{ background: "#111113", borderTop: "1px solid #27272a", padding: "16px 12px" }}>
-            <div style={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-                <thead>
-                  <tr style={{ borderBottom: "2px solid #27272a" }}>
-                    {["Month","EMI","Principal","Interest","Balance"].map(h => <th key={h} style={{ padding: "8px 6px", textAlign: "right", fontWeight: 500, color: "#71717a", fontSize: 11 }}>{h}</th>)}
-                  </tr>
-                </thead>
-                <tbody>
-                  {pageRows.map((r,i)=> (
-                    <tr key={r.month} style={{ borderBottom: "1px solid #1f1f22", background: i%2 ? "#18181b" : "transparent" }}>
-                      <td style={{ padding: "7px 6px", textAlign: "right", color: "#71717a" }}>{r.month}</td>
-                      <td style={{ padding: "7px 6px", textAlign: "right", color: "#f4f4f5" }}>{fmt(r.emi)}</td>
-                      <td style={{ padding: "7px 6px", textAlign: "right", color: "#10b981" }}>{fmt(r.prin)}</td>
-                      <td style={{ padding: "7px 6px", textAlign: "right", color: "#f97316" }}>{fmt(r.int)}</td>
-                      <td style={{ padding: "7px 6px", textAlign: "right", color: "#a1a1aa" }}>{fmt(r.bal)}</td>
-                    </tr>
+        <h2 style={{ fontSize: "20px", fontWeight: 700, color: "#f4f4f5", margin: "32px 0 12px" }}>
+          Education Loan EMI — Examples at Different Amounts
+        </h2>
+        <div style={{ overflowX: "auto", marginBottom: "24px" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
+            <thead>
+              <tr style={{ background: "#111113" }}>
+                {["Loan Amount", "Interest Rate", "Tenure", "Monthly EMI", "Total Interest", "Total Repayment"].map((h) => (
+                  <th key={h} style={{ padding: "10px 14px", textAlign: "left", color: "#10b981", fontWeight: 600, borderBottom: "1px solid #27272a" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["₹5 lakh", "10%", "5 years", "₹10,624", "₹1.37 lakh", "₹6.37 lakh"],
+                ["₹10 lakh", "10%", "7 years", "₹16,601", "₹3.93 lakh", "₹13.93 lakh"],
+                ["₹15 lakh", "11%", "7 years", "₹26,035", "₹6.87 lakh", "₹21.87 lakh"],
+                ["₹20 lakh", "11%", "10 years", "₹27,551", "₹13.06 lakh", "₹33.06 lakh"],
+                ["₹40 lakh", "9.5%", "12 years", "₹43,956", "₹23.30 lakh", "₹63.30 lakh"],
+              ].map((row, i) => (
+                <tr key={i} style={{ borderBottom: "1px solid #27272a" }}>
+                  {row.map((cell, j) => (
+                    <td key={j} style={{ padding: "10px 14px", color: j === 3 ? "#10b981" : j === 0 ? "#f4f4f5" : "#a1a1aa", fontWeight: j === 0 || j === 3 ? 600 : 400 }}>{cell}</td>
                   ))}
-                </tbody>
-              </table>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12, paddingTop: 12, borderTop: "1px solid #27272a" }}>
-              <button disabled={page===0} onClick={()=>setPage(p=>p-1)} style={{ fontSize: 12, padding: "6px 14px", borderRadius: 8, border: "1px solid #27272a", background: "#18181b", color: page===0 ? "#52525b" : "#a1a1aa", cursor: page===0 ? "not-allowed" : "pointer" }}>← Prev</button>
-              <span style={{ fontSize: 11, color: "#71717a" }}>{page+1} / {totalPages}</span>
-              <button disabled={page>=totalPages-1} onClick={()=>setPage(p=>p+1)} style={{ fontSize: 12, padding: "6px 14px", borderRadius: 8, border: "1px solid #27272a", background: "#18181b", color: page>=totalPages-1 ? "#52525b" : "#a1a1aa", cursor: page>=totalPages-1 ? "not-allowed" : "pointer" }}>Next →</button>
-            </div>
-          </div>
-        )}
-      </div>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-    </div>
+        <h2 style={{ fontSize: "20px", fontWeight: 700, color: "#f4f4f5", margin: "32px 0 12px" }}>
+          Top Banks for Education Loans in India (2026)
+        </h2>
+        <div style={{ overflowX: "auto", marginBottom: "24px" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
+            <thead>
+              <tr style={{ background: "#111113" }}>
+                {["Bank", "Interest Rate", "Max Loan (India)", "Max Loan (Abroad)", "Collateral Required"].map((h) => (
+                  <th key={h} style={{ padding: "10px 14px", textAlign: "left", color: "#10b981", fontWeight: 600, borderBottom: "1px solid #27272a" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["SBI", "8.65–10.65%", "₹10 lakh (no collateral)", "₹1.5 crore", "Above ₹7.5 lakh"],
+                ["Bank of Baroda", "9.15–11.15%", "₹10 lakh (no collateral)", "₹1.5 crore", "Above ₹7.5 lakh"],
+                ["Canara Bank", "9.25–11.25%", "₹10 lakh (no collateral)", "₹1 crore", "Above ₹7.5 lakh"],
+                ["HDFC Credila", "10.50–14.00%", "₹20 lakh", "₹1.5 crore", "Flexible"],
+                ["Avanse", "11.00–14.50%", "₹15 lakh", "₹75 lakh", "Flexible"],
+              ].map((row, i) => (
+                <tr key={i} style={{ borderBottom: "1px solid #27272a" }}>
+                  {row.map((cell, j) => (
+                    <td key={j} style={{ padding: "10px 14px", color: j === 0 ? "#f4f4f5" : "#a1a1aa", fontWeight: j === 0 ? 600 : 400 }}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style={{ fontSize: "13px", color: "#52525b", marginBottom: "24px" }}>
+          * Rates are indicative and subject to change. Always check the lender's official website for current rates.
+        </p>
+
+        <h2 style={{ fontSize: "20px", fontWeight: 700, color: "#f4f4f5", margin: "32px 0 12px" }}>
+          Frequently Asked Questions
+        </h2>
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          {faqs.map((faq, i) => (
+            <div key={i}>
+              <h3 style={{ fontSize: "16px", fontWeight: 600, color: "#f4f4f5", marginBottom: "6px" }}>{faq.question}</h3>
+              <p style={{ lineHeight: "1.7", fontSize: "15px" }}>{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
