@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+// @ts-ignore: allow importing global CSS without type declarations
+import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Script from "next/script";

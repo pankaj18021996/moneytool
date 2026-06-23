@@ -1,20 +1,30 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // ✅ Detect screen width — no Tailwind needed
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const navItems = [
-    { href: "/calculators", label: "Calculators" },
-    { href: "/business-tools", label: "Business Tools" },
+    { href: "/", label: "Home" },
     { href: "/blog", label: "Blog" },
+    { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
 
   const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(href + "/");
   };
 
@@ -37,11 +47,14 @@ export default function Navbar() {
         justifyContent: "space-between",
         height: 64,
       }}>
+
+        {/* Logo */}
         <Link href="/" style={{
           display: "flex",
           alignItems: "center",
           gap: 10,
           textDecoration: "none",
+          flexShrink: 0,
         }}>
           <div style={{
             width: 32, height: 32, borderRadius: 8,
@@ -54,57 +67,72 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-7">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href} style={{
-              color: isActive(item.href) ? "#10b981" : "#a1a1aa",
-              fontSize: 14,
-              fontWeight: isActive(item.href) ? 600 : 500,
-              textDecoration: "none",
-              borderBottom: isActive(item.href) ? "2px solid #10b981" : "none",
-              paddingBottom: isActive(item.href) ? 2 : 0,
-            }}>
-              {item.label}
-            </Link>
-          ))}
-        </div>
+        {/* ✅ Desktop nav — only shown on screens >= 768px */}
+        {!isMobile && (
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 32,
+          }}>
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href} style={{
+                color: isActive(item.href) ? "#10b981" : "#a1a1aa",
+                fontSize: 14,
+                fontWeight: isActive(item.href) ? 600 : 500,
+                textDecoration: "none",
+                borderBottom: isActive(item.href) ? "2px solid #10b981" : "2px solid transparent",
+                paddingBottom: 2,
+                transition: "color 0.2s",
+              }}>
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        )}
 
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden"
-          style={{
-            background: "none",
-            border: "none",
-            color: "#f4f4f5",
-            fontSize: 24,
-            cursor: "pointer",
-            padding: 8,
-          }}
-        >
-          ☰
-        </button>
+        {/* ✅ Hamburger — only shown on mobile */}
+        {isMobile && (
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              background: "none",
+              border: "1px solid #27272a",
+              borderRadius: 8,
+              color: "#f4f4f5",
+              fontSize: 20,
+              cursor: "pointer",
+              padding: "6px 10px",
+              lineHeight: 1,
+            }}
+          >
+            {mobileMenuOpen ? "✕" : "☰"}
+          </button>
+        )}
       </div>
 
-      {mobileMenuOpen && (
+      {/* ✅ Mobile dropdown menu */}
+      {isMobile && mobileMenuOpen && (
         <div style={{
           borderTop: "1px solid #27272a",
           backgroundColor: "#111113",
-          padding: "16px 24px",
+          padding: "8px 24px 16px",
         }}>
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} style={{
-              display: "block",
-              color: isActive(item.href) ? "#10b981" : "#a1a1aa",
-              fontSize: 14,
-              fontWeight: isActive(item.href) ? 600 : 500,
-              textDecoration: "none",
-              padding: "12px 0",
-              borderLeft: isActive(item.href) ? "3px solid #10b981" : "none",
-              paddingLeft: isActive(item.href) ? 12 : 0,
-            }}
+            <Link
+              key={item.href}
+              href={item.href}
               onClick={() => setMobileMenuOpen(false)}
+              style={{
+                display: "block",
+                color: isActive(item.href) ? "#10b981" : "#a1a1aa",
+                fontSize: 15,
+                fontWeight: isActive(item.href) ? 600 : 500,
+                textDecoration: "none",
+                padding: "12px 0",
+                borderBottom: "1px solid #27272a",
+              }}
             >
-              {item.label}
+              {isActive(item.href) ? "→ " : ""}{item.label}
             </Link>
           ))}
         </div>
