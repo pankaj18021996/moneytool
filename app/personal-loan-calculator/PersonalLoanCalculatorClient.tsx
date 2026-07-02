@@ -4,6 +4,24 @@ import Link from "next/link";
 
 const fmt = (n:number) => "₹" + Math.round(n).toLocaleString("en-IN");
 
+const bankRates: [string, string, string][] = [
+  ["SBI", "10.50% – 15.00%", "₹2,146"],
+  ["HDFC Bank", "10.50% – 21.00%", "₹2,146"],
+  ["ICICI Bank", "10.75% – 19.00%", "₹2,158"],
+  ["Axis Bank", "10.25% – 24.00%", "₹2,134"],
+  ["Kotak Mahindra", "10.99% – 20.00%", "₹2,170"],
+  ["Bajaj Finserv", "11.00% – 35.00%", "₹2,171"],
+];
+
+const faqs = [
+  { q: "What is the average personal loan interest rate in India?", a: "Most banks and NBFCs offer personal loans between 10.5% and 24% p.a., depending on your credit score, income and existing relationship with the bank." },
+  { q: "Do I need collateral for a personal loan?", a: "No. Personal loans are unsecured — no property, gold or asset needs to be pledged. Approval is based on income and CIBIL score." },
+  { q: "How fast is a personal loan disbursed?", a: "Most banks disburse within 24-72 hours if documents and credit score are in order. Some NBFCs offer same-day disbursal." },
+  { q: "What credit score do I need?", a: "A CIBIL score of 750+ gets you the best rates. Scores below 650 make approval difficult or come with much higher interest." },
+  { q: "Can I prepay a personal loan early?", a: "Yes, most lenders allow prepayment after 6-12 EMIs, usually with a 2-5% foreclosure charge on the outstanding amount." },
+  { q: "Is personal loan interest tax deductible?", a: "Only if the loan is used for business purposes or home renovation/purchase — then interest may qualify under Section 24(b) or as a business expense. Personal use (travel, wedding, etc.) gets no tax benefit." },
+];
+
 export default function PersonalLoanCalculatorPage(){
   return (
     <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", color: "#f4f4f5" }}>
@@ -15,16 +33,146 @@ export default function PersonalLoanCalculatorPage(){
         </div>
 
         <h1 style={{ fontSize: 32, fontWeight: 800, marginBottom: 10, color: "#f4f4f5" }}>Personal Loan Calculator India</h1>
-        <p style={{ color: "#a1a1aa", fontSize: 16, marginBottom: 32, maxWidth: 680 }}>Calculate personal loan EMI, total interest and view amortization schedule.</p>
+        <p style={{ color: "#a1a1aa", fontSize: 16, marginBottom: 32, maxWidth: 680 }}>Calculate your personal loan EMI, total interest and full repayment schedule instantly. Free, accurate, no signup required.</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 24, marginBottom: 48 }}>
           <PersonalLoanCalculatorClient />
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+
+            <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 12 }}>EMI Formula</h3>
+              <div style={{ background: "#18181b", borderRadius: 10, padding: 14, textAlign: "center", marginBottom: 12 }}>
+                <p style={{ fontSize: 13, color: "#a1a1aa", fontFamily: "monospace", lineHeight: 1.8 }}>
+                  EMI = P × r × (1+r)ⁿ<br />÷ [(1+r)ⁿ − 1]
+                </p>
+              </div>
+              <div style={{ fontSize: 12, color: "#71717a", lineHeight: 2 }}>
+                <p><span style={{ color: "#10b981" }}>P</span> = Loan amount</p>
+                <p><span style={{ color: "#10b981" }}>r</span> = Monthly interest rate</p>
+                <p><span style={{ color: "#10b981" }}>n</span> = Tenure in months</p>
+              </div>
+            </div>
+
             <div style={{ background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 16, padding: 20 }}>
-              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#10b981", marginBottom: 12 }}>💡 Tips</h3>
-              <p style={{ fontSize: 13, color: "#a1a1aa" }}>Personal loans have higher rates; consider shorter tenure to reduce interest.</p>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#10b981", marginBottom: 12 }}>💡 Quick Tips</h3>
+              {[
+                "Personal loans carry higher rates — compare 3+ lenders first",
+                "A shorter tenure saves significantly on total interest",
+                "Check your CIBIL score before applying",
+                "Watch for processing fees (often 1-3% of loan amount)",
+                "Avoid taking a new loan to repay an existing one",
+              ].map((tip, i) => (
+                <p key={i} style={{ display: "flex", gap: 8, fontSize: 12, color: "#a1a1aa", lineHeight: 1.7, marginBottom: 6 }}>
+                  <span style={{ color: "#10b981", flexShrink: 0 }}>✓</span>{tip}
+                </p>
+              ))}
+            </div>
+
+          </div>
+        </div>
+
+        {/* SEO Content */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: 48 }}>
+
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 14 }}>What is a Personal Loan?</h2>
+            <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.9, marginBottom: 10 }}>
+              A personal loan is an unsecured loan — no property, gold or asset needs to be pledged as collateral. Banks and NBFCs approve it based on your income, employment stability and CIBIL score, and funds can be used for anything: medical emergencies, weddings, travel, home renovation or debt consolidation.
+            </p>
+            <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.9 }}>
+              Because there's no collateral backing the loan, interest rates are higher than secured loans like home or car loans — typically 10.5% to 24% per annum in India.
+            </p>
+          </div>
+
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 14 }}>How is Personal Loan EMI Calculated?</h2>
+            <div style={{ background: "#18181b", borderRadius: 12, padding: 20, marginBottom: 16, textAlign: "center" }}>
+              <p style={{ fontSize: 15, color: "#a1a1aa", fontFamily: "monospace" }}>EMI = P × r × (1 + r)ⁿ ÷ [(1 + r)ⁿ − 1]</p>
+            </div>
+            <div style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.9, marginBottom: 16 }}>
+              <p style={{ marginBottom: 6 }}><strong style={{ color: "#f4f4f5" }}>P</strong> = Principal loan amount</p>
+              <p style={{ marginBottom: 6 }}><strong style={{ color: "#f4f4f5" }}>r</strong> = Monthly interest rate = Annual rate ÷ 12 ÷ 100</p>
+              <p><strong style={{ color: "#f4f4f5" }}>n</strong> = Loan tenure in months</p>
+            </div>
+            <div style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 12, padding: 16 }}>
+              <p style={{ fontSize: 12, color: "#10b981", fontWeight: 600, marginBottom: 6 }}>Example</p>
+              <p style={{ fontSize: 13, color: "#a1a1aa", lineHeight: 1.7 }}>
+                ₹5 lakh personal loan at 12% for 3 years → <strong style={{ color: "#10b981" }}>EMI = ₹16,607/month</strong>. Total interest = ₹97,847.
+              </p>
             </div>
           </div>
+
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 14 }}>How to Use This Calculator</h2>
+            {[
+              { step: "Step 1", text: "Enter your desired loan amount using the slider." },
+              { step: "Step 2", text: "Set the interest rate quoted by your bank or NBFC." },
+              { step: "Step 3", text: "Choose your preferred tenure in months." },
+              { step: "Step 4", text: "Instantly see your monthly EMI, total interest and total repayment." },
+              { step: "Step 5", text: "Expand the amortization schedule for a month-by-month breakdown." },
+            ].map((s, i) => (
+              <div key={i} style={{ display: "flex", gap: 14, marginBottom: 14, alignItems: "flex-start" }}>
+                <div style={{ width: 28, height: 28, borderRadius: "50%", flexShrink: 0, background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#10b981" }}>{i + 1}</div>
+                <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.7, marginTop: 4 }}>
+                  <strong style={{ color: "#f4f4f5" }}>{s.step} — </strong>{s.text}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 8 }}>Personal Loan Interest Rates in India (2026)</h2>
+            <p style={{ fontSize: 13, color: "#71717a", marginBottom: 20 }}>Indicative rates — confirm with bank before applying</p>
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+                <thead>
+                  <tr style={{ borderBottom: "2px solid #27272a" }}>
+                    {["Bank", "Rate (p.a.)", "EMI per ₹1L / 5 yr"].map(h => (
+                      <th key={h} style={{ padding: "10px 12px", textAlign: "left", fontWeight: 600, color: "#71717a", fontSize: 12 }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {bankRates.map(([bank, rate, emi], i) => (
+                    <tr key={bank} style={{ borderBottom: "1px solid #1f1f22", background: i % 2 ? "#18181b" : "transparent" }}>
+                      <td style={{ padding: "10px 12px", color: "#f4f4f5", fontWeight: 500 }}>{bank}</td>
+                      <td style={{ padding: "10px 12px", color: "#10b981" }}>{rate}</td>
+                      <td style={{ padding: "10px 12px", color: "#a1a1aa" }}>{emi}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>Frequently Asked Questions</h2>
+            {faqs.map((faq, i) => (
+              <div key={i} style={{ borderBottom: i < faqs.length - 1 ? "1px solid #27272a" : "none", padding: "16px 0" }}>
+                <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 8 }}>{faq.q}</h3>
+                <p style={{ fontSize: 13, color: "#71717a", lineHeight: 1.7 }}>{faq.a}</p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 16 }}>Why Use MoneyTool Personal Loan Calculator?</h2>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              {[
+                { icon: "🎯", title: "Instant Results", desc: "Get EMI, interest & total in real-time as you move sliders." },
+                { icon: "📋", title: "Amortization Schedule", desc: "Full month-by-month breakdown of every payment." },
+                { icon: "🔒", title: "100% Private", desc: "No login, no signup. All calculations in your browser." },
+                { icon: "📱", title: "Mobile Friendly", desc: "Works perfectly on any device — phone, tablet or desktop." },
+              ].map((f) => (
+                <div key={f.title} style={{ background: "#18181b", border: "1px solid #27272a", borderRadius: 12, padding: 16 }}>
+                  <p style={{ fontSize: 18, marginBottom: 8 }}>{f.icon}</p>
+                  <p style={{ fontSize: 13, fontWeight: 600, color: "#f4f4f5", marginBottom: 4 }}>{f.title}</p>
+                  <p style={{ fontSize: 12, color: "#71717a", lineHeight: 1.6 }}>{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
       </div>
