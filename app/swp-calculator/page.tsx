@@ -3,6 +3,7 @@ import { metadata as seoMetadata } from "./metadata";
 import SwpCalculatorClient from "./SwpCalculatorClient";
 import FAQSchema from "../components/FAQSchema";
 import { BreadcrumbSchema } from "../components/Breadcrumb";
+import RelatedTools from "../components/RelatedTools";
 
 export const metadata: Metadata = seoMetadata as Metadata;
 
@@ -142,6 +143,13 @@ export default function Page() {
             </div>
           ))}
         </div>
+        <RelatedTools tools={[
+          { title: "SIP Calculator", icon: "📈", description: "Calculate mutual fund SIP returns", href: "/sip-calculator" },
+          { title: "Retirement Calculator", icon: "🧓", description: "Plan your retirement corpus", href: "/retirement-calculator" },
+          { title: "FD Calculator", icon: "💰", description: "Calculate Fixed Deposit interest & maturity", href: "/fd-calculator" },
+          { title: "RD Calculator", icon: "🔁", description: "Calculate Recurring Deposit returns", href: "/rd-calculator" },
+        ]} />
+
       </section>
     </>
   );

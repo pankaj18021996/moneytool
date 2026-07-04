@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import AdSenseUnit from "../components/AdSenseUnit";
+import RelatedTools from "../components/RelatedTools";
 
 const faqs = [
   {
@@ -184,6 +185,13 @@ export default function IncomeTaxCalculatorPage() {
           </div>
 
         </div>
+
+        <RelatedTools tools={[
+          { title: "Salary Calculator", icon: "💵", description: "Calculate in-hand salary & deductions", href: "/salary-calculator" },
+          { title: "HRA Calculator", icon: "🏘️", description: "Calculate HRA tax exemption", href: "/hra-calculator" },
+          { title: "TDS Calculator", icon: "📋", description: "Calculate Tax Deducted at Source", href: "/tds-calculator" },
+          { title: "PPF Calculator", icon: "🏦", description: "Calculate Public Provident Fund returns", href: "/ppf-calculator" },
+        ]} />
 
       </div>
     </div>

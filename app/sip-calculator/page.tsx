@@ -2,6 +2,7 @@ import { BreadcrumbSchema } from "../components/Breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SIPCalculatorClient from "./SIPCalculatorClient";
+import RelatedTools from "../components/RelatedTools";
 
 export const metadata: Metadata = {
   title: "SIP Calculator India 2026 – Mutual Fund Returns | MoneyTool",
@@ -227,6 +228,13 @@ export default function SIPCalculatorPage() {
             </div>
           ))}
         </div>
+        <RelatedTools tools={[
+          { title: "PPF Calculator", icon: "🏦", description: "Calculate Public Provident Fund returns", href: "/ppf-calculator" },
+          { title: "FD Calculator", icon: "💰", description: "Calculate Fixed Deposit interest & maturity", href: "/fd-calculator" },
+          { title: "RD Calculator", icon: "🔁", description: "Calculate Recurring Deposit returns", href: "/rd-calculator" },
+          { title: "Retirement Calculator", icon: "🧓", description: "Plan your retirement corpus", href: "/retirement-calculator" },
+        ]} />
+
 
       </div>
     </div>

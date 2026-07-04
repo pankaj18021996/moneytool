@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import RelatedTools from "../components/RelatedTools";
 
 const fmt = (n:number) => "₹" + Math.round(n).toLocaleString("en-IN");
 
@@ -175,6 +176,13 @@ export default function PersonalLoanCalculatorPage(){
 
         </div>
 
+        <RelatedTools tools={[
+          { title: "EMI Calculator", icon: "🧮", description: "Calculate EMI for any loan type", href: "/emi-calculator" },
+          { title: "Home Loan Calculator", icon: "🏠", description: "Estimate home loan EMI & affordability", href: "/home-loan-calculator" },
+          { title: "Car Loan Calculator", icon: "🚗", description: "Calculate car loan EMI instantly", href: "/car-loan-calculator" },
+          { title: "Education Loan Calculator", icon: "🎓", description: "Plan your education loan repayment", href: "/education-loan-calculator" },
+        ]} />
+
       </div>
     </div>
   );
@@ -278,6 +286,7 @@ function PersonalLoanCalculatorClient(){
             </div>
           </div>
         )}
+
       </div>
 
     </div>

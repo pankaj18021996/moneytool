@@ -3,7 +3,6 @@ Allow: /
 
 Disallow: /admin
 Disallow: /private
-Disallow: /_next/
 Disallow: /api/
 
 # Crawl-delay for aggressive bots

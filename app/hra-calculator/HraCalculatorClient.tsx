@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import RelatedTools from "../components/RelatedTools";
  
 const faqs = [
   {
@@ -419,6 +420,13 @@ export default function HRACalculatorPage() {
             ))}
           </div>
         </div>
+        <RelatedTools tools={[
+          { title: "Income Tax Calculator", icon: "🧾", description: "Calculate your income tax liability", href: "/income-tax-calculator" },
+          { title: "Salary Calculator", icon: "💵", description: "Calculate in-hand salary & deductions", href: "/salary-calculator" },
+          { title: "TDS Calculator", icon: "📋", description: "Calculate Tax Deducted at Source", href: "/tds-calculator" },
+          { title: "GST Calculator", icon: "🛒", description: "Add or remove GST from prices", href: "/gst-calculator" },
+        ]} />
+
  
       </div>
     </div>

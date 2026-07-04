@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import AdSenseUnit from "../components/AdSenseUnit";
+import RelatedTools from "../components/RelatedTools";
 
 const fmt = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
 
@@ -218,6 +219,13 @@ export default function HomeLoanCalculatorPage() {
 
         </div>
 
+        <RelatedTools tools={[
+          { title: "EMI Calculator", icon: "🧮", description: "Calculate EMI for any loan type", href: "/emi-calculator" },
+          { title: "Car Loan Calculator", icon: "🚗", description: "Calculate car loan EMI instantly", href: "/car-loan-calculator" },
+          { title: "Personal Loan Calculator", icon: "💳", description: "Calculate personal loan EMI & interest", href: "/personal-loan-calculator" },
+          { title: "Income Tax Calculator", icon: "🧾", description: "Calculate your income tax liability", href: "/income-tax-calculator" },
+        ]} />
+
       </div>
     </div>
   );
@@ -384,6 +392,7 @@ function HomeLoanCalculatorClient() {
             </div>
           </div>
         )}
+
       </div>
     </div>
   );

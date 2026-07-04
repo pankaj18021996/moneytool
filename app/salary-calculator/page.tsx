@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SalaryCalculatorClient from "./SalaryCalculatorClient";
 import AdSenseUnit from "../components/AdSenseUnit";
+import RelatedTools from "../components/RelatedTools";
 
 export const metadata: Metadata = {
   title: "Salary Calculator India 2026 – CTC to In-Hand | MoneyTool",
@@ -235,6 +236,13 @@ export default function SalaryCalculatorPage() {
             </div>
           ))}
         </div>
+        <RelatedTools tools={[
+          { title: "Income Tax Calculator", icon: "🧾", description: "Calculate your income tax liability", href: "/income-tax-calculator" },
+          { title: "HRA Calculator", icon: "🏘️", description: "Calculate HRA tax exemption", href: "/hra-calculator" },
+          { title: "TDS Calculator", icon: "📋", description: "Calculate Tax Deducted at Source", href: "/tds-calculator" },
+          { title: "Payslip Generator", icon: "🧑‍💼", description: "Generate payslips for your employees", href: "/payslip-generator" },
+        ]} />
+
 
       </div>
     </div>

@@ -1,282 +1,265 @@
-"use client";
-import React, { useRef, useEffect } from "react";
+import { BreadcrumbSchema } from "../components/Breadcrumb";
+import type { Metadata } from "next";
+import Link from "next/link";
+import FDCalculatorClient from "./FDCalculatorClient";
+import FDCalculatorFAQ from "./FDCalculatorFAQ";
+import AdSenseUnit from "../components/AdSenseUnit";
+import ZerodhaCTA from "../components/ZerodhaCTA";
+import RelatedTools from "../components/RelatedTools";
 
-const fmt = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
-const clamp = (val: number, min: number, max: number) =>
-  Math.max(min, Math.min(max, val));
+export const metadata: Metadata = {
+  title: "Free FD Calculator India 2026 — Fixed Deposit Maturity Calculator",
+  description:
+    "Use our free FD calculator to estimate fixed deposit maturity value, interest earned, and effective yield. Compare monthly, quarterly, and annual compounding for Indian bank deposits.",
+  keywords: [
+    "fd calculator",
+    "fixed deposit calculator",
+    "fd maturity calculator",
+    "fixed deposit interest calculator",
+    "fd return calculator",
+  ],
+  alternates: { canonical: "https://www.moneytool.in/calculators/fd-calculator" },
+  openGraph: {
+    title: "Free FD Calculator India 2026 — MoneyTool",
+    description: "Estimate FD maturity value and interest with compounding frequency options.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FD Calculator — Fixed Deposit Maturity Calculator",
+      },
+    ],
+  },
+};
 
-type CompoundFreq = "annually" | "quarterly" | "monthly";
+const fdTypes = [
+  { label: "Regular FD", icon: "🏦", rate: "6.5–7.5% p.a." },
+  { label: "Senior Citizen FD", icon: "👴", rate: "7.0–8.0% p.a." },
+  { label: "Tax-Saving FD", icon: "💰", rate: "6.0–7.0% p.a." },
+];
 
-function PieChart({ invested, returns }: { invested: number; returns: number }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const total = invested + returns;
+const faqs = [
+  {
+    q: "How is FD interest calculated?",
+    a: "FD interest uses compound interest: A = P(1 + r/n)^(nt), where P is principal, r is annual rate, n is compounding frequency per year, and t is tenure in years. Most Indian banks compound quarterly.",
+  },
+  {
+    q: "What is the difference between simple and compound interest FD?",
+    a: "Simple interest FDs pay interest at maturity without reinvesting. Compound interest FDs reinvest interest periodically (monthly/quarterly), earning more over time. Most Indian bank FDs use compound interest.",
+  },
+  {
+    q: "Is FD interest taxable?",
+    a: "Yes. FD interest is added to your income and taxed as per your slab. Banks deduct TDS at 10% if annual interest exceeds ₹40,000 (₹50,000 for senior citizens). Submit Form 15G/15H to avoid TDS if your income is below the taxable limit.",
+  },
+  {
+    q: "What is the maximum DICGC insurance on FD?",
+    a: "DICGC insures bank deposits up to ₹5 lakh per bank per depositor. If a bank fails, your principal and interest combined up to ₹5 lakh is protected.",
+  },
+  {
+    q: "Can I break an FD before maturity?",
+    a: "Yes, most banks allow premature withdrawal with a penalty of 0.5–1% on the interest rate. Some banks offer FDs without premature withdrawal at higher rates.",
+  },
+];
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const dpr = window.devicePixelRatio || 1;
-    const size = 160;
-    canvas.width = size * dpr;
-    canvas.height = size * dpr;
-    canvas.style.width = size + "px";
-    canvas.style.height = size + "px";
-    ctx.scale(dpr, dpr);
-    const cx = size / 2, cy = size / 2, r = 68, innerR = 44;
-    ctx.clearRect(0, 0, size, size);
-    const investedAngle = (invested / total) * Math.PI * 2;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + investedAngle);
-    ctx.closePath();
-    ctx.fillStyle = "#3b82f6";
-    ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, r, -Math.PI / 2 + investedAngle, -Math.PI / 2 + Math.PI * 2);
-    ctx.closePath();
-    ctx.fillStyle = "#10b981";
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(cx, cy, innerR, 0, Math.PI * 2);
-    ctx.fillStyle = "#111113";
-    ctx.fill();
-  }, [invested, returns, total]);
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
-  const pct = total > 0 ? Math.round((returns / total) * 100) : 0;
 
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "FD Calculator India",
+  url: "https://www.moneytool.in/fd-calculator",
+  description: "Free fixed deposit calculator for India. Calculate FD maturity amount, interest earned, and effective yield for cumulative and non-cumulative deposits.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["Quarterly compounding", "Cumulative and non-cumulative", "TDS deduction calculation", "Effective yield comparison"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
+
+export default function FDCalculatorPage() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
-      <div style={{ position: "relative" }}>
-        <canvas ref={canvasRef} style={{ display: "block" }} />
-        <div style={{
-          position: "absolute", inset: 0,
-          display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "center",
-        }}>
-          <span style={{ fontSize: 18, fontWeight: 800, color: "#10b981" }}>{pct}%</span>
-          <span style={{ fontSize: 10, color: "#71717a" }}>returns</span>
-        </div>
-      </div>
-      <div style={{ display: "flex", gap: 20 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#a1a1aa" }}>
-          <span style={{ width: 10, height: 10, borderRadius: 2, background: "#3b82f6", display: "inline-block" }} />
-          Principal
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#a1a1aa" }}>
-          <span style={{ width: 10, height: 10, borderRadius: 2, background: "#10b981", display: "inline-block" }} />
-          Returns
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function InputRow({
-  label, value, min, max, step, display, onChange,
-}: {
-  label: string; value: number; min: number; max: number;
-  step: number; display: string; onChange: (v: number) => void;
-}) {
-  const [raw, setRaw] = React.useState("");
-  const [editing, setEditing] = React.useState(false);
-
-  return (
-    <div style={{ marginBottom: 24 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-        <label style={{ fontSize: 13, color: "#a1a1aa" }}>{label}</label>
-        <input
-          type="text"
-          inputMode="decimal"
-          value={editing ? raw : display}
-          onFocus={() => { setRaw(String(value)); setEditing(true); }}
-          onChange={e => setRaw(e.target.value)}
-          onBlur={() => {
-            const parsed = parseFloat(raw.replace(/,/g, ""));
-            if (!isNaN(parsed)) onChange(clamp(parsed, min, max));
-            setEditing(false);
-          }}
-          onKeyDown={e => {
-            if (e.key === "Enter") {
-              const parsed = parseFloat(raw.replace(/,/g, ""));
-              if (!isNaN(parsed)) onChange(clamp(parsed, min, max));
-              setEditing(false);
-              (e.target as HTMLInputElement).blur();
-            }
-          }}
-          style={{
-            width: 120, textAlign: "right",
-            background: "#18181b", border: "1px solid #27272a",
-            borderRadius: 8, padding: "4px 10px",
-            fontSize: 14, fontWeight: 700, color: "#f4f4f5",
-            outline: "none", fontFamily: "'DM Sans', sans-serif",
-          }}
-        />
-      </div>
-      <input
-        type="range" min={min} max={max} step={step} value={value}
-        onChange={e => onChange(Number(e.target.value))}
-        style={{ width: "100%", accentColor: "#10b981", cursor: "pointer" }}
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} />
+      <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
+      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"FD Calculator",url:"https://www.moneytool.in/fd-calculator"}]} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "#3f3f46", marginTop: 4 }}>
-        <span>{min.toLocaleString("en-IN")}</span>
-        <span>{max.toLocaleString("en-IN")}</span>
-      </div>
-    </div>
-  );
-}
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
 
-function StatCard({ label, value, color }: { label: string; value: string; color: string }) {
-  return (
-    <div style={{ background: "#18181b", borderRadius: 12, padding: "16px 12px", textAlign: "center", flex: 1 }}>
-      <p style={{ fontSize: 11, color: "#71717a", marginBottom: 6, textTransform: "uppercase" as const, letterSpacing: "0.05em" }}>{label}</p>
-      <p style={{ fontSize: 16, fontWeight: 800, color }}>{value}</p>
-    </div>
-  );
-}
-
-export default function FDCalculatorClient() {
-  const [principal, setPrincipal] = React.useState(100000);
-  const [rate, setRate] = React.useState(7.0);
-  const [years, setYears] = React.useState(3);
-  const [freq, setFreq] = React.useState<CompoundFreq>("quarterly");
-
-  // Correct FD formula: A = P(1 + r/n)^(nt)
-  const n = freq === "annually" ? 1 : freq === "quarterly" ? 4 : 12;
-  const maturity = principal * Math.pow(1 + rate / (100 * n), n * years);
-  const returns = maturity - principal;
-  const effectiveRate = (Math.pow(1 + rate / (100 * n), n) - 1) * 100;
-
-  const freqOptions: { label: string; value: CompoundFreq }[] = [
-    { label: "Monthly", value: "monthly" },
-    { label: "Quarterly", value: "quarterly" },
-    { label: "Annually", value: "annually" },
-  ];
-
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-
-      {/* Calculator Card */}
-      <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
-        <h2 style={{ fontSize: 16, fontWeight: 700, color: "#f4f4f5", marginBottom: 24 }}>FD Calculator</h2>
-
-        {/* Compounding Frequency */}
-        <div style={{ marginBottom: 28 }}>
-          <p style={{ fontSize: 13, color: "#a1a1aa", marginBottom: 10 }}>Compounding Frequency</p>
-          <div style={{ display: "flex", gap: 8 }}>
-            {freqOptions.map(opt => (
-              <button
-                key={opt.value}
-                onClick={() => setFreq(opt.value)}
-                style={{
-                  flex: 1, padding: "8px 0", borderRadius: 8,
-                  fontSize: 13, fontWeight: 600, cursor: "pointer",
-                  border: freq === opt.value ? "1px solid #10b981" : "1px solid #27272a",
-                  background: freq === opt.value ? "rgba(16,185,129,0.1)" : "#18181b",
-                  color: freq === opt.value ? "#10b981" : "#71717a",
-                  transition: "all 0.15s",
-                }}
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
+        {/* Breadcrumb */}
+        <div style={{ display: "flex", gap: 8, fontSize: 13, color: "#71717a", marginBottom: 24, alignItems: "center" }}>
+          <Link href="/" style={{ color: "#71717a", textDecoration: "none" }}>Home</Link>
+          <span>›</span>
+          <span style={{ color: "#a1a1aa" }}>FD Calculator</span>
         </div>
 
-        <InputRow
-          label="Principal Amount"
-          value={principal} min={1000} max={10000000} step={1000}
-          display={"₹" + principal.toLocaleString("en-IN")}
-          onChange={setPrincipal}
-        />
-        <InputRow
-          label="Interest Rate (p.a.)"
-          value={rate} min={1} max={15} step={0.1}
-          display={rate.toFixed(1) + "%"}
-          onChange={setRate}
-        />
-        <InputRow
-          label="Time Period (Years)"
-          value={years} min={1} max={10} step={1}
-          display={years + " yr"}
-          onChange={setYears}
-        />
+        {/* Header */}
+        <div style={{ marginBottom: 32 }}>
+          <h1 style={{ fontSize: 32, fontWeight: 800, color: "#f4f4f5", marginBottom: 10, lineHeight: 1.2 }}>
+            FD Calculator India 2026
+          </h1>
+          <p style={{ color: "#a1a1aa", fontSize: 16, lineHeight: 1.6, maxWidth: 680 }}>
+            Calculate your Fixed Deposit maturity amount and interest earned. Supports monthly, quarterly, and annual compounding — matching real bank calculations.
+          </p>
+        </div>
 
-        {/* Results */}
-        <div style={{ borderTop: "1px solid #27272a", paddingTop: 20, marginTop: 4 }}>
-          <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
-            <StatCard label="Principal" value={fmt(principal)} color="#3b82f6" />
-            <StatCard label="Est. Returns" value={fmt(returns)} color="#10b981" />
-            <StatCard label="Maturity Value" value={fmt(maturity)} color="#f4f4f5" />
-          </div>
+        {/* Pills */}
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
           <div style={{
-            background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)",
-            borderRadius: 10, padding: "10px 14px",
-            display: "flex", justifyContent: "space-between", alignItems: "center",
-          }}>
-            <span style={{ fontSize: 12, color: "#71717a" }}>Effective Annual Yield (EAR)</span>
-            <span style={{ fontSize: 14, fontWeight: 700, color: "#10b981" }}>
-              {effectiveRate.toFixed(2)}%
-            </span>
+            padding: "8px 16px", borderRadius: 999, fontSize: 13,
+            background: "rgba(16,185,129,0.1)", border: "1px solid #10b981",
+            color: "#10b981", fontWeight: 600,
+          }}>🏦 All FDs</div>
+          {fdTypes.map((ft) => (
+            <div key={ft.label} style={{
+              padding: "8px 16px", borderRadius: 999, fontSize: 13,
+              background: "#111113", border: "1px solid #27272a",
+              color: "#a1a1aa", display: "flex", alignItems: "center", gap: 6,
+            }}>
+              {ft.icon} {ft.label}
+            </div>
+          ))}
+        </div>
+
+        {/* Two Column Layout */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 24, alignItems: "start", marginBottom: 48 }}>
+
+          <FDCalculatorClient />
+
+          {/* Sidebar */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 14 }}>FD Types</h3>
+              {fdTypes.map((ft) => (
+                <div key={ft.label} style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "11px 14px", borderRadius: 10, marginBottom: 8,
+                  background: "#18181b", border: "1px solid #27272a",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{ fontSize: 18 }}>{ft.icon}</span>
+                    <div>
+                      <p style={{ fontSize: 13, fontWeight: 600, color: "#f4f4f5", marginBottom: 1 }}>{ft.label}</p>
+                      <p style={{ fontSize: 11, color: "#71717a" }}>{ft.rate}</p>
+                    </div>
+                  </div>
+                  <span style={{ fontSize: 14, color: "#10b981" }}>→</span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 12 }}>FD Formula</h3>
+              <div style={{ background: "#18181b", borderRadius: 10, padding: 14, textAlign: "center", marginBottom: 12 }}>
+                <p style={{ fontSize: 13, color: "#a1a1aa", fontFamily: "monospace", lineHeight: 1.8 }}>
+                  A = P(1 + r/n)^(nt)
+                </p>
+              </div>
+              <div style={{ fontSize: 12, color: "#71717a", lineHeight: 2 }}>
+                <p><span style={{ color: "#10b981" }}>A</span> = Maturity Amount</p>
+                <p><span style={{ color: "#10b981" }}>P</span> = Principal</p>
+                <p><span style={{ color: "#10b981" }}>r</span> = Annual interest rate</p>
+                <p><span style={{ color: "#10b981" }}>n</span> = Compounding freq/year</p>
+                <p><span style={{ color: "#10b981" }}>t</span> = Time in years</p>
+              </div>
+            </div>
+
+            <div style={{ background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 16, padding: 20 }}>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#10b981", marginBottom: 12 }}>💡 FD Tips</h3>
+              {[
+                "Compare rates across banks",
+                "Senior citizens get +0.5% extra",
+                "Ladder FDs for liquidity",
+                "Submit Form 15G to avoid TDS",
+                "Quarterly compounding > annual",
+              ].map((tip, i) => (
+                <p key={i} style={{ display: "flex", gap: 8, fontSize: 12, color: "#a1a1aa", lineHeight: 1.7, marginBottom: 6 }}>
+                  <span style={{ color: "#10b981", flexShrink: 0 }}>✓</span>{tip}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Pie Chart Card */}
-      <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24, display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-        <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", alignSelf: "flex-start" }}>Investment Breakdown</h3>
-        <PieChart invested={principal} returns={returns} />
-        <div style={{ width: "100%", display: "flex", gap: 10 }}>
-          <div style={{ flex: 1, background: "#18181b", borderRadius: 10, padding: "12px 14px" }}>
-            <p style={{ fontSize: 11, color: "#71717a", marginBottom: 4 }}>PRINCIPAL</p>
-            <p style={{ fontSize: 15, fontWeight: 700, color: "#3b82f6" }}>{fmt(principal)}</p>
-            <p style={{ fontSize: 11, color: "#3f3f46" }}>{Math.round((principal / maturity) * 100)}% of maturity</p>
-          </div>
-          <div style={{ flex: 1, background: "#18181b", borderRadius: 10, padding: "12px 14px" }}>
-            <p style={{ fontSize: 11, color: "#71717a", marginBottom: 4 }}>RETURNS</p>
-            <p style={{ fontSize: 15, fontWeight: 700, color: "#10b981" }}>{fmt(returns)}</p>
-            <p style={{ fontSize: 11, color: "#3f3f46" }}>{Math.round((returns / maturity) * 100)}% of maturity</p>
-          </div>
+        {/* What is FD */}
+        <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 32 }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 14 }}>What is a Fixed Deposit?</h2>
+          <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.9, marginBottom: 10 }}>
+            A Fixed Deposit (FD) is a financial instrument offered by banks and NBFCs where you deposit a lump sum for a fixed tenure at a predetermined interest rate. Unlike savings accounts, the rate is locked in and guaranteed regardless of market conditions.
+          </p>
+          <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.9 }}>
+            Indian banks compound FD interest quarterly by default, meaning your interest is reinvested every 3 months. This is why the effective annual yield (EAR) is slightly higher than the nominal rate quoted.
+          </p>
         </div>
-      </div>
 
-      {/* Year-wise Breakdown Table */}
-      <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24 }}>
-        <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 16 }}>Year-wise Growth</h3>
-        <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-            <thead>
-              <tr style={{ borderBottom: "1px solid #27272a" }}>
-                {["Year", "Opening Balance", "Interest Earned", "Closing Balance"].map(h => (
-                  <th key={h} style={{
-                    padding: "8px 12px", textAlign: "right", color: "#71717a",
-                    fontWeight: 600, fontSize: 11, textTransform: "uppercase" as const,
-                    letterSpacing: "0.04em", whiteSpace: "nowrap" as const,
-                  }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: years }, (_, i) => {
-                const yr = i + 1;
-                const open = principal * Math.pow(1 + rate / (100 * n), n * i);
-                const close = principal * Math.pow(1 + rate / (100 * n), n * yr);
-                const interest = close - open;
-                return (
-                  <tr key={yr} style={{ borderBottom: i < years - 1 ? "1px solid #1c1c1e" : "none" }}>
-                    <td style={{ padding: "10px 12px", textAlign: "right", color: "#a1a1aa" }}>Y{yr}</td>
-                    <td style={{ padding: "10px 12px", textAlign: "right", color: "#a1a1aa" }}>{fmt(open)}</td>
-                    <td style={{ padding: "10px 12px", textAlign: "right", color: "#10b981", fontWeight: 600 }}>{fmt(interest)}</td>
-                    <td style={{ padding: "10px 12px", textAlign: "right", color: "#f4f4f5", fontWeight: 700 }}>{fmt(close)}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+        {/* How to Use */}
+        <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 32 }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>How to Use This FD Calculator</h2>
+          {[
+            { step: "Step 1", text: "Enter your principal deposit amount" },
+            { step: "Step 2", text: "Set your bank's interest rate (check their website)" },
+            { step: "Step 3", text: "Choose tenure in years (1–10)" },
+            { step: "Step 4", text: "Select compounding frequency (quarterly for most Indian banks)" },
+            { step: "Step 5", text: "See maturity value, effective yield, and year-wise growth" },
+          ].map((s, i) => (
+            <div key={i} style={{ display: "flex", gap: 14, marginBottom: 14, alignItems: "flex-start" }}>
+              <div style={{
+                width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
+                background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 11, fontWeight: 700, color: "#10b981",
+              }}>{i + 1}</div>
+              <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.7, marginTop: 4 }}>
+                <strong style={{ color: "#f4f4f5" }}>{s.step} — </strong>{s.text}
+              </p>
+            </div>
+          ))}
         </div>
-      </div>
 
+        {/* FD Benefits */}
+        <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 32 }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 16 }}>Why Use an FD Calculator?</h2>
+          <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.9, marginBottom: 12 }}>
+            A Fixed Deposit calculator helps you plan your savings with confidence. Enter your principal, rate, tenure, and compounding frequency to see exactly how much your money will grow.
+          </p>
+          <ul style={{ paddingLeft: 18, color: "#a1a1aa", fontSize: 14, lineHeight: 1.9, margin: 0 }}>
+            <li style={{ marginBottom: 8 }}>Compare FD returns for different compounding frequencies.</li>
+            <li style={{ marginBottom: 8 }}>Estimate maturity value before you deposit.</li>
+            <li style={{ marginBottom: 8 }}>See the effective annual yield and year-wise growth.</li>
+            <li>Check the impact of interest rate changes on your final corpus.</li>
+          </ul>
+        </div>
+
+        
+        <AdSenseUnit />
+        
+        <ZerodhaCTA context="Ready to invest beyond Fixed Deposits? Open a free demat account and start investing in mutual funds for higher long-term returns." />
+        {/* FAQ */}
+        <FDCalculatorFAQ faqs={faqs} />
+        <RelatedTools tools={[
+          { title: "RD Calculator", icon: "🔁", description: "Calculate Recurring Deposit returns", href: "/rd-calculator" },
+          { title: "PPF Calculator", icon: "🏦", description: "Calculate Public Provident Fund returns", href: "/ppf-calculator" },
+          { title: "SIP Calculator", icon: "📈", description: "Calculate mutual fund SIP returns", href: "/sip-calculator" },
+          { title: "SWP Calculator", icon: "📤", description: "Plan systematic withdrawal from investments", href: "/swp-calculator" },
+        ]} />
+
+
+      </div>
     </div>
+    </>
   );
 }

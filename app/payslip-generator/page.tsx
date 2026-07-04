@@ -3,6 +3,7 @@ import { metadata as seoMetadata } from "./metadata";
 import PayslipGeneratorClient from "./PayslipGeneratorClient";
 import FAQSchema from "../components/FAQSchema";
 import { BreadcrumbSchema } from "../components/Breadcrumb";
+import RelatedTools from "../components/RelatedTools";
 
 export const metadata: Metadata = seoMetadata as Metadata;
 
@@ -161,6 +162,13 @@ export default function Page() {
             </div>
           ))}
         </div>
+
+        <RelatedTools tools={[
+          { title: "Salary Calculator", icon: "💵", description: "Calculate in-hand salary & deductions", href: "/salary-calculator" },
+          { title: "Invoice Builder", icon: "📄", description: "Create professional invoices free", href: "/invoice-builder" },
+          { title: "Income Tax Calculator", icon: "🧾", description: "Calculate your income tax liability", href: "/income-tax-calculator" },
+          { title: "HRA Calculator", icon: "🏘️", description: "Calculate HRA tax exemption", href: "/hra-calculator" },
+        ]} />
       </section>
     </>
   );

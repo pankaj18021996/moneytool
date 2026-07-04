@@ -3,6 +3,7 @@ import { metadata as seoMetadata } from "./metadata";
 import RdCalculatorClient from "./RdCalculatorClient";
 import FAQSchema from "../components/FAQSchema";
 import { BreadcrumbSchema } from "../components/Breadcrumb";
+import RelatedTools from "../components/RelatedTools";
 
 export const metadata: Metadata = seoMetadata as Metadata;
 
@@ -133,6 +134,13 @@ export default function Page() {
             </div>
           ))}
         </div>
+        <RelatedTools tools={[
+          { title: "FD Calculator", icon: "💰", description: "Calculate Fixed Deposit interest & maturity", href: "/fd-calculator" },
+          { title: "PPF Calculator", icon: "🏦", description: "Calculate Public Provident Fund returns", href: "/ppf-calculator" },
+          { title: "SIP Calculator", icon: "📈", description: "Calculate mutual fund SIP returns", href: "/sip-calculator" },
+          { title: "SWP Calculator", icon: "📤", description: "Plan systematic withdrawal from investments", href: "/swp-calculator" },
+        ]} />
+
       </section>
     </>
   );

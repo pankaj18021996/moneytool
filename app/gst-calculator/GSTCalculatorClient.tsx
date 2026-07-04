@@ -1,207 +1,200 @@
-"use client";
-import { useState } from "react";
+import { BreadcrumbSchema } from "../components/Breadcrumb";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { metadata as seoMetadata } from "./metadata";
+import GSTCalculatorClient from "./GSTCalculatorClient";
+import AdSenseUnit from "../components/AdSenseUnit";
+import RelatedTools from "../components/RelatedTools";
 
-export default function GSTCalculatorClient() {
-  const [amount, setAmount] = useState(1000);
-  const [gstRate, setGstRate] = useState(18);
-  const [type, setType] = useState<"exclusive" | "inclusive">("exclusive");
-  const [editing, setEditing] = useState(false);
-  const [raw, setRaw] = useState("");
+export const metadata: Metadata = seoMetadata as Metadata;
 
-  const gstAmount =
-    type === "exclusive"
-      ? (amount * gstRate) / 100
-      : amount - amount * (100 / (100 + gstRate));
+const gstSlabs = [
+  { rate: "5%", desc: "Essential items" },
+  { rate: "12%", desc: "Mid-range goods" },
+  { rate: "18%", desc: "Most goods" },
+  { rate: "28%", desc: "Luxury items" },
+];
 
-  const preGst = type === "exclusive" ? amount : amount - gstAmount;
-  const postGst = type === "exclusive" ? amount + gstAmount : amount;
+const faqs = [
+  {
+    q: "What is GST?",
+    a: "GST (Goods and Services Tax) is a comprehensive indirect tax levied on the supply of goods and services in India. It replaced multiple taxes like VAT, excise, and service tax.",
+  },
+  {
+    q: "What are the different GST rates in India?",
+    a: "India has four main GST rates: 5% (essential items), 12% (mid-range items), 18% (most goods), and 28% (luxury items). Some items are GST-exempt.",
+  },
+  {
+    q: "How is GST calculated?",
+    a: "GST is calculated on the selling price. The formula is: GST Amount = (Price × GST Rate) / 100. To find price including GST: Price + GST Amount.",
+  },
+  {
+    q: "Can businesses claim GST credit?",
+    a: "Yes, registered businesses can claim Input Tax Credit (ITC) for GST paid on purchases. This reduces their net GST liability.",
+  },
+  {
+    q: "Who needs to register for GST?",
+    a: "Businesses with annual turnover exceeding ₹40 lakh must register for GST. Smaller businesses can voluntarily register.",
+  },
+];
 
-  const fmt = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
-  const gstRates = [3, 5, 12, 18, 28];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(f => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
-  const btnActive: React.CSSProperties = {
-    background: "rgba(16,185,129,0.15)",
-    border: "1px solid #10b981",
-    color: "#10b981",
-    borderRadius: 10,
-    padding: "10px 20px",
-    fontSize: 14,
-    fontWeight: 600,
-    cursor: "pointer",
-    flex: 1,
-    transition: "all 0.2s",
-  };
 
-  const btnInactive: React.CSSProperties = {
-    background: "#18181b",
-    border: "1px solid #27272a",
-    color: "#71717a",
-    borderRadius: 10,
-    padding: "10px 20px",
-    fontSize: 14,
-    fontWeight: 500,
-    cursor: "pointer",
-    flex: 1,
-    transition: "all 0.2s",
-  };
+const _webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "GST Calculator India",
+  url: "https://www.moneytool.in/gst-calculator",
+  description: "Free GST calculator for India. Calculate GST at 5%, 12%, 18%, 28% rates. Separate CGST, SGST and IGST for inter-state and intra-state transactions.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  isAccessibleForFree: true,
+  inLanguage: "en-IN",
+  featureList: ["All GST slabs supported", "CGST + SGST split for intra-state", "IGST for inter-state", "Add/remove GST from price"],
+  provider: { "@type": "Organization", name: "MoneyTool", url: "https://www.moneytool.in" },
+};
 
+export default function GSTCalculatorPage() {
   return (
-    <div style={{
-      background: "#111113",
-      border: "1px solid #27272a",
-      borderRadius: 20,
-      padding: 28,
-      marginBottom: 16,
-    }}>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_webAppSchema) }} />
+      <div style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
 
-      {/* Calculation Type Toggle */}
-      <div style={{ marginBottom: 28 }}>
-        <p style={{ fontSize: 13, color: "#71717a", marginBottom: 12, fontWeight: 500 }}>
-          Calculation Type
-        </p>
-        <div style={{ display: "flex", gap: 10 }}>
-          <button onClick={() => setType("exclusive")} style={type === "exclusive" ? btnActive : btnInactive}>
-            Add GST
-          </button>
-          <button onClick={() => setType("inclusive")} style={type === "inclusive" ? btnActive : btnInactive}>
-            Remove GST
-          </button>
-        </div>
-      </div>
+      {/* JSON-LD */}
+      <BreadcrumbSchema items={[{name:"Home",url:"https://www.moneytool.in"},{name:"GST Calculator",url:"https://www.moneytool.in/gst-calculator"}]} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-      {/* Amount — Slider + Click-to-edit value (same as EMI calculator) */}
-      <div style={{ marginBottom: 28 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-          <span style={{ fontSize: 13, color: "#a1a1aa" }}>Enter Amount (₹)</span>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
 
-          {/* Click to edit — same pattern as EMI calculator */}
-          {editing ? (
-            <input
-              autoFocus
-              type="number"
-              value={raw}
-              onChange={e => setRaw(e.target.value)}
-              onBlur={() => {
-                const v = Number(raw);
-                if (!isNaN(v) && v >= 1 && v <= 10000000) setAmount(v);
-                setEditing(false);
-              }}
-              onKeyDown={e => {
-                if (e.key === "Enter") {
-                  const v = Number(raw);
-                  if (!isNaN(v) && v >= 1 && v <= 10000000) setAmount(v);
-                  setEditing(false);
-                }
-                if (e.key === "Escape") setEditing(false);
-              }}
-              style={{
-                background: "#18181b",
-                border: "1px solid #10b981",
-                borderRadius: 8,
-                padding: "4px 10px",
-                color: "#f4f4f5",
-                fontSize: 14,
-                fontWeight: 700,
-                width: 140,
-                textAlign: "right",
-                fontFamily: "inherit",
-                outline: "none",
-              }}
-            />
-          ) : (
-            <button
-              onClick={() => { setRaw(String(amount)); setEditing(true); }}
-              title="Click to type exact amount"
-              style={{
-                background: "#18181b",
-                border: "1px solid #27272a",
-                borderRadius: 8,
-                padding: "4px 14px",
-                color: "#f4f4f5",
-                fontSize: 14,
-                fontWeight: 700,
-                cursor: "pointer",
-                fontFamily: "inherit",
-              }}
-            >
-              {fmt(amount)}
-            </button>
-          )}
+        {/* Breadcrumb */}
+        <div style={{ display: "flex", gap: 8, fontSize: 13, color: "#71717a", marginBottom: 24, alignItems: "center" }}>
+          <Link href="/" style={{ color: "#71717a", textDecoration: "none" }}>Home</Link>
+          <span>›</span>
+          <span style={{ color: "#a1a1aa" }}>GST Calculator</span>
         </div>
 
-        <input
-          type="range"
-          min={100}
-          max={1000000}
-          step={100}
-          value={Math.min(amount, 1000000)}
-          onChange={e => setAmount(Number(e.target.value))}
-          style={{ width: "100%", accentColor: "#10b981", cursor: "pointer" }}
-        />
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "#52525b", marginTop: 4 }}>
-          <span>₹100</span><span>₹10,00,000+</span>
+        {/* Header */}
+        <div style={{ marginBottom: 32 }}>
+          <h1 style={{ fontSize: 32, fontWeight: 800, color: "#f4f4f5", marginBottom: 10, lineHeight: 1.2 }}>
+            GST Calculator India 2026
+          </h1>
+          <p style={{ color: "#a1a1aa", fontSize: 16, lineHeight: 1.6, maxWidth: 680 }}>
+            Calculate GST amount instantly for any product or service. Add or remove GST with our free calculator. Supports all GST slabs.
+          </p>
         </div>
-      </div>
 
-      {/* GST Rate */}
-      <div style={{ marginBottom: 28 }}>
-        <p style={{ fontSize: 13, color: "#71717a", marginBottom: 12, fontWeight: 500 }}>GST Rate</p>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          {gstRates.map((r) => (
-            <button
-              key={r}
-              onClick={() => setGstRate(r)}
-              style={{
-                ...(gstRate === r ? btnActive : btnInactive),
-                flex: "unset",
-                padding: "8px 18px",
-              }}
-            >
-              {r}%
-            </button>
+        {/* Calculator Section */}
+        <div style={{ marginBottom: 48 }}>
+          <GSTCalculatorClient />
+        </div>
+
+        {/* What is GST */}
+        <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 32 }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 14 }}>
+            What is GST?
+          </h2>
+          <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.9, marginBottom: 10 }}>
+            GST (Goods and Services Tax) is India's comprehensive indirect tax system. It was introduced in July 2017 to replace multiple taxes like VAT, excise duty, and service tax.
+          </p>
+          <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.9 }}>
+            GST is levied at the point of sale and applies to both goods and services. There are four main GST slabs: 5%, 12%, 18%, and 28%, depending on the product or service category.
+          </p>
+        </div>
+
+        {/* GST Slabs Table */}
+        <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 32 }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>
+            GST Slabs in India
+          </h2>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+              <thead>
+                <tr style={{ borderBottom: "2px solid #27272a" }}>
+                  {["GST Rate", "Examples"].map(h => (
+                    <th key={h} style={{ padding: "10px 12px", textAlign: "left", fontWeight: 600, color: "#71717a", fontSize: 12 }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["5%", "Basic food items, books, pharmaceuticals, milk, bread"],
+                  ["12%", "Processed food, cosmetics, furniture, leather goods"],
+                  ["18%", "Most goods and services, electronics, clothing, fuel"],
+                  ["28%", "Luxury items, automobiles, air conditioners, cameras"],
+                  ["0%", "Exports, stamps, court fees"],
+                ].map(([rate, items], i) => (
+                  <tr key={rate} style={{ borderBottom: "1px solid #1f1f22", background: i % 2 ? "#18181b" : "transparent" }}>
+                    <td style={{ padding: "10px 12px", color: "#10b981", fontWeight: 500 }}>{rate}</td>
+                    <td style={{ padding: "10px 12px", color: "#a1a1aa" }}>{items}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* How to Use */}
+        <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 32 }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>
+            How to Use This GST Calculator
+          </h2>
+          {[
+            { step: "Step 1", text: "Enter the base amount (price before GST)" },
+            { step: "Step 2", text: "Select the applicable GST rate" },
+            { step: "Step 3", text: "Choose to add GST or calculate GST on a total" },
+            { step: "Step 4", text: "Instantly see the GST amount and final total" },
+          ].map((s, i) => (
+            <div key={i} style={{ display: "flex", gap: 14, marginBottom: 14, alignItems: "flex-start" }}>
+              <div style={{
+                width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
+                background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 11, fontWeight: 700, color: "#10b981",
+              }}>{i + 1}</div>
+              <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.7, marginTop: 4 }}>
+                <strong style={{ color: "#f4f4f5" }}>{s.step} — </strong>{s.text}
+              </p>
+            </div>
           ))}
         </div>
-      </div>
 
-      {/* Result Cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 16 }}>
-        <div style={{ background: "#18181b", border: "1px solid #27272a", borderRadius: 14, padding: 16 }}>
-          <p style={{ fontSize: 11, color: "#71717a", marginBottom: 8, fontWeight: 500 }}>Pre-GST Amount</p>
-          <p style={{ fontSize: 18, fontWeight: 700, color: "#f4f4f5" }}>{fmt(preGst)}</p>
+        
+        <AdSenseUnit />
+        {/* FAQ */}
+        <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28, marginBottom: 32 }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#f4f4f5", marginBottom: 20 }}>
+            Frequently Asked Questions
+          </h2>
+          {faqs.map((faq, i) => (
+            <div key={i} style={{ borderBottom: i < faqs.length - 1 ? "1px solid #27272a" : "none", padding: "16px 0" }}>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: "#f4f4f5", marginBottom: 8 }}>{faq.q}</h3>
+              <p style={{ fontSize: 13, color: "#71717a", lineHeight: 1.7 }}>{faq.a}</p>
+            </div>
+          ))}
         </div>
-        <div style={{ background: "#18181b", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 14, padding: 16 }}>
-          <p style={{ fontSize: 11, color: "#71717a", marginBottom: 8, fontWeight: 500 }}>GST Amount</p>
-          <p style={{ fontSize: 18, fontWeight: 700, color: "#10b981" }}>{fmt(gstAmount)}</p>
-        </div>
-        <div style={{ background: "#18181b", border: "1px solid #27272a", borderRadius: 14, padding: 16 }}>
-          <p style={{ fontSize: 11, color: "#71717a", marginBottom: 8, fontWeight: 500 }}>Total Amount</p>
-          <p style={{ fontSize: 18, fontWeight: 700, color: "#f4f4f5" }}>{fmt(postGst)}</p>
-        </div>
-      </div>
+        <RelatedTools tools={[
+          { title: "Invoice Builder", icon: "📄", description: "Create professional invoices free", href: "/invoice-builder" },
+          { title: "TDS Calculator", icon: "📋", description: "Calculate Tax Deducted at Source", href: "/tds-calculator" },
+          { title: "Income Tax Calculator", icon: "🧾", description: "Calculate your income tax liability", href: "/income-tax-calculator" },
+          { title: "Payslip Generator", icon: "🧑‍💼", description: "Generate payslips for your employees", href: "/payslip-generator" },
+        ]} />
 
-      {/* CGST / SGST / IGST Breakdown */}
-      <div style={{ background: "#18181b", border: "1px solid #27272a", borderRadius: 14, padding: 18 }}>
-        <p style={{ fontSize: 12, color: "#71717a", marginBottom: 14, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-          Tax Breakdown
-        </p>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-          <span style={{ fontSize: 14, color: "#a1a1aa" }}>CGST ({gstRate / 2}%)</span>
-          <span style={{ fontSize: 15, fontWeight: 600, color: "#f4f4f5" }}>{fmt(gstAmount / 2)}</span>
-        </div>
-        <div style={{ height: 1, background: "#27272a", marginBottom: 10 }} />
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-          <span style={{ fontSize: 14, color: "#a1a1aa" }}>SGST ({gstRate / 2}%)</span>
-          <span style={{ fontSize: 15, fontWeight: 600, color: "#f4f4f5" }}>{fmt(gstAmount / 2)}</span>
-        </div>
-        <div style={{ height: 1, background: "#27272a", marginBottom: 10 }} />
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span style={{ fontSize: 14, color: "#a1a1aa" }}>
-            IGST ({gstRate}%) <span style={{ fontSize: 11, color: "#52525b" }}>(Inter-state)</span>
-          </span>
-          <span style={{ fontSize: 15, fontWeight: 600, color: "#f4f4f5" }}>{fmt(gstAmount)}</span>
-        </div>
-      </div>
 
+      </div>
     </div>
+    </>
   );
 }

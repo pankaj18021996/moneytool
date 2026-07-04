@@ -3,6 +3,7 @@ import { metadata as seoMetadata } from "./metadata";
 import TdsCalculatorClient from "./TdsCalculatorClient";
 import FAQSchema from "../components/FAQSchema";
 import { BreadcrumbSchema } from "../components/Breadcrumb";
+import RelatedTools from "../components/RelatedTools";
 
 export const metadata: Metadata = seoMetadata as Metadata;
 
@@ -224,6 +225,13 @@ export default function Page() {
             </div>
           ))}
         </div>
+        <RelatedTools tools={[
+          { title: "Income Tax Calculator", icon: "🧾", description: "Calculate your income tax liability", href: "/income-tax-calculator" },
+          { title: "Salary Calculator", icon: "💵", description: "Calculate in-hand salary & deductions", href: "/salary-calculator" },
+          { title: "GST Calculator", icon: "🛒", description: "Add or remove GST from prices", href: "/gst-calculator" },
+          { title: "Invoice Builder", icon: "📄", description: "Create professional invoices free", href: "/invoice-builder" },
+        ]} />
+
       </section>
     </>
   );

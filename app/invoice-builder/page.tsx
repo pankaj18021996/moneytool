@@ -3,6 +3,7 @@ import { metadata as seoMetadata } from "./metadata";
 import InvoiceBuilderClient from "./InvoiceBuilderClient";
 import FAQSchema from "../components/FAQSchema";
 import { BreadcrumbSchema } from "../components/Breadcrumb";
+import RelatedTools from "../components/RelatedTools";
 
 export const metadata: Metadata = seoMetadata as Metadata;
 
@@ -156,6 +157,13 @@ export default function Page() {
             </div>
           ))}
         </div>
+
+        <RelatedTools tools={[
+          { title: "Payslip Generator", icon: "🧑‍💼", description: "Generate payslips for your employees", href: "/payslip-generator" },
+          { title: "GST Calculator", icon: "🛒", description: "Add or remove GST from prices", href: "/gst-calculator" },
+          { title: "TDS Calculator", icon: "📋", description: "Calculate Tax Deducted at Source", href: "/tds-calculator" },
+          { title: "Salary Calculator", icon: "💵", description: "Calculate in-hand salary & deductions", href: "/salary-calculator" },
+        ]} />
       </section>
     </>
   );

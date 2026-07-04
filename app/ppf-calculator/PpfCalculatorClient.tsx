@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import AdSenseUnit from "../components/AdSenseUnit";
 import ZerodhaCTA from "../components/ZerodhaCTA";
+import RelatedTools from "../components/RelatedTools";
 
 const faqs = [
   {
@@ -249,6 +250,13 @@ export default function PPFCalculatorPage() {
 
         </div>
 
+        <RelatedTools tools={[
+          { title: "SIP Calculator", icon: "📈", description: "Calculate mutual fund SIP returns", href: "/sip-calculator" },
+          { title: "FD Calculator", icon: "💰", description: "Calculate Fixed Deposit interest & maturity", href: "/fd-calculator" },
+          { title: "RD Calculator", icon: "🔁", description: "Calculate Recurring Deposit returns", href: "/rd-calculator" },
+          { title: "Income Tax Calculator", icon: "🧾", description: "Calculate your income tax liability", href: "/income-tax-calculator" },
+        ]} />
+
       </div>
     </div>
   );
@@ -415,6 +423,7 @@ function PPFCalculatorClient() {
           <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#f97316" }} />
           Returns ({rPct}%)
         </span>
+
       </div>
 
     </div>
