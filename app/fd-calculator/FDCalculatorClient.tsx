@@ -1,7 +1,6 @@
 import { BreadcrumbSchema } from "../components/Breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
-import FDCalculatorClient from "./FDCalculatorClient";
 import FDCalculatorFAQ from "./FDCalculatorFAQ";
 import AdSenseUnit from "../components/AdSenseUnit";
 import ZerodhaCTA from "../components/ZerodhaCTA";
@@ -138,7 +137,7 @@ export default function FDCalculatorPage() {
         {/* Two Column Layout */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 24, alignItems: "start", marginBottom: 48 }}>
 
-          <FDCalculatorClient />
+          <FDCalculatorFAQ faqs={faqs} />
 
           {/* Sidebar */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>

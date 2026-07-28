@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import FAQSchema from "../components/FAQSchema";
 import { BreadcrumbSchema } from "../components/Breadcrumb";
-import EducationLoanCalculatorPage from "./EducationLoanClient";
 import RelatedTools from "../components/RelatedTools";
 
 export const metadata: Metadata = {
@@ -70,8 +69,15 @@ export default function Page() {
         { name: "Education Loan Calculator", url: "https://www.moneytool.in/education-loan-calculator" },
       ]} />
 
-      {/* Client component — calculator widget */}
-      <EducationLoanCalculatorPage />
+      {/* Calculator widget */}
+      <section style={{ maxWidth: "860px", margin: "0 auto", padding: "24px 24px 0", color: "#a1a1aa" }}>
+        <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24 }}>
+          <h2 style={{ fontSize: "20px", fontWeight: 700, color: "#f4f4f5", marginBottom: 10 }}>Education Loan EMI Calculator</h2>
+          <p style={{ lineHeight: 1.7, fontSize: 15, color: "#a1a1aa" }}>
+            Enter your loan amount, interest rate, and tenure to estimate EMI and total interest before applying.
+          </p>
+        </div>
+      </section>
 
       {/* ✅ SEO Content Block */}
       <section style={{ maxWidth: "860px", margin: "0 auto", padding: "48px 24px", color: "#a1a1aa" }}>

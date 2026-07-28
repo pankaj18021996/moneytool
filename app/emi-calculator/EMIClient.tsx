@@ -2,7 +2,6 @@ import { BreadcrumbSchema } from "../components/Breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import LoanCalculator from "../components/LoanCalculator";
-import EMIClient from "./EMIClient";
 import { metadata as seoMetadata } from "./metadata";
 import AdSenseUnit from "../components/AdSenseUnit";
 import RelatedTools from "../components/RelatedTools";
@@ -170,7 +169,18 @@ export default function EMICalculatorPage() {
 
           {/* Left — Calculator */}
           <div>
-            <EMIClient />
+            <LoanCalculator
+              defaultAmount={500000}
+              defaultRate={9.5}
+              defaultTenure={60}
+              minAmount={100000}
+              maxAmount={50000000}
+              minRate={6}
+              maxRate={20}
+              minTenure={12}
+              maxTenure={360}
+              amountStep={50000}
+            />
           </div>
 
           {/* Right — Sidebar */}

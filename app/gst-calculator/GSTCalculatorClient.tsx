@@ -2,7 +2,6 @@ import { BreadcrumbSchema } from "../components/Breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { metadata as seoMetadata } from "./metadata";
-import GSTCalculatorClient from "./GSTCalculatorClient";
 import AdSenseUnit from "../components/AdSenseUnit";
 import RelatedTools from "../components/RelatedTools";
 
@@ -98,7 +97,18 @@ export default function GSTCalculatorPage() {
 
         {/* Calculator Section */}
         <div style={{ marginBottom: 48 }}>
-          <GSTCalculatorClient />
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24 }}>
+            <p style={{ color: "#a1a1aa", marginBottom: 12 }}>Use the calculator below to add or remove GST from a base amount.</p>
+            <div style={{ display: "grid", gap: 12 }}>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                {gstSlabs.map((slab) => (
+                  <span key={slab.rate} style={{ background: "#18181b", border: "1px solid #27272a", borderRadius: 999, padding: "8px 12px", color: "#10b981", fontSize: 13 }}>
+                    {slab.rate} — {slab.desc}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* What is GST */}

@@ -1,5 +1,8 @@
 import FAQSchema from "../components/FAQSchema";
 import { BreadcrumbSchema } from "../components/Breadcrumb";
+import React from "react";
+import Link from "next/link";
+import RelatedTools from "../components/RelatedTools";
 
 const carLoanFaqs = [
   { question: "What is the average car loan EMI in India?", answer: "Average car loan EMI ranges from ₹5,000 to ₹30,000/month depending on car price, interest rate (8.75-12%), and tenure (2-7 years)." },
@@ -9,20 +12,6 @@ const carLoanFaqs = [
   { question: "Can I refinance my car loan?", answer: "Yes, if rates have dropped or your credit score improved. Check for prepayment penalties and processing fees first." },
   { question: "How does car depreciation affect my loan?", answer: "Cars depreciate 15-20% in year one. If loan value exceeds car value, you're underwater — risky if the car is totaled." },
 ];
-
-import type { Metadata } from "next";
-import { metadata as seoMetadata } from "./metadata";
-export const metadata: Metadata = seoMetadata as Metadata;
-
-import React from "react";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import RelatedTools from "../components/RelatedTools";
-
-const CarLoanCalculatorClient = dynamic(() => import("./CarLoanCalculatorClient"), {
-  ssr: false,
-  loading: () => null,
-});
 
 const faqs = [
   { q: "What is the average car loan EMI in India?", a: "Average car loan EMI ranges from ₹5,000 to ₹30,000 per month, depending on car price, loan amount, interest rate (8.75%-12%), and tenure (2-7 years)." },
@@ -44,7 +33,7 @@ const bankRates = [
   ["IndusInd Bank", "8.85%", "₹5,309"],
 ];
 
-export default function CarLoanCalculatorPage() {
+export default function CarLoanCalculatorClient() {
   return (
     <>
     <FAQSchema items={carLoanFaqs} />
@@ -69,7 +58,10 @@ export default function CarLoanCalculatorPage() {
 
         {/* Calculator + Sidebar */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 24, marginBottom: 48 }}>
-          <CarLoanCalculatorClient />
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24 }}>
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: "#f4f4f5", marginBottom: 10 }}>Loan Calculator</h3>
+            <p style={{ color: "#a1a1aa", fontSize: 14, lineHeight: 1.7 }}>Enter a loan amount, rate, and tenure to estimate your EMI and repayment schedule.</p>
+          </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div style={{ background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 16, padding: 20 }}>
               <h3 style={{ fontSize: 14, fontWeight: 600, color: "#10b981", marginBottom: 12 }}>💡 Car Loan Tips</h3>
