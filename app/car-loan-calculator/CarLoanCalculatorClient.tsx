@@ -97,8 +97,17 @@ export default function CarLoanCalculatorClient() {
           </div>
         </div>
 
-        {/* Content Sections (trimmed for brevity) */}
+        {/* Content Sections */}
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>
+            <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 10, color: "#f4f4f5" }}>
+              Why use this car loan calculator?
+            </h2>
+            <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.8 }}>
+              This tool helps you understand your monthly EMI, total interest, and repayment burden before you commit to a car finance offer. It also helps compare down payment and loan tenure choices in seconds.
+            </p>
+          </div>
 
           {/* Current Rates */}
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 28 }}>

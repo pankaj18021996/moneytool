@@ -86,6 +86,12 @@ export default function Page() {
             amountStep={50000}
           />
         </div>
+        <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24, marginTop: 20 }}>
+          <h2 style={{ fontSize: "20px", fontWeight: 700, color: "#f4f4f5", marginBottom: 10 }}>Education loan planning made simple</h2>
+          <p style={{ lineHeight: 1.8, fontSize: 14, color: "#a1a1aa" }}>
+            This calculator helps students and parents estimate EMI, total interest, and repayment load before choosing a loan. It is useful for planning studies abroad, higher education, and moratorium periods.
+          </p>
+        </div>
       </section>
 
       {/* ✅ SEO Content Block */}
