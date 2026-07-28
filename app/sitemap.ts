@@ -11,6 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Homepage
     { url: BASE, lastModified: NOW, changeFrequency: WEEKLY, priority: 1 },
 
+    // Core category pages
+    { url: `${BASE}/calculators`, lastModified: NOW, changeFrequency: WEEKLY, priority: 0.96 },
+    { url: `${BASE}/business-tools`, lastModified: NOW, changeFrequency: WEEKLY, priority: 0.9 },
+
     // High-priority loan calculators
     { url: `${BASE}/emi-calculator`,           lastModified: NOW, changeFrequency: WEEKLY, priority: 0.95 },
     { url: `${BASE}/home-loan-calculator`,     lastModified: NOW, changeFrequency: WEEKLY, priority: 0.92 },

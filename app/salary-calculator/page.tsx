@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Salary Calculator India 2026 – CTC to In-Hand | MoneyTool",
   description:
     "Calculate your exact in-hand salary from CTC. Covers PF, HRA, income tax under new & old regime, cess, and all deductions. Updated for FY 2025-26.",
-  alternates: { canonical: "https://www.moneytool.in/calculators/salary-calculator" },
+  alternates: { canonical: "https://www.moneytool.in/salary-calculator" },
   openGraph: {
     title: "Salary Calculator India 2026 – MoneyTool",
     description: "CTC to in-hand salary calculator with full tax breakdown for new and old regime.",

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "fixed deposit interest calculator",
     "fd return calculator",
   ],
-  alternates: { canonical: "https://www.moneytool.in/calculators/fd-calculator" },
+  alternates: { canonical: "https://www.moneytool.in/fd-calculator" },
   openGraph: {
     title: "Free FD Calculator India 2026 — MoneyTool",
     description: "Estimate FD maturity value and interest with compounding frequency options.",

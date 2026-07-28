@@ -5,6 +5,12 @@ Disallow: /admin
 Disallow: /private
 Disallow: /api/
 
+# Allow search engines to crawl the calculator content and the blog
+Allow: /emi-calculator
+Allow: /fd-calculator
+Allow: /salary-calculator
+Allow: /blog/
+
 # Crawl-delay for aggressive bots
 User-agent: Googlebot
 Crawl-delay: 0

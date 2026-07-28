@@ -7,9 +7,18 @@ declare global {
 
 export default function AdSenseUnit() {
   useEffect(() => {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {}
+    const pushAd = () => {
+      try {
+        if (window.adsbygoogle) {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }
+      } catch (e) {
+        // Ignore ad injection errors so the page remains usable.
+      }
+    };
+
+    const timer = window.setTimeout(pushAd, 400);
+    return () => window.clearTimeout(timer);
   }, []);
 
   return (
