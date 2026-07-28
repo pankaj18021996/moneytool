@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import FAQSchema from "../components/FAQSchema";
 import { BreadcrumbSchema } from "../components/Breadcrumb";
 import RelatedTools from "../components/RelatedTools";
+import LoanCalculator from "../components/LoanCalculator";
 
 export const metadata: Metadata = {
   title: "Education Loan EMI Calculator India 2026 | MoneyTool",
@@ -72,10 +73,18 @@ export default function Page() {
       {/* Calculator widget */}
       <section style={{ maxWidth: "860px", margin: "0 auto", padding: "24px 24px 0", color: "#a1a1aa" }}>
         <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24 }}>
-          <h2 style={{ fontSize: "20px", fontWeight: 700, color: "#f4f4f5", marginBottom: 10 }}>Education Loan EMI Calculator</h2>
-          <p style={{ lineHeight: 1.7, fontSize: 15, color: "#a1a1aa" }}>
-            Enter your loan amount, interest rate, and tenure to estimate EMI and total interest before applying.
-          </p>
+          <LoanCalculator
+            defaultAmount={800000}
+            defaultRate={10.5}
+            defaultTenure={60}
+            minAmount={50000}
+            maxAmount={50000000}
+            minRate={7}
+            maxRate={20}
+            minTenure={12}
+            maxTenure={180}
+            amountStep={50000}
+          />
         </div>
       </section>
 

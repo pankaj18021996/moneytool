@@ -3,6 +3,7 @@ import { BreadcrumbSchema } from "../components/Breadcrumb";
 import React from "react";
 import Link from "next/link";
 import RelatedTools from "../components/RelatedTools";
+import LoanCalculator from "../components/LoanCalculator";
 
 const carLoanFaqs = [
   { question: "What is the average car loan EMI in India?", answer: "Average car loan EMI ranges from ₹5,000 to ₹30,000/month depending on car price, interest rate (8.75-12%), and tenure (2-7 years)." },
@@ -58,10 +59,18 @@ export default function CarLoanCalculatorClient() {
 
         {/* Calculator + Sidebar */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 24, marginBottom: 48 }}>
-          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24 }}>
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: "#f4f4f5", marginBottom: 10 }}>Loan Calculator</h3>
-            <p style={{ color: "#a1a1aa", fontSize: 14, lineHeight: 1.7 }}>Enter a loan amount, rate, and tenure to estimate your EMI and repayment schedule.</p>
-          </div>
+          <LoanCalculator
+            defaultAmount={500000}
+            defaultRate={9.25}
+            defaultTenure={60}
+            minAmount={100000}
+            maxAmount={20000000}
+            minRate={7}
+            maxRate={18}
+            minTenure={12}
+            maxTenure={84}
+            amountStep={50000}
+          />
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div style={{ background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 16, padding: 20 }}>
               <h3 style={{ fontSize: 14, fontWeight: 600, color: "#10b981", marginBottom: 12 }}>💡 Car Loan Tips</h3>

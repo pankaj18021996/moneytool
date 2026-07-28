@@ -4,6 +4,7 @@ import { metadata as seoMetadata } from "./metadata";
 import FAQSchema from "../components/FAQSchema";
 import { BreadcrumbSchema } from "../components/Breadcrumb";
 import RelatedTools from "../components/RelatedTools";
+import LoanCalculator from "../components/LoanCalculator";
 
 export const metadata: Metadata = seoMetadata as Metadata;
 
@@ -74,6 +75,21 @@ export default function Page() {
                 <p style={{ fontSize: 13, color: "#a1a1aa", lineHeight: 1.7, margin: 0 }}>{card.text}</p>
               </div>
             ))}
+          </div>
+
+          <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24, marginBottom: 32 }}>
+            <LoanCalculator
+              defaultAmount={1000000}
+              defaultRate={12.5}
+              defaultTenure={60}
+              minAmount={500000}
+              maxAmount={50000000}
+              minRate={8}
+              maxRate={24}
+              minTenure={12}
+              maxTenure={180}
+              amountStep={50000}
+            />
           </div>
 
           <div style={{ background: "#111113", border: "1px solid #27272a", borderRadius: 16, padding: 24, marginBottom: 32 }}>
